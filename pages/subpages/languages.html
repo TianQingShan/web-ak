@@ -1,0 +1,64 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/subpages/language.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <ul class="languages">
+                <li class="lang van-hairline--bottom" @click="selectLanguage('cn')">
+                    <img src="../../content/img/flag/cn.jpg" class="flag" />
+                    <p class="text">中文</p>
+                </li>
+                <li class="lang van-hairline--bottom" @click="selectLanguage('en')">
+                    <img src="../../content/img/flag/en.jpg" class="flag" />
+                    <p class="text">English</p>
+                </li>
+                <li class="lang" @click="selectLanguage('ko')">
+                    <img src="../../content/img/flag/kr.jpg" class="flag" />
+                    <p class="text">대한민국</p>
+                </li>
+	<li class="lang" @click="selectLanguage('jp')">
+                    <img src="../../content/img/flag/ja.jpg" class="flag" />
+                    <p class="text">日本語</p>
+                </li>
+	<li class="lang" @click="selectLanguage('de')">
+                    <img src="../../content/img/flag/de.gif" class="flag" />
+                    <p class="text">Deutsch</p>
+                </li>
+	<li class="lang" @click="selectLanguage('es')">
+                    <img src="../../content/img/flag/es.gif" class="flag" />
+                    <p class="text">Español</p>
+                </li>
+	<li class="lang" @click="selectLanguage('fr')">
+                    <img src="../../content/img/flag/fr.gif" class="flag" />
+                    <p class="text">Français</p>
+                </li>
+	<li class="lang" @click="selectLanguage('pt')">
+                    <img src="../../content/img/flag/pt.gif" class="flag" />
+                    <p class="text">Português</p>
+                </li>
+	<li class="lang" @click="selectLanguage('th')">
+                    <img src="../../content/img/flag/th.jpg" class="flag" />
+                    <p class="text">ไทย</p>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js?v=28"></script>
+    <script src="../../content/js/vant.min.js?v=28"></script>
+    <script src="../../content/js/base.js?v=28"></script>
+    <script src="../../content/js/pages/subpages/languages.js?v=28"></script>
+</body>
+</html>

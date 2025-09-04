@@ -1,0 +1,49 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../../content/css/base.css" rel="stylesheet" />
+    <link href="../../../content/css/vant.css" rel="stylesheet" />
+	<link href="../../../content/css/pages/center/child/feedback.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+        </div>
+		 
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+             
+			
+			<div class="input_group border">
+                
+					<div class="input_line van-hairline--bottom">
+                        <span class="input_text" v-text="language.INPUT_TEXT_3">上傳憑證</span>
+                        <div class="input_control r-1"
+                             v-bind:class="{'gray': !fileName}"
+                             v-text="fileName ? fileName : language.INPUT_PLACEHOLDER_3"></div>
+                        <i class="arrow iconfont iconupload file_upload">
+                            <input type="file" accept="image/*" name="image" class="file_control" @change="fileChanged" />
+                        </i>
+                    </div>		
+			
+            </div>
+			
+			
+			 
+			
+			 
+			 
+            <button class="confirm_button" v-text="language.CONFIRM_BUTTON_TEXT" @click="checkData">確認修改</button>
+        </div>
+    </div>
+    <script src="../../../content/js/vue.js?v=28"></script>
+    <script src="../../../content/js/vant.min.js?v=28"></script>
+    <script src="../../../content/js/base.js?v=28"></script>
+    <script src="../../../content/js/pages/center/child/change.AvatarImage.js?v=28"></script>
+</body>
+</html>

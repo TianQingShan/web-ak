@@ -1,0 +1,108 @@
+﻿#app-content {
+    padding: 15px 0;
+}
+
+.list {
+    width: calc(100% - 30px);
+    margin: 0 auto;
+}
+
+    .list li {
+        padding: 25px;
+        background-color: white;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+        .list li:last-child {
+            margin-bottom: 0;
+        }
+
+        .list li .upgrade_line {
+            display: flex;
+            margin-bottom: 25px;
+            justify-content: space-between;
+        }
+
+            .list li .upgrade_line div.middle {
+                background-color: transparent;
+                color: #61b8ff;
+                animation: textColor 1s;
+                animation-iteration-count: infinite;
+            }
+
+                .list li .upgrade_line div.middle .iconfont {
+                    margin-right: 0;
+                }
+
+            .list li .upgrade_line div {
+                font-size: .9em;
+                background-color: #61b8ff;
+                color: white;
+                padding: 0 10px;
+                border-radius: 6px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+                .list li .upgrade_line div .iconfont {
+                    margin-right: 3px;
+                }
+
+            .list li .upgrade_line .right {
+                background-color: #1e81d2;
+            }
+
+        .list li .time {
+            text-align: right;
+            font-size: .8em;
+            height: 20px;
+            line-height: 20px;
+            color: #989898;
+        }
+		
+		.bottom {
+        //border-top: 1px solid #f9f9f9;
+        margin-top: 10px;
+        padding-top: 10px;
+		
+		padding: 15px;
+        background-color: white;
+        border-radius: 6px;
+        margin-bottom: 15px;
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+		
+		}
+
+         .bottom .left {
+            float: left;
+            font-size: .8em;
+            color: #eacf00;
+        }
+
+         .bottom .right {
+            float: right;
+            font-size: .7em;
+            color: #666666;
+        }
+
+         
+
+@keyframes textColor {
+    from {
+        color: #61b8ff;
+        margin-left: 0;
+    }
+
+    to {
+        color: #1e81d2;
+        margin-left: 10px;
+    }
+}

@@ -1,0 +1,223 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/sell.ep.css" rel="stylesheet" />
+	<style>
+.van-tabs--line {
+     padding-top: 3px; 
+}
+.van-tabs--line .van-tabs__wrap {
+     height: 3px; 
+}
+</style>
+</head>
+
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text" v-text="language.TITLE_TEXT">出售EP</div>
+            <i class="iconfont iconbangzhu submit-button" @click="isTipShow = true"></i>
+        </div>
+        <div v-if="isLoading || isLoadingBank" class="loading-box p50">
+            <van-loading color="black"></van-loading>
+            <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+        </div>
+        <div id="app-content" v-else v-cloak v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}" v-bind:class="{'iphone': APP.CONFIG.IsSafeArea()}">
+            <div class="sell_info">
+                <ul>
+                    <li style="width: 50%;">
+                        <p class="value" v-text="numberFormat(currentUser.EP, 2)"></p>
+                        <p class="text" v-text="language.UL_LI_1">EP</p>
+                    </li>
+                    <li style="width: 50%;">
+                        <p class="value" v-text="numberFormat(currentUser.TP, 2)"></p>
+                        <p class="text" v-text="language.UL_LI_2">TP</p>
+                    </li>
+                    <li style="display: none;">
+                        <p class="value" v-text="numberFormat(display.convertAmountDisplay, 2)" ></p>
+                        <p class="text" v-text="language.UL_LI_3">約價值</p>
+                    </li>
+                </ul>
+            </div>
+            <div class="input_group">
+                <div class="warn">
+                    <p class="caption" v-text="language.WARN_CAPTION"></p>
+                    <p class="text" v-text="language.WARN_TEXT"></p>
+                </div>
+                <!--<div class="input_line van-hairline--bottom">
+                    <span class="input_text" v-text="language.INPUT_TEXT_1">出售數量</span>
+                    <div class="input_control r-1" v-bind:class="{'gray': form.epAmount <= 0}" @click="isConfirmAmountShow = true" v-text="display.amountText"></div>
+                    <i class="iconfont iconjiantou arrow"></i>
+                </div>-->
+
+	<div class="input_line van-hairline--bottom">
+                        <span class="input_text" v-text="language.INPUT_TEXT_1">出售數量</span>
+                        <input type="text" class="input_control" v-model="form.epAmount" maxlength="20" v-bind:placeholder="language.INPUT_PLACEHOLDER_10_1" />
+                    </div>
+
+                <div class="input_line van-hairline--bottom">
+                    <span class="input_text" v-text="language.INPUT_TEXT_22">手續費</span>
+                    <div class="input_control" v-text="display.EPFeeDisplay"></div>
+                </div>
+                <div class="input_line van-hairline--bottom" >
+                    <span class="input_text" v-text="language.INPUT_TEXT_23">累計扣除</span>
+                    <div class="input_control" v-text="display.sellTotalAmount"></div>
+                </div>
+                <div class="input_line">
+                    <span class="input_text" v-text="language.INPUT_TEXT_6">手機號碼</span>
+                    <input type="tel" class="input_control" v-model="form.phone" maxlength="11" v-bind:placeholder="language.INPUT_PLACEHOLDER_6" />
+                </div>
+            </div>
+            <van-tabs v-model="tabIndex" class="input_group" @change="tabChanged">
+                
+                 
+                    <div class="input_line van-hairline--bottom">
+                        <span class="input_text" v-text="language.INPUT_TEXT_12_1">Usdt-->CNY</span>
+                        <div class="input_control" v-text="display.ExchangeUsdt"  >Usdt-->CNY</div>
+                    </div>
+					<div class="input_line van-hairline--bottom">
+                        <span class="input_text" v-text="language.INPUT_TEXT_12">EPToUsdt</span>
+                        <div class="input_control" v-text="display.Global"  >USDT</div>
+                    </div>
+                    <div class="input_line">
+                        <span class="input_text" v-text="language.INPUT_TEXT_13">ERC Address</span>
+                        <input type="text" class="input_control" v-bind:class="{'red': isAddressError_1}" v-model="form.usdtAddress1" maxlength="64" v-bind:placeholder="language.INPUT_PLACEHOLDER_13" />
+                    </div>
+                    <!--<div class="input_line">
+                        <span class="input_text" v-text="language.INPUT_TEXT_20">ERC地址</span>
+                        <input type="text"
+                               class="input_control"
+                               v-bind:class="{'red': isAddressError_2}"
+                               v-model="form.usdtAddress2"
+                               maxlength="64"
+                               v-bind:placeholder="language.INPUT_PLACEHOLDER_20" />
+                    </div>
+                    <div class="input_line">
+                        <span class="input_text" v-text="language.INPUT_TEXT_21">TRC地址</span>
+                        <input type="text"
+                               class="input_control"
+                               v-bind:class="{'red': isAddressError_3}"
+                               v-model="form.usdtAddress3"
+                               maxlength="64"
+                               v-bind:placeholder="language.INPUT_PLACEHOLDER_21" />
+                    </div>-->
+ 
+            </van-tabs>
+            <div class="input_group border">
+                <div class="input_line full">
+                    <p class="text_line" v-text="language.INPUT_PLACEHOLDER_12"></p>
+					<input type="text" class="full_control" v-model="form.mnemonicstr1" v-bind:placeholder="display.mnemonicid1" maxlength="20" />
+                </div>
+            </div>
+            <div class="input_group">
+                <div class="input_line">
+                    <span class="input_text" v-text="language.INPUT_TEXT_16">谷歌驗證碼</span>
+                    <input type="tel" class="input_control" v-model="form.gCode" style="flex: 1;width: 0;" v-bind:placeholder="language.INPUT_PLACEHOLDER_16" maxlength="6" />
+
+                    <button style="padding: 0 20px !important; background: #1181cf; color: #fff;" @click="clipFunc">Paste</button>
+                </div>
+            </div>
+            <button class="confirm_button" v-text="language.BUTTON_1" @click="checkData">確認出售</button>
+            <van-popup class="border" v-model="isBankNameShow" position="bottom">
+                <van-picker v-bind:columns="bankNameList" value-key="Name" @cancel="isBankNameShow = false" v-bind:confirm-button-text="language.CONFIRM_BUTTON_TEXT" v-bind:cancel-button-text="language.CANCEL_BUTTON_TEXT" @confirm="selectedBankItem" show-toolbar="true"
+                    v-bind:title="language.PICKER_TITLE_3"></van-picker>
+            </van-popup>
+			<van-popup class="border" v-model="isnationNameShow" position="bottom">
+			    <van-picker v-bind:columns="nationNameList" value-key="Name" @cancel="isnationNameShow = false" v-bind:confirm-button-text="language.CONFIRM_BUTTON_TEXT" v-bind:cancel-button-text="language.CANCEL_BUTTON_TEXT" @confirm="selectednationItem" show-toolbar="true"
+			        v-bind:title="language.PICKER_TITLE_3"></van-picker>
+			</van-popup>
+            <van-popup class="border" v-model="isConfirmAmountShow" position="bottom">
+                <van-picker v-bind:columns="epList" @cancel="isConfirmAmountShow = false" v-bind:confirm-button-text="language.CONFIRM_BUTTON_TEXT" v-bind:cancel-button-text="language.CANCEL_BUTTON_TEXT" @confirm="confirmAmount" show-toolbar="true" v-bind:title="language.PICKER_TITLE_1"></van-picker>
+            </van-popup>
+            <van-popup class="border confirm_dialog" v-model="isConfirmDialogShow" position="bottom">
+                <div class="confirm_dialog_inner">
+                    <p class="caption" v-text="language.CONFIRM_DIALOG_CAPTION"></p>
+                    <ul>
+                        <li class="clearfix">
+                            <span class="text" v-text="language.INPUT_TEXT_1"></span>
+                            <span class="value" v-text="form.epAmount"></span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="text" v-text="language.INPUT_TEXT_6"></span>
+                            <span class="value" v-text="form.phone"></span>
+                        </li>
+                        <li class="clearfix">
+                            <span class="text" v-text="language.INPUT_TEXT_14"></span>
+                            <span class="value" v-text="getReceiveTypeName()"></span>
+                        </li>
+                        <li class="clearfix" v-if="form.receiveType === 3">
+                            <span class="text" v-text="language.RECEIVE_ACCOUNT"></span>
+                            <span class="value" v-text="form.alipay"></span>
+                        </li>
+						<li class="clearfix" v-if="form.receiveType === 1">
+						    <span class="text" v-text="language.UL_LI_4"></span>
+						    <span class="value" v-text="form.nationName"></span>
+						</li>
+						<li class="clearfix" v-if="form.receiveType === 1">
+						    <span class="text" v-text="language.UL_LI_5"></span>
+						    <span class="value" v-text="form.Currency"></span>
+						</li>
+						<li class="clearfix" v-if="form.receiveType === 1">
+						    <span class="text" v-text="language.UL_LI_6"></span>
+						    <span class="value" v-text="form.Exchange"></span>
+						</li>
+                        <li class="clearfix" v-if="form.receiveType === 1">
+                            <span class="text" v-text="language.INPUT_TEXT_8"></span>
+                            <span class="value" v-text="form.bankName"></span>
+                        </li>
+                        <li class="clearfix" v-if="form.receiveType === 1">
+                            <span class="text" v-text="language.INPUT_TEXT_9"></span>
+                            <span class="value" v-text="form.bankBranchName"></span>
+                        </li>
+                        <li class="clearfix" v-if="form.receiveType === 1">
+                            <span class="text" v-text="language.INPUT_TEXT_10"></span>
+                            <span class="value" v-text="display.bankNumberFormat"></span>
+                        </li>
+                        <li class="clearfix" v-if="form.receiveType === 2 && form.usdtAddress1">
+                            <span class="text" v-text="language.INPUT_TEXT_15"></span>
+                            <span class="value" v-text="form.usdtAddress1"></span>
+                        </li>
+                        <li class="clearfix" v-else-if="form.receiveType === 2 && form.usdtAddress2">
+                            <span class="text" v-text="language.INPUT_TEXT_19"></span>
+                            <span class="value" v-text="form.usdtAddress2"></span>
+                        </li>
+                        <li class="clearfix" v-else-if="form.receiveType === 2 && form.usdtAddress3">
+                            <span class="text" v-text="language.INPUT_TEXT_20"></span>
+                            <span class="value" v-text="form.usdtAddress3"></span>
+                        </li>
+                    </ul>
+                    <div class="buttons">
+                        <button class="button" v-text="language.BUTTON_1" @click="doSubmitAjax"></button>
+                        <button class="button cancel" @click="isConfirmDialogShow = false" v-text="language.BUTTON_2"></button>
+                    </div>
+                </div>
+            </van-popup>
+            <van-popup v-model="isTipShow" position="bottom" class="tip_box">
+                <div class="tip_title">
+                    <i class="iconfont iconbangzhu"></i>
+                    <span v-text="language.RULE_TITLE"></span>
+                </div>
+                <div class="tip">
+                    <ul>
+                        <li v-text="language.RULE_LINE_1"></li>
+                        <li v-text="language.RULE_LINE_2"></li>
+                        <li v-text="language.RULE_LINE_3"></li>
+                    </ul>
+                </div>
+                <button class="confirm_button full" @click="isTipShow = false" v-text="language.BUTTON_3">我知道了</button>
+            </van-popup>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js?v=28"></script>
+    <script src="../../content/js/vant.min.js?v=28"></script>
+    <script src="../../content/js/base.js?v=28"></script>
+    <script src="../../content/js/pages/center/sell.ep.js?v=30"></script>
+</body>
+</html>

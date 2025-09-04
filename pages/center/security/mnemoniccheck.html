@@ -1,0 +1,76 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../../content/css/base.css" rel="stylesheet" />
+    <link href="../../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../../content/css/pages/center/security/mnemonic.css" rel="stylesheet" />
+    
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+        </div>
+        <div id="app-content">
+            <div v-if="isLoadingAnswer" class="loading-box">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text" v-text="language.LOADING"></p>
+            </div>
+            <div v-else v-cloak>
+                <div class="input_content">
+                    <div class="input_content pd">
+                        <p class="rule" v-text="language.Tip_0"></p>
+                        <ul class="rules">
+                            <li class="rule_item" v-text="language.Tip_1"></li>
+                            <li class="rule_item" v-text="language.Tip_2"></li>
+							<li class="rule_item" v-text="language.Tip_3"></li>
+							<li class="rule_item" v-text="language.Tip_4"></li>
+                        </ul>
+                    </div>
+					 
+                     
+					
+					<div class="input_group">
+                        <div class="input_line">
+                            <p style="text-align:center" class="input_control margin_auto"   v-text="language.INPUT_Check"></p>
+                        </div>
+                    </div>
+                    <div class="input_group">
+                        <div class="input_line van-hairline--bottom">
+							<input type="text" class="input_control"v-model="form.mnemonic1"maxlength="16" v-bind:placeholder="mnemonic1" />
+                            <input type="text" class="input_control"v-model="form.mnemonic2"maxlength="16" v-bind:placeholder="mnemonic2" />
+                            <input type="text" class="input_control"v-model="form.mnemonic3"maxlength="16" v-bind:placeholder="mnemonic3" />
+							<input type="text" class="input_control"v-model="form.mnemonic4"maxlength="16" v-bind:placeholder="mnemonic4" />
+                        </div>
+						<div class="input_line van-hairline--bottom">
+                            <input type="text" class="input_control"v-model="form.mnemonic5"maxlength="16" v-bind:placeholder="mnemonic5" />
+                            <input type="text" class="input_control"v-model="form.mnemonic6"maxlength="16" v-bind:placeholder="mnemonic6" />
+                            <input type="text" class="input_control"v-model="form.mnemonic7"maxlength="16" v-bind:placeholder="mnemonic7" />
+							<input type="text" class="input_control"v-model="form.mnemonic8"maxlength="16" v-bind:placeholder="mnemonic8" />
+                        </div>
+						<div class="input_line van-hairline--bottom">
+                            <input type="text" class="input_control"v-model="form.mnemonic9"maxlength="16" v-bind:placeholder="mnemonic9" />
+                            <input type="text" class="input_control"v-model="form.mnemonic10"maxlength="16" v-bind:placeholder="mnemonic10" />
+                            <input type="text" class="input_control"v-model="form.mnemonic11"maxlength="16" v-bind:placeholder="mnemonic11" />
+							<input type="text" class="input_control"v-model="form.mnemonic12"maxlength="16" v-bind:placeholder="mnemonic12" />
+                        </div>
+                    </div>
+					
+                </div>
+                 
+                <div class="input_content">
+                    <button class="confirm_button" v-text="language.CONFIRM_Check" @click="checkData" style="margin-top:3rem;">確認修改</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../content/js/vue.js?v=28"></script>
+    <script src="../../../content/js/vant.min.js?v=28"></script>
+    <script src="../../../content/js/base.js?v=28"></script>
+    <script src="../../../content/js/pages/center/security/mnemoniccheck.js?v=28"></script>
+</body>
+</html>

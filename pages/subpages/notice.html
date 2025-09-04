@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/pages/subpages/notice.css" rel="stylesheet" />
+    <title></title>
+    
+</head>
+<body>
+    <div id="app">
+        <h4 class="caption" v-text="language.TITLE_TEXT"></h4>
+        <div class="bg">
+            <img src="../../content/img/notice/notice_bg.png" />
+            <div v-if="currentLanuage === 'cn'" class="context" v-cloak>
+                <p class="text">为了长久运营，使每位玩家获得长远收益，确保做到“低调运营、积极发展、安全第一”的原则，请各位玩家遵守以下守则，做好整体配合。</p>
+                <p class="text" style="margin-bottom:1px;">1、不上网</p>
+                <p class="text">业务推广信息不上网，禁止在互联网平台公开使用AK的LOGO、公司介绍、奖励制度、收入截图、视频录音等相关信息推广业务，互联网平台包括但不限于Facebook、YouTube、Twitter、Instagram、WeChat、Tiktalk、微信朋友圈、抖音、腾讯视频、优酷、喜马拉雅、微博等社交媒体平台。</p>
+                <p class="text" style="margin-bottom:1px;">2、不误导</p>
+                <p class="text">一人一户，每位玩家只可注册一个主账户，超出的主账户均视为违规账户。</p>
+				<p class="text">禁止误导新玩家一人多户以及借贷、抵押进行注册。</p>
+                <p class="text" style="margin-bottom:1px;">3、不张扬</p>
+                <p class="text">禁止公开炫耀个人收入和物质享受。</p>
+                <p class="text" style="margin-bottom:1px;">4、不树敌</p>
+                <p class="text">禁止消极言论，禁止暴力沟通，禁止攻击旁线市场和其他公司。</p>
+                <p class="text" style="margin-bottom:1px;">5、不交叉</p>
+                <p class="text">禁止添加其他社群玩家的联系方式，禁止恶意竞争、拉线抢线、干扰其他社群的推广。</p>
+                <p class="text">牵手AK，共赢未来</p>
+                <p class="text">Together with Ak,</p>
+				<p class="text">Success for the future！</p>
+                <p class="text text-right" style="display:none;">AK市場部</p>
+                 
+            </div>
+            <div v-else class="context" v-cloak>
+                <p class="text">To ensure long-term operations, long-term benefits for every player, and adherence to the principles of "low-profile operations, active development, and safety first," all players are required to follow the guidelines below and cooperate fully.</p>
+                <p class="text" style="margin-bottom:1px;">1. No Online Promotion</p>
+                <p class="text">Do not promote business information online. It is strictly prohibited to use AK logos, company profile, reward systems, income screenshots, videos & voice recordings, and other related information for business promotion on internet platforms. Internet platforms include but are not limited to Facebook, YouTube, Twitter, Instagram, WeChat, Tiktok, WeChat Moments, Douyin, Tencent Video, Youku, Ximalaya, Weibo, and other social media platforms.
+</p>
+                <p class="text" style="margin-bottom:1px;">2. No Misleading</p>
+                <p class="text">One individual with only one account. Each player is only allowed to register one main account.  Any additional main account will be considered a violation and void. It is prohibited to mislead new players into registering multiple accounts using loans and mortgages.</p>
+                <p class="text" style="margin-bottom:1px;">3. No Boasting / Flaunting</p>
+                <p class="text">It is forbidden to publicly flaunt personal income and material possessions.</p>
+                <p class="text" style="margin-bottom:1px;">4. No Hostility</p>
+                <p class="text">Negative comments, violent communications, and attacks on parallel markets and other companies are prohibited.</p>
+                <p class="text" style="margin-bottom:1px;">5. No Cross-Contact</p>
+                <p class="text">It is forbidden to add contact information of players from other communities, engage in malicious competition, poaching, or interfering with the promotion of other communities.</p>
+                <p class="text">Together with Ak</p>
+				<p class="text">Success for the future！</p>
+                <p class="text text-right" style="display:none;">Ak Marketing Department</p>
+
+            </div>
+            <i class="iconfont iconbaseline-close-px close" @click="closeNotice"></i>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js?v=28"></script>
+    <script src="../../content/js/vant.min.js?v=28"></script>
+    <script src="../../content/js/base.js?v=28"></script>
+    <script>
+        var _vue = new Vue({
+            el: '#app',
+            data: {
+                'currentLanuage': LSE.currentLanguage(),
+                'language': {}
+            },
+            methods: {
+                'closeNotice': function () {
+                    window.parent.closeNotice();
+                },
+                'changeLanguage': function () {
+                    LSE.install('notice', function (lang) {
+                        Vue.set(_vue, 'language', lang);
+                    });
+                }
+            },
+            created: function () {
+                this.changeLanguage();
+            },
+            mounted: function () {
+                window.backButton = this.closeNotice;
+            }
+        });
+    </script>
+</body>
+</html>

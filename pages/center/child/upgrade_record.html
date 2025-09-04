@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html class="ali">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link href="../../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../../content/css/base.css" rel="stylesheet" />
+    <link href="../../../content/css/pages/center/child/upgrade_record.css" rel="stylesheet" />
+</head>
+<body class="ali">
+    <div id="app">
+		<div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': 0 + 'px'}">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text" v-text="language.TITLE_TEXT">AK</div>
+             
+        </div>
+        <div v-if="isLoading" class="loading-box p60">
+            <van-loading color="black"></van-loading>
+            <p class="loading-text" v-text="language.LOADING_TEXT">正在載入...</p>
+        </div>
+        <div id="app-content" v-else v-cloak>
+            <div v-if="pageModel.list.length === 0" class="none-data p50">
+                <i class="iconfont iconkong"></i>
+                <p class="none-data-text" v-text="language.NONE_DATA"></p>
+            </div>
+            <div v-else>
+                <ul class="list" v-bind:style="{'paddingTop': 45 + 'px'}">
+                    <li v-for="(item,index) in pageModel.list"
+                        v-bind:key="index"
+                        class="van-hairline--bottom">
+                        <div class="upgrade_line">
+                            <div class="left">
+                                <i class="iconfont icondengji"></i>
+                                <span v-text="item.OldLevelName"></span>
+                            </div>
+                            <div class="middle">
+                                <i class="iconfont iconyoujiantou"></i>
+                            </div>
+                            <div class="right">
+                                <i class="iconfont iconhuojian"></i>
+                                <span v-text="item.NewLevelName"></span>
+                            </div>
+                        </div>
+                        <div class="time">
+                            <span v-text="language.TIME_TEXT"></span>
+                            <span v-text="item.CreateTime"></span>
+                        </div>
+                    </li>
+					
+                </ul>
+				
+				 
+						<div class="input_group bottom clearfix"   >
+								<div class="left">
+									<i class="iconfont iconbangzhu" style="padding-left:6px;padding-right:6px; color:#0099FF"></i>
+								</div>
+								<span class="left" style="padding-left:6px;color:#5c6875" v-text="pageModel.NextLevelTIP" ></span>
+						</div>
+				 
+				
+                
+								
+								
+                <div v-if="pageModel.isLoadMore" class="load_more clearfix">
+                    <van-loading color="black"></van-loading>
+                    <span class="load_text" v-text="language.LOADING_TEXT">正在載入...</span>
+                </div>
+                <div v-if="pageModel.isLoadComplete" class="load_more_complete">
+                    <span class="load_text" v-text="language.NONE_MORE_DATA">沒有更多的數據了...</span>
+                </div>
+				
+				 
+				
+                <div class="input_group border" style="width: calc(100% - 30px);display:none; ">
+				    <div class="input_line full" style="padding:10px;">
+				        <p style="text-align: left;font-size: .8em;line-height: 40px;" v-text="language.RULE_TITLE"></p>
+				        <p style="text-align: left;font-size: .8em;line-height: 40px;" v-text="language.RULE_LINE_1"></p>
+						<p style="text-align: left;font-size: .8em;line-height: 40px;" v-text="language.RULE_LINE_2"></p>
+                        <p style="text-align: left;font-size: .8em;line-height: 40px;" v-text="language.RULE_LINE_3"></p> 
+				    </div>
+				</div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../content/js/vue.js"></script>
+    <script src="../../../content/js/vant.min.js"></script>
+    <script src="../../../content/js/base.js"></script>
+    <script src="../../../content/js/pages/center/child/upgrade_record.js"></script>
+</body>
+</html>

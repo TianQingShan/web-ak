@@ -1,0 +1,55 @@
+﻿
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/analyze_chart.css" rel="stylesheet" />
+ <script type="text/javascript" src="https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js"></script>
+</head>
+
+<body>
+	
+	 <div class="input_group border" style="height: 350px;padding-top:10px;">
+                    <div class="input_line full">
+						<span class="middle bottom">主子比例</span>
+                        <div id="Master" style="height: 330px; padding-top:10px;"></div> 
+                    </div>
+                </div>
+				
+	<div class="input_group border" style="height: 350px;padding-top:10px;">
+                    <div class="input_line full">
+						<span class="middle bottom">新增账户</span>
+                        <div id="Performance" style="height: 330px; padding-top:10px;"></div> 
+                    </div>
+                </div>			
+	<div class="input_group border" style="height: 350px;padding-top:10px;padding-bottom:30px;">
+                    <div class="input_line full">
+						<span class="middle bottom">市场信息</span>
+                        <div id="Market" style="height: 330px; padding-top:10px; "></div> 
+                    </div>
+                </div>		
+
+	 <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text" v-text="language.TITLE_TEXT">业绩图表</div>
+        </div>
+	 </div>
+				
+	 	
+				 
+     
+    <script src="../../content/js/vue.js?v=28"></script>
+    <script src="../../content/js/vant.min.js?v=28"></script>
+    <script src="../../content/js/base.js?v=28"></script>
+    <script src="../../content/js/pages/center/analyze_chart.js?v=28"></script>
+	<script src="../../content/js/pages/center/analyze_chart_Data.js?v=28"></script>
+
+</body>
+
+</html>

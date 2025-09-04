@@ -1,0 +1,62 @@
+﻿#app-content {
+    padding-bottom: 15px;
+}
+
+.input_group .warn {
+    padding: 15px 10px;
+    background-color: #f1c800;
+    font-size: .9em;
+    color: #8e8b00;
+}
+
+.input_group.tip {
+    background: rgb(243, 243, 243);
+    color: rgb(150, 150, 150);
+    font-size: 0.9em;
+    padding: 0px 10px;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.input_group .input_line.full .text_line {
+    font-size: 1em;
+    height: 45px;
+    line-height: 45px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+}
+
+.qr {
+    display: block;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto;
+}
+
+.bottom_buttons {
+    margin-bottom: 20px;
+}
+
+    .bottom_buttons .van-button {
+        background-color: #1e81d2;
+        color: white;
+    }
+
+.confirm_button {
+    height: 50px;
+}
+
+.upload_web {
+    position: relative;
+}
+
+    .upload_web .file_control {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 45px;
+        opacity: 0;
+    }

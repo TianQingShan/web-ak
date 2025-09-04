@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/sell.ace.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <div id="app" style="height: 100vh;overflow: auto;">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text">{{data.ReceiveID}} {{data.ReceiveName}}</div>
+        </div>
+        <div id="app-content" v-bind:style="{'padding-bottom':'100px','paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div class="items" style="padding: 10px 0;" v-for="item in list">
+                <div class="item" v-if="item.location==1" style="display:flex;padding: 10px">
+                    <div :style="`background-image: url(${item.Avatar});background-size:cover;width: 50px;height: 50px;border-radius: 50px;margin-right: 10px;flex-shrink: 0;`"></div>
+                    <div style="max-width: calc(100vw - 80px);overflow: hidden;">
+                        <div style="padding-bottom: 4px;">{{item.NickName}} {{item.FlowNumber}}</div>
+                        <div style="background-color: #008dfa;color: #fff;border-radius: 10px;display:flex;align-items: center;padding: 10px;word-break: break-all;">{{item.Message}}</div>
+                    </div>
+                </div>
+                <div class="item" v-if="item.location==2" style="display:flex;padding: 10px;justify-content: flex-end;">
+                    <div style="max-width: calc(100vw - 80px)">
+                        <div style="text-align: right;padding-bottom: 4px;">{{item.NickName}} {{item.FlowNumber}}</div>
+                        <div style="background-color: #008dfa;color: #fff;border-radius: 10px;display:flex;align-items: center;padding: 10px;word-break: break-all;">{{item.Message}}</div>
+                    </div>
+                    <div :style="`background-image: url(${item.Avatar});background-size:cover;width: 50px;height: 50px;border-radius: 50px;margin-left: 10px;flex-shrink: 0;overflow: hidden;`"></div>
+                </div>
+            </div>
+            <div class="inpWrap" style="position: fixed;bottom: 0;width: 100%">
+                <van-search :clearable="false" v-model="value" show-action left-icon="1" @search="onSearch">
+                    <i slot="left-icon"></i>
+                    <div slot="action" @click="onSearch" style="background: #008dfa;color: #fff;padding: 0 10px;border-radius: 4px">发送</div>
+                </van-search>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js?v=28"></script>
+    <script src="../../content/js/vant.min.js?v=28"></script>
+    <script src="../../content/js/base.js?v=28"></script>
+    <script src="../../content/js/pages/center/chatroom.js?v=28"></script>
+</body>
+
+</html>

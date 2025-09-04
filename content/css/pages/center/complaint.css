@@ -1,0 +1,27 @@
+﻿.input_group .warn {
+    padding: 10px;
+    background-color: #ffe790;
+    font-size: .8em;
+    color: #b38e00;
+}
+
+    .input_group .warn .warn_title {
+        font-size: 1.2em;
+    }
+
+    .input_group .warn .warn_text {
+        margin-top: 5px;
+    }
+
+.input_group .input_line .arrow {
+    position: relative;
+}
+
+    .input_group .input_line .arrow .file {
+        position: absolute;
+        width: 45px;
+        height: 45px;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }

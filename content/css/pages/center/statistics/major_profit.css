@@ -1,0 +1,74 @@
+﻿.container {
+    background-color: white;
+    margin-top: 10px;
+    padding: 20px;
+}
+
+    .container .date {
+        text-align: center;
+        font-size: .9em;
+        font-weight: bold;
+    }
+
+    .container .total_num {
+        text-align: center;
+        font-size: 1.5em;
+        margin-top: 5px;
+        height: 30px;
+        line-height: 30px;
+        font-weight: bold;
+    }
+
+    .container .inner_group {
+        margin-top: 25px;
+        background-color: #f9f9f9;
+        border-radius: 6px;
+        padding: 15px 0;
+        box-shadow: 0 0 15px #eaeaea;
+    }
+
+        .container .inner_group .number_group {
+            text-align: center;
+        }
+
+            .container .inner_group .number_group:first-child {
+                margin-bottom: 10px;
+                padding-bottom: 15px;
+            }
+
+            .container .inner_group .number_group .number {
+                font-size: 2em;
+                font-weight: bold;
+                height: 40px;
+                line-height: 40px;
+                color: #209bff;
+                text-shadow: 2px 2px 5px #bfbfbf;
+            }
+
+                .container .big {
+                    animation: to_big .3s ease 4 alternate;
+                }
+
+@keyframes to_big {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.5)
+    }
+}
+
+.container .inner_group .number_group .number sup {
+    font-size: .6em;
+}
+
+.container .inner_group .number_group .text {
+    height: 20px;
+    line-height: 20px;
+    color: #797979;
+    font-size: .8em;
+    text-align: left;
+    padding: 0 15px;
+    margin-bottom: 5px;
+}

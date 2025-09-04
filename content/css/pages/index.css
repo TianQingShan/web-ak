@@ -1,0 +1,29 @@
+﻿.lines {
+    margin-top: 15px;
+}
+
+    .lines li {
+        background-color: white;
+        padding: 15px 10px;
+        display: flex;
+        align-items: center;
+        height: 25px;
+        line-height: 25px;
+    }
+
+        .lines li.checked {
+            color: #068dfe;
+        }
+
+        .lines li .iconfont {
+            font-size: .9em;
+        }
+
+        .lines li .icon-checkboxchecked {
+            color: #1e81d2;
+        }
+
+        .lines li .text {
+            margin-left: 10px;
+            font-size: 1.1em;
+        }

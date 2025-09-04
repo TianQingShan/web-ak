@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/sell.ep.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text" v-text="language.TITLE_TEXT">出售EP</div>
+            <i class="iconfont iconbangzhu submit-button" @click="isTipShow = true"></i>
+        </div>
+        <div v-if="isLoading" class="loading-box p50">
+            <van-loading color="black"></van-loading>
+            <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+        </div>
+        <div id="app-content" v-else v-cloak v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}" v-bind:class="{'iphone': APP.CONFIG.IsSafeArea()}">
+             
+            <div class="input_group">
+				<div class="input_group border">
+				    <div class="input_line full" style="padding:10px;">
+				        <p style="text-align: left;font-size: .8em;line-height: 45px;" v-text="language.RULE_TITLE"></p>
+				        <p style="text-align: left;font-size: .8em;line-height: 45px;" v-text="language.RULE_LINE_1"></p>
+						<p style="text-align: left;font-size: .8em;line-height: 45px;" v-text="language.RULE_LINE_2"></p>
+						 
+						<p style="text-align: left;font-size: .8em;line-height: 45px;" v-text="language.RULE_LINE_3"></p>
+						<p style="text-align: left;font-size: .8em;line-height: 45px;" v-text="language.RULE_LINE_4"></p>
+						<p style="text-align: left;font-size: .8em;line-height: 45px;" v-text="language.RULE_LINE_5"></p>
+						<p style="text-align: left;font-size: .8em;line-height: 45px;" v-text="language.RULE_LINE_6"></p>
+						 
+				    </div>
+				</div>
+                 
+                 
+
+				<div class="input_line van-hairline--bottom">
+                    <span class="input_text" v-text="language.INPUT_TEXT_1">出售數量</span>
+                    <input type="text" class="input_control" v-model="display.questionText"  maxlength="100" />
+                </div>
+				 
+				<div class="input_line van-hairline--bottom">
+				    <span class="input_text" v-text="language.INPUT_TEXT_2">出售數量</span>
+				    <input type="text" class="input_control" v-model="form.usdtaddress" maxlength="100" v-bind:placeholder="language.INPUT_PLACEHOLDER_1" />
+				</div>
+
+                 
+                
+                 
+            </div>
+             
+             
+            <div class="input_group">
+                <div class="input_line van-hairline--bottom">
+                    <span class="input_text" v-text="language.INPUT_TEXT_5">交易密碼</span>
+                    <input type="password" class="input_control" v-model="form.password" maxlength="16" v-bind:placeholder="language.INPUT_PLACEHOLDER_5" />
+                </div>
+                <div class="input_line">
+                    <span class="input_text" v-text="language.INPUT_TEXT_16">谷歌驗證碼</span>
+                    <input type="tel" class="input_control" v-model="form.gCode" style="flex: 1;width: 0;" v-bind:placeholder="language.INPUT_PLACEHOLDER_16" maxlength="6" />
+
+                    <button style="padding: 0 20px !important; background: #1181cf; color: #fff;" @click="clipFunc">Paste</button>
+                </div>
+            </div>
+            <button class="confirm_button" v-text="language.BUTTON_1" @click="checkData">確認出售</button>
+            
+             
+            <van-popup class="border confirm_dialog" v-model="isConfirmDialogShow" position="bottom">
+                <div class="confirm_dialog_inner">
+                    <p class="caption" v-text="language.CONFIRM_DIALOG_CAPTION"></p>
+                    <ul>
+                        <li class="clearfix">
+                            <span class="text" v-text="language.INPUT_TEXT_2"></span>
+                            <span class="value" v-text="form.usdtaddress"></span>
+                        </li>
+                    </ul>
+                    <div class="buttons">
+                        <button class="button" v-text="language.BUTTON_1" @click="doSubmitAjax"></button>
+                        <button class="button cancel" @click="isConfirmDialogShow = false" v-text="language.BUTTON_2"></button>
+                    </div>
+                </div>
+            </van-popup>
+             
+        </div>
+    </div>
+    <script src="../../content/js/vue.js?v=28"></script>
+    <script src="../../content/js/vant.min.js?v=28"></script>
+    <script src="../../content/js/base.js?v=28"></script>
+    <script src="../../content/js/pages/center/usdtbind.js?v=28"></script>
+</body>
+
+</html>

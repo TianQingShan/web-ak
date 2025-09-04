@@ -1,0 +1,72 @@
+﻿html, body {
+    background-color: white;
+}
+
+#app-head {
+    border-bottom: 0;
+}
+
+#app-content {
+    position: relative;
+}
+
+.list {
+    margin: 0 auto;
+    width: calc(100% - 30px);
+    background-color: #209bff;
+    border-radius: 6px;
+    overflow: hidden;
+    /* color: white; */
+    box-shadow: 0 0 10px #b3b3b3;
+    margin-top: 20%;
+}
+
+    .list li {
+        padding: 10px;
+        height: 30px;
+        line-height: 30px;
+        color: white;
+        display: flex;
+        align-items: center;
+    }
+
+        .list li.van-hairline--bottom::after {
+            border-bottom-color: rgba(255, 255, 255, 0.18) !important;
+        }
+
+        .list li .text {
+            font-size: .9em;
+            margin-left: 5px;
+            font-weight: bold;
+        }
+
+        .list li:active {
+            background-color: #1f94f3;
+        }
+
+        .list li .iconfont.right {
+            margin-left: auto;
+        }
+
+.bg {
+    color: white;
+    font-size: 10em;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    margin: auto;
+    width: 180px;
+    height: 180px;
+    text-align: center;
+    opacity: 0.1;
+}
+
+.tip {
+    width: calc(100% - 30px);
+    margin: 0 auto;
+    margin-top: 20px;
+    font-size: .8em;
+    color: #8c8c8c;
+}

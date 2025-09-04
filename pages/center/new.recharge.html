@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/new.recharge.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="app">
+        <div class="bg"></div>
+        <div id="app-head" class="fixed van-hairline--bottom">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+            <button v-show="!(isUsdtLoading || isQrLoading)"
+                    class="submit-button"
+                    @click="APP.GLOBAL.gotoNewWindow('my.rechargePage', 'my.recharge')"
+                    v-text="language.BUTTON_MY">
+                我的充值
+            </button>
+        </div>
+        <div id="app-content" style="padding-top:45px" >
+            <div v-if="isUsdtLoading || isQrLoading" class="loading-box p50">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text" v-text="language.LOADING"></p>
+            </div>
+            <div v-else-if="!isShowDiloag" v-cloak>
+                <div class="input_group">
+                    <div class="input_line van-hairline--bottom">
+                        <span class="input_text" v-text="language.INPUT_TEXT_1">充值數量</span>
+                        <input class="input_control bold r-1"
+                               type="number"
+                               v-model="form.amount"
+                               v-bind:placeholder="language.INPUT_PLACEHOLDER_1" />
+                        <span class="arrow dis little">USDT</span>
+                    </div>
+                    <div class="input_line">
+                        <span class="input_text" v-text="language.INPUT_TEXT_5">需購買</span>
+                        <div class="input_control r-1" v-text="displayAmount"></div>
+                        <span class="arrow dis little">TP</span>
+                    </div>
+                </div>
+                <p class="input_group tip" v-text="language.RECHARGE_TIP_TEXT">可獲得RP仅供参考，以实际到账数为准。</p>
+                <div class="input_group">
+                    <div class="input_line full">
+                        <span class="input_text text_line" v-text="language.INPUT_TEXT_6">充值地址(USDT)</span>
+						<div v-if="pageModel.Address=='請先綁定轉出地址,前往 會員中心 Wallet 綁定'" >
+							<div class="input_control full_control" v-text="pageModel.Address"></div>
+							<div class="bottom_buttons">
+								<van-button type="info" size="small" v-text="language.BUTTON_6"  @click="APP.GLOBAL.gotoNewWindow('my.rechargePage', '../center/usdtbind')">Link</van-button>
+							</div>
+						</div>
+						<div v-else>	
+							<img v-bind:src="pageModel.ImageAddress" class="qr">
+							<div class="input_control full_control" v-text="pageModel.Address"></div>
+							<div class="bottom_buttons">
+								<van-button type="info" size="small" v-text="language.BUTTON_5"  v-bind:data-clipboard-text="pageModel.Address">複製收款碼</van-button>
+							</div>
+						</div>
+                    </div>
+                </div>
+                <div class="input_group">
+                    <div class="warn">
+                        <p v-text="language.WARNING_TEXT_1">以上地址是當前服務中心的USDT專用充值地址(Omni類型)。</p>
+                        <p v-text="language.WARNING_TEXT_2">轉到此地址，無需上傳截圖，查詢USDT到賬(狀態顯示“已完成”)即可自動收到RP。</p>
+						<p v-text="language.WARNING_TEXT_3">注意：單筆轉賬金額必須≥100 USDT。</p>
+                    </div>
+                </div>
+            </div>
+            <div v-show="isShowDiloag" class="van-dialog" style="z-index: 2000;">
+                <div class="van-dialog__header" v-text="language.ALERT_TITLE1"></div>
+                <div class="van-dialog__content">
+                    <div class="van-dialog__message van-dialog__message--has-title" v-text="language.ALERT_MESSAGE1"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js?v=28"></script>
+    <script src="../../content/js/vant.min.js?v=28"></script>
+    <script src="../../content/js/base.js?v=28"></script>
+    <script src="../../content/js/clipboard.min.js?v=28"></script>
+    <script src="../../content/js/pages/center/new.recharge.js?v=28"></script>
+</body>
+</html>

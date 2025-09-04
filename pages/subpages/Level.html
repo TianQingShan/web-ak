@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/pages/subpages/Level.css" rel="stylesheet" />
+    <title></title>
+    
+</head>
+<body>
+    <div id="app">
+         
+        <div class="bg">
+             
+            <div v-if="currentLanuage === 'cn'" class="context" v-cloak>
+                <p class="text" style="margin-bottom:10px;">说明：</p>
+                <p class="text" style="margin-bottom:10px;">1、从2024年10月1日起，将开始执行“三足鼎立”晋级政策，在这里模拟显示的是当前业绩按新标准所对应的级别。</p>
+                <p class="text" style="margin-bottom:10px;">2、该级别实时更新，每新进一单，系统都会实时检测，达到新的晋级标准将及时模拟升级。</p>
+				<p class="text" style="margin-bottom:10px;">3、该模拟结果仅供参考，如对模拟结果有疑问，请及时留言向公司反馈。</p>
+				<p class="text">牵手AK，点亮未来</p>
+				<p class="text">Together with AK</p>
+				<p class="text">Light up the future!</p>
+                <p class="text text-right" style="display:none;">AK市場部</p>
+                 
+            </div>
+            <div v-else class="context" v-cloak>
+                <p class="text" style="margin-bottom:10px;">Description:</p>
+				<p class="text" style="margin-bottom:10px;">1. From October 1, 2024, the "three-legged tripod" promotion policy will be implemented. The simulation here shows the level corresponding to the current performance according to the new standard.</p>
+				<p class="text" style="margin-bottom:10px;">2. The level is updated in real time. Every time a new order is placed, the system will detect it in real time. If it reaches the new promotion standard, it will be simulated and upgraded in time.</p>
+				<p class="text" style="margin-bottom:10px;">3. The simulation results are for reference only. If you have any questions about the simulation results, please leave a message to the company in time. </p>
+				<p class="text">Hand in hand with AK, light up the future</p>
+				<p class="text">Together with AK</p>
+				<p class="text">Light up the future!</p>
+				<p class="text text-right" style="display:none;">AK Marketing Department</p>
+
+            </div>
+            <i class="iconfont iconbaseline-close-px close" @click="closeNotice"></i>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js?v=28"></script>
+    <script src="../../content/js/vant.min.js?v=28"></script>
+    <script src="../../content/js/base.js?v=28"></script>
+    <script>
+        var _vue = new Vue({
+            el: '#app',
+            data: {
+                'currentLanuage': LSE.currentLanguage(),
+                'language': {}
+            },
+            methods: {
+                'closeNotice': function () {
+                    window.parent.closeNotice();
+                },
+                'changeLanguage': function () {
+                    LSE.install('notice', function (lang) {
+                        Vue.set(_vue, 'language', lang);
+                    });
+                }
+            },
+            created: function () {
+                this.changeLanguage();
+            },
+            mounted: function () {
+                window.backButton = this.closeNotice;
+            }
+        });
+    </script>
+</body>
+</html>

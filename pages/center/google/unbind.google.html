@@ -1,0 +1,75 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link href="../../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../../content/css/base.css" rel="stylesheet" />
+    <link href="../../../content/css/pages/center/google/unbind.google.css" rel="stylesheet" />
+	<link href="../../../content/css/pages/center/security/mnemonic.sub.css" rel="stylesheet" />
+    <script src="html5plus://ready"></script>
+</head>
+<body>
+    <div id="app">
+        <div class="bg"></div>
+        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div class="confirm" v-if="!isConfirm">
+                <div class="box">
+                    <img src="../../../content/img/center/unbind_icon.png" class="icon" />
+                    <p class="des" v-text="language.BOX_DES">您已成功綁定谷歌驗證，請妥善保管您的密鑰，切勿泄露給他人，切記！</p>
+                </div>
+                <button class="confirm_button small" v-text="language.BUTTON_TEXT" @click="unbindConfirm">確認返回</button>
+            </div>
+            <div v-else v-cloak>
+                <!--<div class="input_group">
+                    <div class="input_line van-hairline--bottom">
+                        <span class="input_text" v-text="language.INPUT_TEXT_2">password</span>
+                        <input class="input_control"
+                               type="password"
+                               maxlength="16"
+                               v-bind:placeholder="language.INPUT_PLACEHOLDER_2"
+                               v-model="form.pin" />
+                    </div>
+                     <div class="input_line">
+                        <span class="input_text" v-text="language.INPUT_TEXT_1">idcard</span>
+                        <input class="input_control"
+                               type="tel"
+                               maxlength="18"
+                               v-bind:placeholder="language.INPUT_PLACEHOLDER_1"
+                               v-model="form.idcard" />
+                    </div> 
+                </div>-->
+				
+				<div class="input_group border">
+                    <div class="input_line full">
+                        <p class="text_line" v-text="language.INPUT_TEXT_3">  </p>
+                    </div>
+				</div>
+			
+			
+				<div class="input_groupmnemonic">
+					<div class="input_line">
+						<input type="text" class="input_control" v-model="form.mnemonicstr1" v-bind:placeholder="mnemonicid1" maxlength="30" />
+						<input type="text" class="input_control" v-model="form.mnemonicstr2" v-bind:placeholder="mnemonicid2" maxlength="30" />
+						<input type="text" class="input_control" v-model="form.mnemonicstr3" v-bind:placeholder="mnemonicid3" maxlength="30" />
+					</div>
+				</div>
+				
+				
+                <button class="confirm_button"
+                        v-text="language.BUTTON_SUBMIT"
+                        @click="checkData"></button>
+            </div>
+        </div>
+    </div>
+    <script src="../../../content/js/vue.js?v=28"></script>
+    <script src="../../../content/js/vant.min.js?v=28"></script>
+    <script src="../../../content/js/base.js?v=28"></script>
+    <script src="../../../content/js/pages/center/google/unbind.google.js?v=28"></script>
+</body>
+</html>

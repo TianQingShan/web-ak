@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../../content/css/base.css" rel="stylesheet" />
+    <link href="../../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../../content/css/pages/center/child/my.feedback.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+            <button class="submit-button" v-text="language.BUTTON_1" @click="APP.GLOBAL.gotoNewWindow('feedbackPage', 'feedback')">創建留言</button>
+        </div>
+        <div v-if="isLoading" class="loading-box p50">
+            <van-loading color="black"></van-loading>
+            <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+        </div>
+        <div id="app-content"
+             v-else
+             v-cloak
+             v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div v-if="pageModel.list.length === 0" class="none-data p50">
+                <i class="iconfont iconkong"></i>
+                <p class="none-data-text" v-text="language.NONE_DATA_TEXT">暫無數據</p>
+            </div>
+            <div v-else>
+                <ul class="list">
+                    <li v-for="(item,index) in pageModel.list"
+                        v-bind:key="index"
+                        @click="gotoDetail(item)">
+                        <div class="line clearfix">
+                            <span class="type_name" v-text="language.TYPE_TITLE + getTypeName(item)"></span>
+                            <span class="reply_state"
+                                  v-bind:class="[item.IsReplyed ? 'green' : 'red']"
+                                  v-text="item.IsReplyed ? language.TEXT_1 : language.TEXT_2"></span>
+                        </div>
+                        <div class="line text">
+                            <p v-text="item.Text"></p>
+                        </div>
+                        <div class="line images">
+                            <div class="image" v-if="item.ImageAddress_1">
+                                <img v-lazy="item.ImageAddress_1" @click.stop="viewImage(item.ImageAddress_1)" />
+                            </div>
+                        </div>
+                        <div class="line">
+                            <p class="time" v-text="item.CreateTime"></p>
+                        </div>
+                    </li>
+                </ul>
+                <div v-if="pageModel.isLoadMore" class="load_more clearfix">
+                    <van-loading color="black"></van-loading>
+                    <span class="load_text" v-text="language.LOADING_TEXT">正在載入...</span>
+                </div>
+                <div v-if="pageModel.isLoadComplete" class="load_more_complete">
+                    <span class="load_text" v-text="language.NONE_MORE_DATA">沒有更多的數據了...</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../../content/js/vue.js?v=28"></script>
+    <script src="../../../content/js/vant.min.js?v=28"></script>
+    <script src="../../../content/js/base.js?v=28"></script>
+    <script src="../../../content/js/pages/center/child/my.feedback.js?v=28"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/complaint.detail.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="app">
+        <div id="app">
+            <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+                <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+                <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+            </div>
+            <div v-if="isLoading" class="loading-box p60">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text" v-text="language.LOADING_TEXT">LOADING_TEXT...</p>
+            </div>
+            <div id="app-content" v-else v-cloak v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+                <ul class="list">
+                    <li class="self">
+                        <div class="container">
+                            <img class="avatar" v-lazy="userAvatar" />
+                            <div class="content">
+                                <span class="left_arrow"></span>
+                                <p class="title" v-text="pageModel.Title"></p>
+                                <p class="des" v-text="pageModel.Text"></p>
+                                <div class="image">
+                                    <img v-lazy="pageModel.ImageAddress_1" @click="viewImage(pageModel.ImageAddress_1)" />
+                                </div>
+                                <div class="bottom clearfix">
+                                    <span class="time" v-text="pageModel.CreateTime"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <ul class="list">
+                    <li v-for="(item,index) in pageModel.ParentList"
+                        v-bind:key="index"
+                        v-bind:class="[item.RoleType === 2 ? 'service' : 'self']">
+                        <div class="container" v-if="item.RoleType === 1">
+                            <img class="avatar" v-lazy="userAvatar" />
+                            <div class="content">
+                                <div class="mask" v-show="item.isSubmit" v-text="language.SEND_LOADING_TEXT">正在發送中...</div>
+                                <span class="left_arrow"></span>
+                                <p class="des nmt" v-text="item.AskList.Text"></p>
+                                <div class="image" v-if="item.AskList.ImageAddress_1">
+                                    <img v-lazy="item.AskList.ImageAddress_1" @click="viewImage(item.AskList.ImageAddress_1)" />
+                                </div>
+                                <div class="bottom clearfix">
+                                    <span class="time" v-text="item.CreateTime"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-else class="container">
+                            <div class="content">
+                                <span class="left_arrow"></span>
+                                <p class="des nmt" v-text="item.AnswerList.Reply"></p>
+                                <div class="image" v-if="item.AnswerList.ImageAddress_1">
+                                    <img v-lazy="item.AnswerList.ImageAddress_1" @click="viewImage(item.AnswerList.ImageAddress_1)" />
+                                </div>
+                                <div class="bottom clearfix">
+                                    <span class="time" v-text="item.CreateTime"></span>
+                                </div>
+                            </div>
+                            <img class="avatar" src="../../content/img/logo_100.jpg" />
+                        </div>
+                    </li>
+                </ul>
+                <div class="actions van-hairline--top" v-if="pageModel.CollateralStatus !== 2 && pageModel.CollateralStatus !== 4">
+                    <div class="image">
+                        <i class="iconfont icontupian"></i>
+                        <input type="file" class="file" @change="fileChanged" />
+                    </div>
+                    <div class="input_content">
+                        <input type="text"
+                               maxlength="200"
+                               class="input_text"
+                               v-bind:placeholder="language.ASK_INPUT_PLACEHOLDER"
+                               v-model="form.text" />
+                        <div class="temp_img" v-if="choiceFilePath">
+                            <img class="upload_image" v-bind:src="imageUrl" @click="removeImage" />
+                        </div>
+                    </div>
+                    <button class="send" @click="checkData" v-text="language.SEND_BUTTON_TEXT">發送</button>
+                </div>
+                <div class="actions van-hairline--top closed" v-else v-text="language.CLOSED"></div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js"></script>
+    <script src="../../content/js/vant.min.js"></script>
+    <script src="../../content/js/base.js"></script>
+    <script src="../../content/js/pages/center/complaint.detail.js"></script>
+</body>
+</html>

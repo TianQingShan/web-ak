@@ -1,0 +1,17 @@
+﻿.chart_container_inner {
+    background-color: white;
+    margin-top: 10px;
+    padding-top: 15px;
+}
+
+    .chart_container_inner .caption {
+        text-align: center;
+        font-weight: bold;
+        color: #1e81d2;
+        margin-bottom: 5px;
+    }
+
+    .chart_container_inner #container {
+        width: 100%;
+        height: 350px;
+    }

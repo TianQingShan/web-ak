@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/freed.css" rel="stylesheet" />
+	<style>
+	.left_search {
+    float: left;
+    width: calc(100% - 80px);
+}
+	</style>
+</head>
+
+<body>
+    <div id="app">
+		
+		<div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+             
+        </div>
+		
+		 
+		
+        <div id="app-content" v-bind:style="{'paddingTop': (50 + statusbarHeight) + 'px'}">
+			
+         
+            <div class="bg" v-bind:style="{'height': (55 + statusbarHeight) + 'px'}"></div>
+            <van-tabs v-model="tabActive" v-cloak v-bind:style="{'top': (45 + statusbarHeight) + 'px'}" @change="tabChange">
+                <van-tab v-for="(tab,tIndex) in tabControl" v-bind:key="tIndex" v-bind:title="tab.title">
+                    <van-pull-refresh v-model="isReloading" @refresh="onRefresh" v-bind:pulling-text="language.PULLING_TEXT" v-bind:loosing-text="language.LOOSING_TEXT" v-bind:loading-text="language.LOADING_TEXT" v-bind:success-text="language.SUCCESS_TEXT">
+                        
+						<div class="input_group">
+							<div class="input_line van-hairline--bottom">
+								<span class="input_text" v-text="language.INPUT_TEXT_1">查詢日期</span>
+								<div class="input_control r-1" v-bind:class="{'gray': !dateTimeObj.display}" @click="isShowDateTime = true" v-text="!dateTimeObj.display ? language.INPUT_PLACEHOLDER_1 : dateTimeObj.display">請選擇查詢日期</div>
+								<i class="iconfont iconjiantou arrow"></i>
+							</div>
+						</div>
+						
+						<form action="/" class="input_group">
+							<van-search v-bind:placeholder="language.INPUT_PLACEHOLDER_2" v-model="searchKey"  @search="loadPageData"  maxlength="100">
+								<i slot="left-icon" class="iconfont iconsousuo"></i>
+							</van-search>
+						</form>
+						
+						
+						
+						
+						<div slot="loading" class="pull_refresh">
+                            <img src="../../content/img/reloading.svg" class="pull_refresh_img" />
+                            <span class="pull_refresh_text" v-text="language.LOADING_TEXT"></span>
+                        </div>
+                        <div v-if="tab.isLoading" class="loading-box p50">
+                            <van-loading color="black"></van-loading>
+                            <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+                        </div>
+                        <div v-else>
+                            <div v-if="tab.list.length === 0" class="none-data p50">
+                                <i class="iconfont iconkong"></i>
+                                <p class="none-data-text" v-text="language.NONE_DATA_TEXT">暂无订单信息</p>
+                            </div>
+                            <div v-else>
+                                <ul class="list">
+                                    <li v-for="(item,index) in tab.list" v-bind:key="index" >
+                                        <div style="display: flex;align-items: center;">
+                                             
+                                            <div style="flex: 1;display: flex;align-items: center;justify-content: space-between;padding: 0 10px;color: #068dfe;">
+                                                <div style="font-size: .8em;" class="fn" v-text="item.FlowNumber"></div>
+												<div style="font-size: .8em;"  class="state blue" v-text="item.MemberNo"></div>
+                                            </div>
+                                        </div>
+                                        <ul class="info" style="font-size: .8em;">
+											<li>
+												 
+                                                <p class="value" v-text="item.Ratio"></p>
+                                                <p class="text" v-text="language.LI_0_TEXT"></p>
+                                            </li>
+                                            <li>
+                                                <p class="value" v-text="numberFormat(item.LP_Total, 2)"></p>
+                                                <p class="text" v-text="language.LI_1_TEXT"></p>
+                                            </li>
+                                            <li>
+                                                <p class="value" v-text="numberFormat(item.LP_NotReleased, 2)">‭‬
+                                                </p>
+                                                <p class="text" v-text="language.LI_2_TEXT"></p>
+                                            </li>
+											<li>
+                                                <p class="value" v-text="numberFormat(item.LP_Released, 2)">‭‬
+                                                </p>
+                                                <p class="text" v-text="language.LI_3_TEXT"></p>
+                                            </li>
+                                            
+                                        </ul>
+                                        <div class="bottom clearfix">
+                                             
+											<div class="support_pay"  >
+												<p class="time" v-text="item.ExpectedText">USDT</p>
+											</div>
+                                            <p class="time" v-text="item.CreateTime"></p>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div v-if="tab.isLoadMore" class="load_more clearfix">
+                                    <van-loading color="black"></van-loading>
+                                    <span class="load_text" v-text="language.LOADING_TEXT">正在加載...</span>
+                                </div>
+                                <div v-if="tab.isLoadComplete" class="load_more_complete">
+                                    <span class="load_text" v-text="language.LOAD_COMPLETE_TEXT">沒有更多的數據了...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </van-pull-refresh>
+                </van-tab>
+            </van-tabs>
+        </div>
+        <!--Tba!--> 
+		<van-popup v-model="isShowDateTime" position="bottom">
+            <van-datetime-picker v-model="dateTimeObj.value"
+                                 type="year-month"
+                                 v-bind:min-date="dateTimeObj.minDate"
+                                 v-bind:max-date="dateTimeObj.maxDate"
+                                 v-bind:confirm-button-text="language.DATETIME_PICKER_BUTTON_1"
+                                 v-bind:cancel-button-text="language.DATETIME_PICKER_BUTTON_2"
+                                 @cancel="isShowDateTime=false"
+                                 @confirm="confirmDateTime" />
+        </van-popup>
+		<!--End Tba!-->
+    </div>
+    <script src="../../content/js/vue.js?v=28"></script>
+    <script src="../../content/js/vant.min.js?v=28"></script>
+	<script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
+    <script src="../../content/js/base.js?v=28"></script>
+    <script src="../../content/js/pages/center/freed.js?v=28"></script>
+</body>
+
+</html>

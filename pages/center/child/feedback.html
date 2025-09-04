@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title></title>
+    <link href="../../../content/css/base.css" rel="stylesheet" />
+    <link href="../../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../../content/css/pages/center/child/feedback.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="app">
+        <div id="app">
+            <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+                <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+                <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+            </div>
+            <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+                <div class="input_group">
+                    <div class="input_line van-hairline--bottom">
+                        <span class="input_text" v-text="language.INPUT_TEXT_1">留言分類</span>
+                        <div class="input_control r-1"
+                             v-bind:class="{'gray': !form.type}"
+                             @click="isShow = true"
+                             v-text="!form.type ? language.INPUT_PLACEHOLDER_1 : display.typeName"></div>
+                        <span class="arrow iconfont iconjiantou"></span>
+                    </div>
+                    <div class="input_line van-hairline--bottom">
+                        <span class="input_text" v-text="language.INPUT_TEXT_2">留言標題</span>
+                        <input type="text"
+                               maxlength="50"
+                               v-model="form.title"
+                               class="input_control"
+                               v-bind:placeholder="language.INPUT_PLACEHOLDER_2" />
+                    </div>
+                    <div class="input_line van-hairline--bottom">
+                        <span class="input_text" v-text="language.INPUT_TEXT_3">上傳憑證</span>
+                        <div class="input_control r-1"
+                             v-bind:class="{'gray': !fileName}"
+                             v-text="fileName ? fileName : language.INPUT_PLACEHOLDER_3"></div>
+                        <i class="arrow iconfont iconupload file_upload">
+                            <input type="file" accept="image/*" name="image" class="file_control" @change="fileChanged" />
+                        </i>
+                    </div>
+                    <div class="input_line full">
+                        <textarea class="full_control"
+                                  v-bind:placeholder="language.INPUT_PLACEHOLDER_4"
+                                  maxlength="500"
+                                  v-model="form.text"></textarea>
+                    </div>
+                </div>
+                <button class="confirm_button" @click="checkData">確認提交</button>
+                <van-popup v-model="isShow" position="bottom">
+                    <van-picker v-bind:columns="items" @cancel="isShow = false"
+                                v-bind:confirm-button-text="language.CONFIRM_BUTTON_TEXT"
+                                v-bind:cancel-button-text="language.CANCEL_BUTTON_TEXT"
+                                @confirm="selectedItem"
+                                show-toolbar="true"
+                                v-bind:title="language.PICKER_TITLE_1"></van-picker>
+                </van-popup>
+            </div>
+        </div>
+    </div>
+    <script src="../../../content/js/vue.js"></script>
+    <script src="../../../content/js/vant.min.js"></script>
+    <script src="../../../content/js/base.js"></script>
+    <script src="../../../content/js/pages/center/child/feedback.js"></script>
+</body>
+</html>

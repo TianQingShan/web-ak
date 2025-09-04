@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+    <title>子賬戶管理</title>
+    <link href="../../content/css/base.css" rel="stylesheet" />
+    <link href="../../content/css/vant.css" rel="stylesheet" />
+    <link href="../../content/css/pages/center/Donate.as.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="app">
+        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+            <div class="app-head-text" v-text="language.TITLE_TEXT">子賬戶管理</div>
+        </div>
+        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+            <div v-if="isLoading" class="loading-box p50">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text" v-text="language.LOADING_TEXT">正在載入...</p>
+            </div>
+            <div v-else v-cloak>
+                <div v-if="pageModel.list.length == 0" class="none-data p50">
+                    <i class="iconfont iconkong"></i>
+                    <p class="none-data-text" v-text="language.NONE_DATA">暫無子賬戶</p>
+                </div>
+                <div v-else class="list_content" v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+					<van-checkbox-group v-model="selected">
+                    <ul class="list">
+						
+                        <li v-for="(item,index) in pageModel.list" v-bind:key="index">
+                             
+                            <div class="middle">
+								 
+                                <ul class="info">
+                                    <li>
+                                        <p class="value" v-text="item.MemberNo"></p>
+                                        <p class="text">账户</p>
+                                    </li>
+                                    <li>
+                                        <p class="value" v-text="item.Son"></p>
+                                        <p class="text" >类型</p>
+                                    </li>
+									
+									<li>
+                                        <p class="value" v-text="item.AceAmount"></p>
+                                        <p class="text" >AK数量</p>
+                                    </li>
+									<li>
+                                        <van-checkbox :name="item.ID" :label="'选择置换 ID ' + item.ID" /> 
+                                    </li>
+                                </ul>
+                               
+                            </div>
+							<div class="bottom clearfix">
+								
+								<span class="left" style="display:none">
+									<p> 账户 : {{item.FlowNumber}}  类型 : {{item.Son}} </p>   
+                                </span>
+                                <span class="right">注册时间 : {{item.CreateTime}}</span>
+                            </div>
+                        </li>
+                    </ul>
+					</van-checkbox-group>
+                    <div v-if="pageModel.isLoadMore" class="load_more clearfix">
+                        <van-loading color="black"></van-loading>
+                        <span class="load_text" v-text="language.LOADING_TEXT"></span>
+                    </div>
+                    <div v-if="pageModel.isLoadComplete" class="load_more_complete">
+                        <span class="load_text" v-text="language.NOMORE"></span>
+                    </div>
+                </div>
+                <van-dialog v-model="isPasswordInput" v-bind:title="language.CONFIRM_TRADE" v-bind:before-close="checkPassword" show-cancel-button>
+                    <input type="password" ref="passwordBox" maxlength="16" class="pwd_box" v-model="form.password" v-bind:placeholder="language.INPUT_TRANSFER_PASSWORD" />
+                </van-dialog>
+				
+				<div v-show="pageModel.list.length !== 0"
+					 class="confirm_button full"
+					 v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}"
+					 style="display: flex; justify-content: space-between;">
+				  <!-- 一鍵歸集 -->
+				  <button v-if="new Date(_vue.CreateTime) > new Date('2025-06-01')"  style="flex: 2;" @click="allInOne">
+					{{ language.BUTTON_TEXT_1 || '捐赠AK' }}  
+				  </button>
+				  
+				  <button v-else  style="flex: 2;" @click="allInOne">
+					{{ language.BUTTON_TEXT_2 || '捐赠AK' }} 
+				  </button>
+				  
+				  <!-- 全選 / 取消全選 -->
+				  <button style="flex: 1;" @click="toggleSelectAll" >
+					{{ isAllSelected ? '取消全選' : '全選' }}
+				  </button>
+				</div>
+
+				
+				
+                
+				  
+				
+				 
+				
+				
+				   
+			</div> 
+			
+			
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js?v=30"></script>
+    <script src="../../content/js/vant.min.js?v=30"></script>
+    <script src="../../content/js/base.js?v=30"></script>
+    <script src="../../content/js/pages/center/Donate.as.js?v=30"></script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+﻿#app-head {
+    border-bottom: 0;
+}
+
+.sum_number {
+    background-color: white;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+    .sum_number .txt {
+        height: 25px;
+        line-height: 25px;
+        font-size: .9em;
+        color: #a7a7a7;
+    }
+
+    .sum_number .number {
+        font-weight: bold;
+        color: #1e81d2;
+        font-size: 2em;
+        height: 40px;
+        line-height: 40px;
+    }
+
+.list {
+    margin-top: 10px;
+    background-color: white;
+}
+
+    .list li {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        height: 25px;
+        line-height: 25px;
+    }
+
+        .list li .number {
+            font-weight: bold;
+            color: green;
+        }
+
+        .list li .time {
+            margin-left: auto;
+            font-size: .8em;
+            color: #929292;
+        }

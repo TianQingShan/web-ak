@@ -1,0 +1,209 @@
+﻿.van-loading__spinner {
+    width: 60px;
+    height: 60px;
+}
+
+.panel {
+    margin: 10px auto;
+    width: calc(100% - 20px);
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 0 10px 0 #ececec;
+}
+
+    .panel .seller {
+        background-color: #f9f9f9;
+        padding: 10px;
+    }
+
+        .panel .seller .avatar_box .avatar_left {
+            width: 50px;
+            height: 50px;
+            display: block;
+            border-radius: 50%;
+            float: left;
+        }
+
+        .panel .seller .avatar_box .avatar_right {
+            float: left;
+            width: calc(100% - 60px);
+            margin-left: 10px;
+        }
+
+            .panel .seller .avatar_box .avatar_right p {
+                height: 25px;
+                line-height: 25px;
+                color: #616161;
+            }
+
+                .panel .seller .avatar_box .avatar_right p.fn {
+                    font-size: .8em;
+                }
+
+        .panel .seller .phone {
+            margin-top: 10px;
+            height: 25px;
+            line-height: 25px;
+            display: block;
+            font-size: .9em;
+            text-align: left;
+            background-color: #f3f3f3;
+            padding: 5px;
+            border-radius: 4px;
+            color: #9a9a9a;
+            border: 1px solid #ececec;
+        }
+
+            .panel .seller .phone a {
+                color: #068dfe;
+                font-weight: bold;
+            }
+
+.card {
+    padding: 10px;
+    border-radius: 4px;
+    background: -webkit-linear-gradient(left,#41a8ff,#068dfe);
+    color: white;
+    box-shadow: 0 0 10px 0 #b0daff;
+}
+
+    .card .bank_name {
+        font-size: 1.2em;
+        font-weight: bold;
+        height: 25px;
+        line-height: 25px;
+    }
+
+    .card .bank_zh {
+        height: 25px;
+        line-height: 25px;
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    .card .bank_number {
+        text-align: center;
+        font-size: 1.5em;
+        margin: 10px 0;
+        font-weight: bold;
+    }
+
+    .card .bank_card_name {
+        height: 30px;
+        line-height: 30px;
+    }
+
+        .card .bank_card_name .left {
+            float: left;
+            font-size: 1.2em;
+        }
+
+        .card .bank_card_name .right {
+            float: right;
+            padding: 0 5px;
+        }
+
+.icon {
+    display: block;
+    margin: 0 auto;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 2px solid #f9f9f9;
+    padding: 5px;
+}
+
+.err {
+    text-align: center;
+    font-size: 1.1em;
+    margin-top: 5px;
+    word-break: break-all;
+}
+
+.copy {
+    display: block;
+    margin: 0 auto;
+    height: 35px;
+    line-height: 35px;
+    margin-top: 5px;
+    padding: 0 8px;
+}
+
+    .copy:active {
+        background-color: #f9f9f9;
+        border-radius: 4px;
+    }
+
+    .copy .iconfont {
+        margin-right: 2px;
+    }
+
+.alipay {
+    padding: 5px;
+}
+
+    .alipay .alipay_line {
+        margin-bottom: 10px;
+    }
+
+        .alipay .alipay_line.none {
+            margin-bottom: 0;
+        }
+
+        .alipay .alipay_line .alipay_title {
+            height: 25px;
+            line-height: 25px;
+            text-align: left;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .alipay .alipay_line .alipay_value.center {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+            .alipay .alipay_line .alipay_value.center .alipay_account {
+                display: block;
+                height: 30px;
+                line-height: 30px;
+                padding: 0 15px;
+                background-color: #00a0e8;
+                color: white;
+                border-top-left-radius: 4px;
+                border-bottom-left-radius: 4px;
+                font-size: .9em;
+            }
+
+        .alipay .alipay_line .alipay_value img {
+            display: block;
+            width: 250px;
+            height: 375px;
+            margin: 0 auto;
+            border-radius: 6px;
+        }
+
+        .alipay .alipay_line .alipay_value .confirm_button {
+            width: 250px;
+        }
+
+    .alipay .van-button--info {
+        color: #fff;
+        background-color: #1e81d2;
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+.alipay_tip {
+    text-align: center;
+    margin-top: 15px;
+}
+
+.usdt_panel {
+    margin-bottom: 10px;
+}
+
+    .usdt_panel .usdt_caption {
+        font-weight: bold;
+        font-size: 1.1em;
+    }

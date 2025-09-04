@@ -1,0 +1,59 @@
+﻿.list {
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 0 15px #eaeaea;
+}
+
+    .list li {
+        padding: 10px;
+        display: flex;
+    }
+
+        .list li .info {
+            width: 100%;
+        }
+
+            .list li .info .line {
+                height: 20px;
+                line-height: 20px;
+            }
+
+                .list li .info .line.name {
+                    font-weight: bold;
+                    height: 35px;
+                    line-height: 35px;
+                    display: flex;
+                }
+
+                    .list li .info .line.name .txt {
+                        margin-right: 5px;
+                    }
+
+                    .list li .info .line.name .value {
+                        margin-left: auto;
+                        color: #1e81d2;
+                    }
+
+                .list li .info .line.account {
+                    font-size: .8em;
+                    color: #afafaf;
+                    display: flex;
+                }
+
+                    .list li .info .line.account .star {
+                        color: #f1e017;
+                    }
+
+                    .list li .info .line.account .time {
+                        margin-left: auto;
+                    }
+
+        .list li .more {
+            width: 20px;
+            line-height: 50px;
+            text-align: center;
+        }
