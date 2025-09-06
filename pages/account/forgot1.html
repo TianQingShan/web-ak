@@ -4,11 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
     <title></title>
-    <link href="../../content/css/base.css" rel="stylesheet" />
-    <link href="../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../content/css/pages/account/forgot.css" rel="stylesheet" />
-	<link href="../../content/css/pages/center/security/mnemonic.sub.css" rel="stylesheet" />
-    
+    <link href="/content/css/base.css" rel="stylesheet" />
+    <link href="/content/css/vant.css" rel="stylesheet" />
+    <link href="/content/css/pages/account/forgot.css" rel="stylesheet" />
+	<link href="/content/css/pages/center/security/mnemonic.sub.css" rel="stylesheet" />
+
 </head>
 <body>
     <div id="app">
@@ -17,18 +17,18 @@
             <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
         </div>
         <div id="app-content">
-             
+
             <div class="input_group">
-				 
-				
-				
+
+
+
                 <div class="input_line van-hairline--bottom">
                     <span class="input_text" v-text="language.INPUT_TEXT_1"></span>
 					<div class="input_line full" style="padding-left:10px;">
 						<p class="text_line"v-text="form.account" > </p>
 					</div>
                 </div>
-				
+
 				<div class="input_line">
                     <span class="input_text" v-text="language.INPUT_TEXT_2"></span>
                     <div class="input_control">
@@ -36,7 +36,7 @@
                         <div v-if="form.changeType == 2" class="choice_block left right" v-bind:class="{ 'active': form.changeType == 2 }" v-text="language.CHECK_2"></div>
                     </div>
                 </div>
-				
+
 				<div class="input_groupmnemonic border">
                     <div class="input_line full">
                         <p class="text_line"v-text="language.PASSWORD_TITLE" > </p>
@@ -50,43 +50,43 @@
                     <span class="input_text" v-text="language.PASSWORD_2"></span>
                     <input type="password" class="input_control" v-model="form.confirmpassword" v-bind:placeholder="language.PASSWORD_PLACEHOLDER_2" maxlength="15" />
                 </div>
-				
-				
-				
+
+
+
 				<div class="input_groupmnemonic border">
                     <div class="input_line full">
                         <p class="text_line" v-text="language.PASSWORD_MNEMONIC"> </p>
                     </div>
 				</div>
-			
-			
+
+
 				<div class="input_groupmnemonic">
 					<div class="input_line" style="width:100%">
 						<input type="text" class="input_control" v-model="form.mnemonicstr1" v-bind:placeholder="mnemonicid1" maxlength="30"  style="width:100%"/>
 					</div>
 				</div>
-				
+
 				<div class="input_groupmnemonic border">
                     <div class="input_line full">
                         <p class="text_line" v-text="QuestionTitle"> </p>
                     </div>
 				</div>
-			
-			
+
+
 				<div class="input_groupmnemonic">
 					<div class="input_line" style="width:100%">
 						<input type="text" class="input_control" v-model="form.Answer" v-bind:placeholder="QuestionTitle"  maxlength="30" style="width:100%" />
 					</div>
 				</div>
-                 
-               
+
+
             </div>
             <button class="confirm_button" @click="nextStep" v-text="language.BUTTON_1"></button>
         </div>
     </div>
-    <script src="../../content/js/vue.js?v=28"></script>
-    <script src="../../content/js/vant.min.js?v=28"></script>
-    <script src="../../content/js/base.js?v=28"></script>
-    <script src="../../content/js/pages/account/forgot1.js?v=28"></script>
+    <script src="/content/js/vue.js?v=28"></script>
+    <script src="/content/js/vant.min.js?v=28"></script>
+    <script src="/content/js/base.js?v=28"></script>
+    <script src="/content/js/pages/account/forgot1.js?v=28"></script>
 </body>
 </html>

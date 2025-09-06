@@ -8,12 +8,28 @@
     display: flex;
     flex-direction: column;
     row-gap: 20px;
+    position: relative;
+
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      left: 0;
+      aspect-ratio: 1;
+      margin: 0 23px;
+      background-color: rgba(255, 214, 215, .46);
+      border-radius: 999px;
+      filter: blur(90px);
+    }
 
     .item {
       background-color: #fff;
       border: 1px solid #ddd;
       border-radius: 20px;
       padding: 0 24px;
+      position: relative;
+      z-index: 1;
 
       .label {
         font-size: 14px;
