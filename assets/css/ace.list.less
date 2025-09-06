@@ -1,0 +1,122 @@
+.AceList {
+  padding-top: 34px;
+  padding-bottom: 67px;
+  flex-grow: 1;
+  background-color: #f5f5f5;
+
+  .top {
+    margin: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .left {
+      font-weight: 600;
+      font-size: 26px;
+      line-height: 22px;
+      color: #222;
+    }
+
+    .right {
+      display: flex;
+      align-items: center;
+      column-gap: 5px;
+
+      .text {
+        font-weight: 590;
+        font-size: 16px;
+        line-height: 22px;
+        color: #666;
+      }
+
+      .icon {
+        width: 7px;
+      }
+    }
+  }
+
+  .items {
+    margin: 38px 20px 0;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    .item {
+      padding: 13px 20px 16px;
+      background-color: #fff;
+      position: relative;
+
+      .item-top {
+        display: flex;
+        align-items: center;
+        column-gap: 12px;
+        padding: 0 10px 12px;
+        margin-bottom: 12px;
+        border-bottom: 1px dashed #63D38C;
+
+        .avatar {
+          width: 36px;
+          aspect-ratio: 1;
+          border-radius: 999px;
+          border: 2px dashed #cdcdcd;
+          background-image: url('/assets/icon/icon6@1x.png');
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size: 14px 17px;
+        }
+
+        .name {
+          font-size: 16px;
+          color: #000;
+          font-weight: 590;
+          line-height: 22px;
+        }
+      }
+
+      .item-bottom {
+        display: flex;
+        justify-content: space-between;
+
+        .item-bottom-item {
+          .value {
+            font-size: 20px;
+            line-height: 22px;
+            font-weight: 500;
+            color: #000;
+            text-align: center;
+          }
+
+          .label {
+            margin-top: 1px;
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 22px;
+            color: #666;
+            text-align: center;
+          }
+        }
+      }
+
+      .status {
+        position: absolute;
+        top: 0;
+        right: 0;
+        display: flex;
+        align-items: center;
+        column-gap: 6px;
+        background-color: #07C160;
+
+        .text {
+          font-size: 12px;
+          line-height: 22px;
+          font-weight: 500;
+          color: #fff;
+        }
+
+        .icon {
+          width: 7px;
+        }
+      }
+    }
+  }
+}

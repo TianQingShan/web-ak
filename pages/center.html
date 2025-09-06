@@ -13,347 +13,6 @@
 </head>
 
 <body>
-    <!-- <div id="app">
-        <div id="app-head" class="fixed bg-none" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
-            <button v-if="(currentUser.LevelNumber >= currentUser.MinCommitLevelNumber) || currentUser.IsService" class="submit-button" @click="APP.GLOBAL.gotoNewWindow('my.feedbackPage', 'center/child/my.feedback')" v-text="language.FEEDBACK_TEXT">
-                我的留言
-            </button>
-        </div>
-        <div id="app-content" v-if="isInstallLanuage">
-            <div class="top_content" v-cloak>
-                <svg v-bind:width="screenWidth" height="150" class="bg">
-                    <path v-bind:d="'M0,0 L' + screenWidth + ',0 ' + screenWidth + ',130Q' + (screenWidth / 2) + ',170 0,130'" fill="#068dfe"></path>
-                </svg>
-                <div class="top_bg"></div>
-                <div class="profile" v-bind:style="{'top': (45 + statusbarHeight) + 'px'}">
-                    <div v-if="currentUser.IsMemberNo"  class="flow_MemberNo clearfix">
-                        <span class="text"></span>
-                        <span class="number" v-text="currentUser.MemberNo"></span>
-                    </div>
-
-					<div v-else="!currentUser.IsMemberNo" class="flow_number clearfix">
-                        <span class="text">ID</span>
-                        <span class="number" v-text="currentUser.Pin"></span>
-                    </div>
-
-                    <div class="avatar clearfix" @click="isPassowrdShow = true">
-                        <img v-lazy="currentUser.AvatarImage" class="image" />
-                        <div class="avatar_right">
-                            <p class="nn" v-text="currentUser.NickName"></p>
-                            <p class="txt" v-text="language.PROFILE_TEXT"></p>
-                        </div>
-                    </div>
-                    <ul class="info">
-                        <li class="van-hairline--right">
-                            <p class="value red" v-if="currentUser.Credit >= 5">
-                                <i v-for="i in 5" class="iconfont iconxin-copy"></i>
-                            </p>
-                            <p class="value red" v-else-if="currentUser.Credit > 0 && currentUser.Credit < 5">
-                                <i v-for="i in currentUser.Credit" class="iconfont iconxin-copy"></i>
-                            </p>
-                            <p class="value red" v-else>
-                                <span>無</span>
-                            </p>
-                            <p class="text" v-text="language.TOP_UL_TEXT_1">str</p>
-                        </li>
-                        <li class="van-hairline--right">
-                            <p class="value zs" v-if="currentUser.InvestmentLevel.StarNumber >= 5">
-                                <i v-for="i in 5" class="iconfont iconxing"></i>
-                            </p>
-                            <p class="value zs" v-else-if="currentUser.InvestmentLevel.StarNumber > 0 && currentUser.InvestmentLevel.StarNumber < 5">
-                                <i v-for="i in currentUser.InvestmentLevel.StarNumber" class="iconfont iconxing"></i>
-                            </p>
-                            <p class="value zs" v-else>
-                                無
-                            </p>
-                            <p class="text" v-text="language.TOP_UL_TEXT_2">STR</p>
-                        </li>
-                        <li>
-                            <p class="value f-8">
-                                <span v-if="!currentUser.InvestmentLevel.DonateNumber">暂无贡献</span>
-								<img   v-for="i in currentUser.InvestmentLevel.DonateNumber"     width="18" height="18"  src="/content/img/Star.png" />
-                            </p>
-                            <p class="text" v-text="language.TOP_UL_TEXT_3"></p>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="menus" v-cloak v-bind:style="{'paddingTop': 150 + (25 + statusbarHeight) + 'px'}">
-                <div class="block">
-                    <p class="title" v-text="language.BLOCK_1.TITLE">TITLE</p>
-                    <div class="content">
-                        <ul class="items">
-                            <li @click="gotoLightPage('sell.acePage', 'center/sell.ace')" >
-                                <i class="iconfont iconicon-test2 icon c1"></i>
-                                <p class="text" v-text="language.BLOCK_1.MENU_1">AS</p>
-                            </li>
-                            <li @click="gotoLightPage('sell.epPage', 'center/sell.ep')">
-                                <i class="iconfont iconicon icon  c2"></i>
-                                <p class="text" v-text="language.BLOCK_1.MENU_2">EP</p>
-                            </li>
-                            <li @click="gotoLightPage('ep.to.rpPage', 'center/ep.to.rp')">
-                                <i class="iconfont iconmanual-install icon  c3"></i>
-                                <p class="text" v-text="language.BLOCK_1.MENU_3">EP-RP</p>
-                            </li>
-                            <li @click="gotoLightPage('ep.to.spPage', 'center/ep.to.sp')">
-                                <i class="iconfont iconmanual-install icon  c4"></i>
-                                <p class="text" v-text="language.BLOCK_1.MENU_4">EP-SP</p>
-                            </li>
-                            <li @click="gotoLightPage('rp.to.spPage', 'center/rp.to.sp')">
-                                <i class="iconfont iconmanual-install icon  c5"></i>
-                                <p class="text" v-text="language.BLOCK_1.MENU_5">RP-SP</p>
-                            </li>
-                            <li @click="gotoLightPage('rp.outPage', 'center/rp.out')">
-                                <i class="iconfont iconzhuanchu icon c6"></i>
-                                <p class="text" v-text="language.BLOCK_1.MENU_6">RP</p>
-                            </li>
-                            <li @click="gotoLightPage('ep.outPage', 'center/ep.out')">
-                                <i class="iconfont iconhujiaozhuanchu icon c7"></i>
-                                <p class="text" v-text="language.BLOCK_1.MENU_7">EP</p>
-                            </li>
-							<li @click="gotoLightPage('tp.outPage', 'center/tp.out')">
-							    <i class="iconfont icon-tp icon c7"></i>
-							    <p class="text" v-text="language.BLOCK_1.MENU_11">TP</p>
-							</li>
-							<li @click="gotoLightPage('rptp.outPage', 'center/rptp.out')">
-							    <i class="iconfont icon-rptp icon c7"></i>
-							    <p class="text" v-text="language.BLOCK_1.MENU_12">RP+TP</p>
-							</li>
-                            <li v-if="currentUser.IsService" @click="gotoLightPage('rechargePage', 'center/new.recharge')">
-                                <i class="iconfont iconUSDT icon c1"></i>
-                                <p class="text" v-text="language.BLOCK_1.MENU_8">TP</p>
-                            </li>
-							<li @click="gotoLightPage('rptp.outPage', 'center/Donate')" >
-							    <i class="iconfont iconservice icon c2"></i>
-							    <p class="text" v-text="language.BLOCK_1.MENU_13">Donate</p>
-							</li>
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="block">
-                    <p class="title" v-text="language.BLOCK_2.TITLE">市場管理</p>
-                    <div class="content">
-                        <ul class="items">
-                            <li @click="gotoDarkPage('sub.accountPage', 'center/sub.account')">
-                                <i class="iconfont iconhaoyouduizhan icon c7"></i>
-                                <p class="text" v-text="language.BLOCK_2.MENU_1">子賬戶管理</p>
-                            </li>
-							<li @click="isfriendsPassowrdShow = true">
-                                <i class="iconfont iconhaoyouxuanzhong icon c6"></i>
-                                <p class="text" v-text="language.BLOCK_2.MENU_2">我的好友</p>
-                            </li>
-
-							<li @click="isFansPassowrdShow = true">
-                                <i class="iconfont iconjiegoushu icon c5"></i>
-                                <p class="text" v-text="language.BLOCK_2.MENU_3">我的粉絲(表)</p>
-                            </li>
-
-                            <li @click="isFansmapPassowrdShow = true" >
-                                <i class="iconfont iconjiegouyansheng icon c3"></i>
-                                <p class="text" v-text="language.BLOCK_2.MENU_4">我的粉絲(圖)</p>
-                            </li>
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="block">
-                    <p class="title" v-text="language.BLOCK_3.TITLE"></p>
-                    <div class="content">
-                        <ul class="items">
-
-                            <li @click="gotoDarkPage('rp.recordPage', 'center/records/rp.record')">
-                                <i class="iconfont iconzimur icon c4"></i>
-                                <p class="text" v-text="language.BLOCK_3.MENU_2">RP</p>
-                            </li>
-                            <li @click="gotoDarkPage('sp.recordPage', 'center/records/sp.record')">
-                                <i class="iconfont iconzimus icon c5"></i>
-                                <p class="text" v-text="language.BLOCK_3.MENU_3">SP</p>
-                            </li>
-                            <li @click="gotoDarkPage('ep.recordPage', 'center/records/ep.record')">
-                                <i class="iconfont iconzimue icon c6"></i>
-                                <p class="text" v-text="language.BLOCK_3.MENU_4">EP</p>
-                            </li>
-							<li @click="gotoDarkPage('ep.recordPage', 'center/records/tp.record')">
-							    <i class="iconfont iconzimut icon c1"></i>
-							    <p class="text" v-text="language.BLOCK_3.MENU_12">TP</p>
-							</li>
-
-							<li @click="isincomePassowrdShow = true">
-							    <i class="iconfont iconqianbao icon c8"></i>
-							    <p class="text" v-text="language.BLOCK_3.MENU_1"></p>
-							</li>
-							<li @click="gotoDarkPage('business.centerPage', 'center/business.center')" style="display:none">
-							    <i class="iconfont iconjiaoyi2 icon c3"></i>
-							    <p class="text" v-text="language.BLOCK_3.MENU_7"></p>
-							</li>
-                            <li @click="gotoDarkPage('ep.out.recordPage', 'center/records/ep.out.record')">
-                                <i class="iconfont iconzhuanchu1 icon c7"></i>
-                                <p class="text" v-text="language.BLOCK_3.MENU_5">EP</p>
-                            </li>
-                            <li @click="gotoDarkPage('ep.in.recordPage', 'center/records/ep.in.record')">
-                                <i class="iconfont iconzhuanru icon  c8"></i>
-                                <p class="text" v-text="language.BLOCK_3.MENU_6">EP</p>
-                            </li>
-							<li @click="gotoDarkPage('sub.accountPage', 'center/business.center.Buy')"  >
-								<i class="iconfont iconleijishouyi icon c2"></i>
-                                <p class="text" v-text="language.BLOCK_3.MENU_14"> </p>
-                            </li>
-							<li @click="gotoDarkPage('sub.accountPage', 'center/business.center.sell')"  >
-								<i class="iconfont iconleijishouyi icon c2"></i>
-                                <p class="text" v-text="language.BLOCK_3.MENU_15"> </p>
-                            </li>
-                            <li @click="gotoDarkPage('split.recordPage', 'center/split.record')">
-                                <i class="iconfont iconchaifen icon c1"></i>
-                                <p class="text" v-text="language.BLOCK_3.MENU_11"></p>
-                            </li>
-
-                            <li @click="gotoDarkPage('sub.accountPage', 'center/summary_record')" >
-								<i class="iconfont icon-guiji icon c3"></i>
-                                <p class="text" v-text="language.BLOCK_2.MENU_5"> </p>
-                            </li>
-							<li v-if="(currentUser.LevelNumber >= currentUser.MinCommitLevelNumber) || currentUser.IsService" @click="gotoLightPage('rechargePage', 'center/usdtbind')">
-							    <i class="iconfont iconUSDT icon c1"></i>
-							    <p class="text" v-text="language.BLOCK_1.MENU_10">Wallet</p>
-							</li>
-							<li @click="gotoDarkPage('sub.accountPage', 'center/Donate_record')"  >
-								<i class="iconfont iconservice icon c6"></i>
-                                <p class="text" v-text="language.BLOCK_3.MENU_16"> </p>
-                            </li>
-
-
-
-
-                        </ul>
-                    </div>
-                </div>
-                <div class="block mb_none">
-                    <p class="title" v-text="language.BLOCK_4.TITLE"></p>
-                    <div class="content">
-                        <ul class="items">
-							 <li v-if="currentUser.IsBindGAuthorize" @click="gotoDarkPage('activation.codePage', 'center/google/activation.code')">
-                                <i class="iconfont iconjurassic_quanxian icon c1"></i>
-                                <p class="text" v-text="language.BLOCK_4.MENU_6"></p>
-                            </li>
-                            <li v-else @click="gotoDarkPage('google.authPage', 'center/google/google.auth')">
-                                <i class="iconfont iconweb__gugeyanzheng icon c1"></i>
-                                <p class="text" v-text="language.BLOCK_4.MENU_5"></p>
-                            </li>
-                            <li v-if="!currentUser.IsService" @click="gotoDarkPage('my.complaintPage', 'center/my.complaint')" >
-                                <i class="iconfont icontousu icon c3"></i>
-                                <p class="text" v-text="language.BLOCK_4.MENU_7"></p>
-                            </li>
-							<li @click="gotoDarkPage('change.reset.mnemonic', 'center/security/reset.mnemonic')" style="display:none" >
-                                <i class="iconfont iconzhengque icon c4"></i>
-                                <p class="text" v-text="language.BLOCK_4.MENU_10"></p>
-                            </li>
-                            <li @click="APP.GLOBAL.gotoNewWindow('indexPage', '../index', {'param':'from=index'})" style="display:none">
-                                <i class="iconfont iconwangluo- icon c4"></i>
-                                <p class="text" v-text="language.BLOCK_4.MENU_8"></p>
-                            </li>
-                            <li @click="gotoDarkPage('change.passwordPage', 'center/security/change.password')">
-                                <i class="iconfont icondenglu icon c5"></i>
-                                <p class="text" v-text="language.BLOCK_4.MENU_2"></p>
-                            </li>
-                            <li @click="gotoDarkPage('change.pinPage', 'center/security/change.pin')">
-                                <i class="iconfont iconsuo icon c7"></i>
-                                <p class="text" v-text="language.BLOCK_4.MENU_3"></p>
-                            </li>
-							<li @click="gotoDarkPage('change.pinPage', 'center/security/reset.mnemonic')">
-                                <i class="iconfont iconjisuanqi1 icon c8"></i>
-                                <p class="text" v-text="language.BLOCK_4.MENU_10"></p>
-                            </li>
-							<li @click="isupgradePassowrdShow = true">
-                                <i class="iconfont icondengji icon c9"></i>
-                                <p class="text" v-text="language.BLOCK_4.MENU_9"></p>
-                            </li>
-                            <li @click="logoutAccount">
-                                <i class="iconfont icontuichu icon c2"></i>
-                                <p class="text" v-text="language.BLOCK_4.MENU_4">退出登錄</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <van-dialog v-model="isPassowrdShow" show-cancel-button v-bind:before-close="confirmDialog" v-bind:confirm-button-text="language.DIALOG_BUTTON_1" v-bind:cancel-button-text="language.DIALOG_BUTTON_2">
-            <h4 class="dialog_title" v-text="language.DIALOG_TITLE"></h4>
-            <van-field v-model="form.pin" type="password" v-bind:label="language.DIALOG_LABEL" v-bind:placeholder="language.DIALOG_PLACEHOLDER" />
-        </van-dialog>
-        <van-dialog v-model="isFansPassowrdShow" show-cancel-button v-bind:before-close="fansConfirmDialog" v-bind:confirm-button-text="language.DIALOG_BUTTON_1" v-bind:cancel-button-text="language.DIALOG_BUTTON_2">
-            <h4 class="dialog_title" v-text="language.DIALOG_TITLE"></h4>
-            <div class="input_group border">
-                <div class="input_line full">
-                    <p class="text_line" v-text="display.questionDisplay"></p>
-                    <input type="text" class="full_control" v-model="form.answer" v-bind:placeholder="language.INPUT_PLACEHOLDER_1" maxlength="30" />
-                </div>
-            </div>
-        </van-dialog>
-		<van-dialog v-model="isFansmapPassowrdShow" show-cancel-button v-bind:before-close="fansmapConfirmDialog" v-bind:confirm-button-text="language.DIALOG_BUTTON_1" v-bind:cancel-button-text="language.DIALOG_BUTTON_2">
-            <h4 class="dialog_title" v-text="language.DIALOG_TITLE"></h4>
-            <div class="input_group border">
-                <div class="input_line full">
-                    <p class="text_line" v-text="display.questionDisplay"></p>
-                    <input type="text" class="full_control" v-model="form.answer" v-bind:placeholder="language.INPUT_PLACEHOLDER_1" maxlength="30" />
-                </div>
-            </div>
-        </van-dialog>
-		<van-dialog v-model="isfriendsPassowrdShow" show-cancel-button v-bind:before-close="friendsConfirmDialog" v-bind:confirm-button-text="language.DIALOG_BUTTON_1" v-bind:cancel-button-text="language.DIALOG_BUTTON_2">
-            <h4 class="dialog_title" v-text="language.DIALOG_TITLE"></h4>
-            <div class="input_group border">
-                <div class="input_line full">
-                    <p class="text_line" v-text="display.questionDisplay"></p>
-                    <input type="text" class="full_control" v-model="form.answer" v-bind:placeholder="language.INPUT_PLACEHOLDER_1" maxlength="30" />
-                </div>
-            </div>
-        </van-dialog>
-		<van-dialog v-model="isGrandPassowrdShow" show-cancel-button v-bind:before-close="GrandConfirmDialog" v-bind:confirm-button-text="language.DIALOG_BUTTON_1" v-bind:cancel-button-text="language.DIALOG_BUTTON_2">
-            <h4 class="dialog_title" v-text="language.DIALOG_TITLE"></h4>
-            <div class="input_group border">
-                <div class="input_line full">
-                    <p class="text_line" v-text="display.questionDisplay"></p>
-                    <input type="text" class="full_control" v-model="form.answer" v-bind:placeholder="language.INPUT_PLACEHOLDER_1" maxlength="30" />
-                </div>
-            </div>
-        </van-dialog>
-		<van-dialog v-model="isScalePassowrdShow" show-cancel-button v-bind:before-close="ScaleConfirmDialog" v-bind:confirm-button-text="language.DIALOG_BUTTON_1" v-bind:cancel-button-text="language.DIALOG_BUTTON_2">
-            <h4 class="dialog_title" v-text="language.DIALOG_TITLE"></h4>
-            <div class="input_group border">
-                <div class="input_line full">
-                    <p class="text_line" v-text="display.questionDisplay"></p>
-                    <input type="text" class="full_control" v-model="form.answer" v-bind:placeholder="language.INPUT_PLACEHOLDER_1" maxlength="30" />
-                </div>
-            </div>
-        </van-dialog>
-		<van-dialog v-model="isincomePassowrdShow" show-cancel-button v-bind:before-close="incomeConfirmDialog" v-bind:confirm-button-text="language.DIALOG_BUTTON_1" v-bind:cancel-button-text="language.DIALOG_BUTTON_2">
-            <h4 class="dialog_title" v-text="language.DIALOG_TITLE"></h4>
-            <div class="input_group border">
-                <div class="input_line full">
-                    <p class="text_line" v-text="display.questionDisplay"></p>
-                    <input type="text" class="full_control" v-model="form.answer" v-bind:placeholder="language.INPUT_PLACEHOLDER_1" maxlength="30" />
-                </div>
-            </div>
-        </van-dialog>
-		<van-dialog v-model="isupgradePassowrdShow" show-cancel-button v-bind:before-close="upgradeConfirmDialog" v-bind:confirm-button-text="language.DIALOG_BUTTON_1" v-bind:cancel-button-text="language.DIALOG_BUTTON_2">
-            <h4 class="dialog_title" v-text="language.DIALOG_TITLE"></h4>
-            <div class="input_group border">
-                <div class="input_line full">
-                    <p class="text_line" v-text="display.questionDisplay"></p>
-                    <input type="text" class="full_control" v-model="form.answer" v-bind:placeholder="language.INPUT_PLACEHOLDER_1" maxlength="30" />
-                </div>
-            </div>
-        </van-dialog>
-        <div id="bottom" class="panel pos van-hairline--top">
-            <ul id="bottom-menus-items" class="menus clearfix">
-                <li v-for="(item, index) in menus" v-bind:key="index" v-bind:class="{'active': currentIndex === item.index}" @click="window.location = item.url">
-                    <i class="iconfont icon" v-bind:class="[currentIndex === item.index ? item.active : item.default]"></i>
-                    <p class="menus-text" v-text="item.text"></p>
-                </li>
-            </ul>
-        </div>
-    </div> -->
-
-
   <div id="app">
     <div class="Center">
       <div class="top">
@@ -392,12 +51,16 @@
       </div>
       <div class="bottom">
         <div class="content1">
-          <div class="item" v-for="({ icon, name }, index) of items" :key="index">
+          <div
+            class="item"
+            v-for="({ icon, name, id, page }, index) of getItems"
+            :key="index"
+            @click="gotoLightPage(id, page)">
             <div class="icon" :style="{ backgroundImage: `url(${ icon })` }"></div>
             <div class="name">{{ name }}</div>
           </div>
         </div>
-        <div class="content2">
+        <div class="content2" @click="gotoLightPage('rptp.outPage', 'center/Donate')">
           <div class="left">
             <img src="/assets/images/center/image14@1x.png" alt="" class="left-img" />
             <div class="left-text">自愿捐赠</div>
@@ -405,7 +68,7 @@
           <img src="/assets/images/center/image15@1x.png" alt="" class="right" />
         </div>
         <div class="content3">
-          <div class="item" v-for="({ icon, iconWidth, name }, index) of items2" :key="index">
+          <div class="item" v-for="({ icon, iconWidth, name }, index) of getItems2" :key="index">
             <div class="icon-box">
               <img :src="icon" :style="{ width: iconWidth }" />
             </div>
@@ -413,7 +76,7 @@
           </div>
         </div>
         <div class="content4">
-          <div class="item" v-for="({ name, linearGradient }, index) of items3" :key="index">
+          <div class="item" v-for="({ name, linearGradient }, index) of getItems3" :key="index">
             <div :style="{ backgroundImage: `${ linearGradient }` }" class="item-bg"></div>
             <div class="text">{{ name }}</div>
             <div class="more-round"></div>

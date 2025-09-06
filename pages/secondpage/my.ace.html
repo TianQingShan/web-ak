@@ -1,125 +1,156 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
-    <title></title>
-    <link href="../../content/css/base.css" rel="stylesheet" />
-    <link href="../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../content/css/pages/secondpage/my.ace.css" rel="stylesheet" />
-    
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+  <title></title>
+  <link href="/content/css/base.css" rel="stylesheet" />
+  <link href="/content/css/vant.css" rel="stylesheet" />
+  <link href="/assets/css/vue-component.css" rel="stylesheet" />
+  <link href="/assets/css/my.ace.css" rel="stylesheet" />
+
 </head>
 <body>
-    <div id="app">
-        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
-            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
-            <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+  <!-- <div id="app">
+      <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+          <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+          <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+      </div>
+      <div id="app-content">
+          <van-tabs v-model="tabActive" @change="tabChange" v-bind:style="{'top': (45 + statusbarHeight) + 'px'}" v-cloak>
+              <van-tab v-bind:title="language.TAB_1">
+                  <div v-if="pageModel.tabs[0].isLoading" class="loading-box p50">
+                      <van-loading color="black"></van-loading>
+                      <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+                  </div>
+                  <div v-else>
+                      <div v-if="pageModel.tabs[0].list.length === 0" class="none-data">
+                          <i class="iconfont iconkong"></i>
+                          <p class="none-data-text" v-text="language.NONE_DATA_TEXT">暫無記錄信息</p>
+                      </div>
+                      <div v-else>
+                          <ul class="list tab1">
+                              <li v-for="(item,index) in pageModel.tabs[0].list"
+                                  v-bind:key="index"
+                                  @click="gotoSellDetail(item)">
+                                  <div class="top clearfix">
+                                      <div class="fn" v-text="item.TypeName"></div>
+                                      <div class="state">
+                                          <span v-text="language.STATE_TEXT">交易完成</span>
+                                      </div>
+                                  </div>
+                                  <ul class="info">
+
+                  <li class="full">
+                                          <p class="value" >
+                                              <span v-text="item.FlowNumber"></span>
+                                              <sup v-if="item.IsSon === 1">Sub</sup>
+                                          </p>
+                                          <p class="text" v-text="language.LI_5_TEXT">LI_5_TEXT</p>
+                                      </li>
+                    <li class="full">
+                                          <p class="value" >
+                                              <span v-text="numberFormat(item.TotalStockCount, 0)"></span>
+                                              <sup>AK</sup>
+                                          </p>
+                                          <p class="text" v-text="language.LI_1_TEXT">挂賣總數</p>
+                                      </li>
+                                  </ul>
+                                  <div class="time clearfix">
+                                      <span v-if="item.TradeType === 2 && item.SCount > 0"
+                                            class="text"
+                                            v-text="language.TEXT_FIRST + item.SCount + language.TEXT_LAST"></span>
+                                      <span class="value" v-text="item.Time"></span>
+                                  </div>
+                              </li>
+                          </ul>
+                          <div v-if="pageModel.tabs[0].isLoadMore" class="load_more clearfix">
+                              <van-loading color="black"></van-loading>
+                              <span class="load_text" v-text="language.LOADING_TEXT">正在加載...</span>
+                          </div>
+                          <div v-if="pageModel.tabs[0].isLoadComplete" class="load_more_complete">
+                              <span class="load_text" v-text="language.LOAD_COMPLETE_TEXT">沒有更多的數據了...</span>
+                          </div>
+                      </div>
+                  </div>
+              </van-tab>
+              <van-tab v-bind:title="language.TAB_2">
+                  <div v-if="pageModel.tabs[1].isLoading" class="loading-box p50">
+                      <van-loading color="black"></van-loading>
+                      <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+                  </div>
+                  <div v-else>
+                      <div v-if="pageModel.tabs[1].list.length === 0" class="none-data">
+                          <i class="iconfont iconkong"></i>
+                          <p class="none-data-text" v-text="language.NONE_DATA_TEXT">暫無記錄信息</p>
+                      </div>
+                      <div v-else>
+                          <ul class="list">
+                              <li v-for="(item,index) in pageModel.tabs[1].list"
+                                  v-bind:key="index">
+                                  <div class="top clearfix">
+                                      <img v-lazy="item.Seller.Avatar" class="image" />
+                                      <div class="fn" v-text="item.Seller.FlowNumber"></div>
+                                      <div class="state">
+                                          <span v-text="language.STATE_TEXT">交易完成</span>
+                                      </div>
+                                  </div>
+                                  <ul class="info">
+                                      <li>
+                                          <p class="value" v-text="numberFormat(item.AceAmount, 0)"></p>
+                                          <p class="text" v-text="language.LI_2_TEXT">購買數量</p>
+                                      </li>
+                                      <li>
+                                          <p class="value" v-text="numberFormat(item.SinglePrice, 3)"></p>
+                                          <p class="text" v-text="language.LI_3_TEXT">股價</p>
+                                      </li>
+                                      <li>
+                                          <p class="value" v-text="numberFormat(item.AceAmount * item.SinglePrice, 2)"></p>
+                                          <p class="text" v-text="language.LI_4_TEXT">消耗AP</p>
+                                      </li>
+                                  </ul>
+                                  <p class="time" v-text="item.CreateTime"></p>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+              </van-tab>
+          </van-tabs>
+      </div>
+  </div> -->
+
+  <div id="app">
+    <div class="MyAce">
+      <top-back title="我的买卖"></top-back>
+      <div class="tab-items">
+        <div class="tab-item active">挂卖</div>
+        <div class="tab-item">购买</div>
+      </div>
+      <div class="items">
+        <div class="item" v-for="n of 3" :key="n">
+          <div class="top">
+            <div class="text">指导销售</div>
+          </div>
+          <div class="bottom">
+            <div class="bottom-item">
+              <div class="bottom-item-value">3000034</div>
+              <div class="bottom-item-label">账号</div>
+            </div>
+            <div class="bottom-item">
+              <div class="bottom-item-value">3200</div>
+              <div class="bottom-item-label">挂卖数量</div>
+            </div>
+          </div>
+          <div class="time">2025/3/28 19:35:25</div>
+          <div class="status">交易完成</div>
         </div>
-        <div id="app-content">
-            <van-tabs v-model="tabActive" @change="tabChange" v-bind:style="{'top': (45 + statusbarHeight) + 'px'}" v-cloak>
-                <van-tab v-bind:title="language.TAB_1">
-                    <div v-if="pageModel.tabs[0].isLoading" class="loading-box p50">
-                        <van-loading color="black"></van-loading>
-                        <p class="loading-text" v-text="language.LOADING_TEXT"></p>
-                    </div>
-                    <div v-else>
-                        <div v-if="pageModel.tabs[0].list.length === 0" class="none-data">
-                            <i class="iconfont iconkong"></i>
-                            <p class="none-data-text" v-text="language.NONE_DATA_TEXT">暫無記錄信息</p>
-                        </div>
-                        <div v-else>
-                            <ul class="list tab1">
-                                <li v-for="(item,index) in pageModel.tabs[0].list"
-                                    v-bind:key="index"
-                                    @click="gotoSellDetail(item)">
-                                    <div class="top clearfix">
-                                        <div class="fn" v-text="item.TypeName"></div>
-                                        <div class="state">
-                                            <span v-text="language.STATE_TEXT">交易完成</span>
-                                        </div>
-                                    </div>
-                                    <ul class="info">
-                                       
-										<li class="full">
-                                            <p class="value" >
-                                                <span v-text="item.FlowNumber"></span>
-                                                <sup v-if="item.IsSon === 1">Sub</sup>
-                                            </p>
-                                            <p class="text" v-text="language.LI_5_TEXT">LI_5_TEXT</p>
-                                        </li>
-										 <li class="full">
-                                            <p class="value" >
-                                                <span v-text="numberFormat(item.TotalStockCount, 0)"></span>
-                                                <sup>AK</sup>
-                                            </p>
-                                            <p class="text" v-text="language.LI_1_TEXT">挂賣總數</p>
-                                        </li>
-                                    </ul>
-                                    <div class="time clearfix">
-                                        <span v-if="item.TradeType === 2 && item.SCount > 0" 
-                                              class="text" 
-                                              v-text="language.TEXT_FIRST + item.SCount + language.TEXT_LAST"></span>
-                                        <span class="value" v-text="item.Time"></span>
-                                    </div>
-                                </li>
-                            </ul>
-                            <div v-if="pageModel.tabs[0].isLoadMore" class="load_more clearfix">
-                                <van-loading color="black"></van-loading>
-                                <span class="load_text" v-text="language.LOADING_TEXT">正在加載...</span>
-                            </div>
-                            <div v-if="pageModel.tabs[0].isLoadComplete" class="load_more_complete">
-                                <span class="load_text" v-text="language.LOAD_COMPLETE_TEXT">沒有更多的數據了...</span>
-                            </div>
-                        </div>
-                    </div>
-                </van-tab>
-                <van-tab v-bind:title="language.TAB_2">
-                    <div v-if="pageModel.tabs[1].isLoading" class="loading-box p50">
-                        <van-loading color="black"></van-loading>
-                        <p class="loading-text" v-text="language.LOADING_TEXT"></p>
-                    </div>
-                    <div v-else>
-                        <div v-if="pageModel.tabs[1].list.length === 0" class="none-data">
-                            <i class="iconfont iconkong"></i>
-                            <p class="none-data-text" v-text="language.NONE_DATA_TEXT">暫無記錄信息</p>
-                        </div>
-                        <div v-else>
-                            <ul class="list">
-                                <li v-for="(item,index) in pageModel.tabs[1].list"
-                                    v-bind:key="index">
-                                    <div class="top clearfix">
-                                        <img v-lazy="item.Seller.Avatar" class="image" />
-                                        <div class="fn" v-text="item.Seller.FlowNumber"></div>
-                                        <div class="state">
-                                            <span v-text="language.STATE_TEXT">交易完成</span>
-                                        </div>
-                                    </div>
-                                    <ul class="info">
-                                        <li>
-                                            <p class="value" v-text="numberFormat(item.AceAmount, 0)"></p>
-                                            <p class="text" v-text="language.LI_2_TEXT">購買數量</p>
-                                        </li>
-                                        <li>
-                                            <p class="value" v-text="numberFormat(item.SinglePrice, 3)"></p>
-                                            <p class="text" v-text="language.LI_3_TEXT">股價</p>
-                                        </li>
-                                        <li>
-                                            <p class="value" v-text="numberFormat(item.AceAmount * item.SinglePrice, 2)"></p>
-                                            <p class="text" v-text="language.LI_4_TEXT">消耗AP</p>
-                                        </li>
-                                    </ul>
-                                    <p class="time" v-text="item.CreateTime"></p>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </van-tab>
-            </van-tabs>
-        </div>
+      </div>
     </div>
-    <script src="../../content/js/vue.js?v=28"></script>
-    <script src="../../content/js/vant.min.js?v=28"></script>
-    <script src="../../content/js/base.js?v=28"></script>
-    <script src="../../content/js/pages/secondpage/my.ace.js?v=28"></script>
+  </div>
+  <script src="/content/js/vue.js?v=28"></script>
+  <script src="/content/js/vant.min.js?v=28"></script>
+  <script src="/content/js/base.js?v=28"></script>
+  <script src="/content/js/vue-component.js?v=28"></script>
+  <script src="/content/js/pages/secondpage/my.ace.js?v=28"></script>
 </body>
 </html>

@@ -1,16 +1,17 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
-    <title></title>
-    <link href="../../content/css/base.css" rel="stylesheet" />
-    <link href="../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../content/css/pages/secondpage/ace.list.detail.css" rel="stylesheet" />
-    
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+  <title></title>
+  <link href="/content/css/base.css" rel="stylesheet" />
+  <link href="/content/css/vant.css" rel="stylesheet" />
+  <link href="/assets/css/vue-component.css" rel="stylesheet" />
+  <link href="/assets/css/ace.list.detail.css" rel="stylesheet" />
+
 </head>
 <body>
-    <div id="app">
+    <!-- <div id="app">
         <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
             <i id="app-back-button" class="iconfont iconzuo right-back"></i>
             <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
@@ -108,10 +109,90 @@
                 </div>
             </div>
         </div>
+    </div> -->
+
+  <div id="app">
+    <div class="AceListDetail">
+      <top-back title="交易详情"></top-back>
+      <div class="detial-info">
+        <div class="top">
+          <div class="avatar"></div>
+          <div class="name">6965554</div>
+        </div>
+        <div class="center">
+          <div class="center-item">
+            <div class="center-item-top">
+              <div class="center-item-top-text1">200</div>
+              <div class="center-item-top-text2">王牌</div>
+            </div>
+            <div class="center-item-label">挂賣總數</div>
+          </div>
+          <div class="center-item">
+            <div class="center-item-top">
+              <div class="center-item-top-text1">20</div>
+              <div class="center-item-top-text2">王牌</div>
+            </div>
+            <div class="center-item-label">交易銷毀</div>
+          </div>
+          <div class="center-item">
+            <div class="center-item-top">
+              <div class="center-item-top-text1">162</div>
+              <div class="center-item-top-text2">王牌</div>
+            </div>
+            <div class="center-item-label">已成交 </div>
+          </div>
+          <div class="center-item">
+            <div class="center-item-top">
+              <div class="center-item-top-text1">0.252</div>
+              <div class="center-item-top-text2">$</div>
+            </div>
+            <div class="center-item-label">成交價</div>
+          </div>
+          <div class="center-item">
+            <div class="center-item-top">
+              <div class="center-item-top-text1">40.82</div>
+              <div class="center-item-top-text2">$</div>
+            </div>
+            <div class="center-item-label">成交價值</div>
+          </div>
+          <div class="center-item">
+            <div class="center-item-top">
+              <div class="center-item-top-text1">0</div>
+              <div class="center-item-top-text2">王牌</div>
+            </div>
+            <div class="center-item-label">待成交</div>
+          </div>
+        </div>
+        <div class="bottom">2025/6/15 01:22:48</div>
+      </div>
+      <div class="list-container">
+        <div class="list-top">
+          <div class="icon"></div>
+          <div class="title">买家列表</div>
+        </div>
+
+        <div class="list-body">
+          <div class="list-body-header">
+            <div class="list-body-header-item">#</div>
+            <div class="list-body-header-item">买家</div>
+            <div class="list-body-header-item">成交值</div>
+            <div class="list-body-header-item">数量</div>
+          </div>
+          <div class="list-body-items">
+            <div class="list-body-item" v-for="(n, index) of 3" :key="index">
+              <div class="list-body-item-text" style="font-weight: 400;">1</div>
+              <div class="list-body-item-text">10043074</div>
+              <div class="list-body-item-text">0.256</div>
+              <div class="list-body-item-text">630</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="../../content/js/vue.js?v=28"></script>
-    <script src="../../content/js/vant.min.js?v=28"></script>
-    <script src="../../content/js/base.js?v=28"></script>
-    <script src="../../content/js/pages/secondpage/ace.list.detail.js?v=28"></script>
+  </div>
+  <script src="/content/js/vue.js?v=28"></script>
+  <script src="/content/js/vant.min.js?v=28"></script>
+  <script src="/content/js/base.js?v=28"></script>
+  <script src="/content/js/vue-component.js?v=28"></script>
+  <script src="/content/js/pages/secondpage/ace.list.detail.js?v=28"></script>
 </body>
 </html>

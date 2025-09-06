@@ -124,16 +124,22 @@ Vue.component('tab-bar', {
         'text': '我的',
         'default': 'iconmy',
         'active': 'iconmyfill',
-        'url': '#'
+        'url': 'center.html'
     }],
   }),
+  methods: {
+    jump(item) {
+      if (item.index === this.currentIndex) return
+
+      window.location = item.url
+    }
+  },
   template: `
     <div id="bottom" class="panel pos van-hairline--top">
       <ul id="bottom-menus-items" class="menus clearfix">
-        <li v-for="(item, index) in menus" v-bind:key="index" v-bind:class="{'active': currentIndex === item.index}" @click="window.location = item.url">
+        <li v-for="(item, index) in menus" v-bind:key="index" v-bind:class="{'active': currentIndex === item.index}" @click="jump(item)">
           <i class="iconfont icon" v-bind:class="[currentIndex === item.index ? item.active : item.default]"></i>
           <p class="menus-text" v-text="item.text"></p>
-          {{ currentIndex }}的撒旦
         </li>
       </ul>
     </div>
