@@ -5,14 +5,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
     <title></title>
-    <link href="../content/css/base.css" rel="stylesheet" />
-    <link href="../content/css/vant.css" rel="stylesheet" />
-    <link href="../content/css/pages/center.css" rel="stylesheet" />
-    <link href="../content/css/bottom.css" rel="stylesheet" />
+    <link href="/content/css/base.css" rel="stylesheet" />
+    <link href="/content/css/vant.css" rel="stylesheet" />
+    <link href="/content/css/pages/center.css" rel="stylesheet" />
+    <link href="/assets/css/vue-component.css" rel="stylesheet" />
+    <link href="/assets/css/center.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div id="app">
+    <!-- <div id="app">
         <div id="app-head" class="fixed bg-none" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
             <button v-if="(currentUser.LevelNumber >= currentUser.MinCommitLevelNumber) || currentUser.IsService" class="submit-button" @click="APP.GLOBAL.gotoNewWindow('my.feedbackPage', 'center/child/my.feedback')" v-text="language.FEEDBACK_TEXT">
                 我的留言
@@ -29,12 +30,12 @@
                         <span class="text"></span>
                         <span class="number" v-text="currentUser.MemberNo"></span>
                     </div>
-					
+
 					<div v-else="!currentUser.IsMemberNo" class="flow_number clearfix">
                         <span class="text">ID</span>
                         <span class="number" v-text="currentUser.Pin"></span>
                     </div>
-					
+
                     <div class="avatar clearfix" @click="isPassowrdShow = true">
                         <img v-lazy="currentUser.AvatarImage" class="image" />
                         <div class="avatar_right">
@@ -67,11 +68,10 @@
                             </p>
                             <p class="text" v-text="language.TOP_UL_TEXT_2">STR</p>
                         </li>
-						<!-- <li @click="gotoDarkPage('sub.accountPage', 'center/gongxian')"> -->
                         <li>
                             <p class="value f-8">
                                 <span v-if="!currentUser.InvestmentLevel.DonateNumber">暂无贡献</span>
-								<img   v-for="i in currentUser.InvestmentLevel.DonateNumber"     width="18" height="18"  src="../../content/img/Star.png" />
+								<img   v-for="i in currentUser.InvestmentLevel.DonateNumber"     width="18" height="18"  src="/content/img/Star.png" />
                             </p>
                             <p class="text" v-text="language.TOP_UL_TEXT_3"></p>
                         </li>
@@ -86,7 +86,7 @@
                             <li @click="gotoLightPage('sell.acePage', 'center/sell.ace')" >
                                 <i class="iconfont iconicon-test2 icon c1"></i>
                                 <p class="text" v-text="language.BLOCK_1.MENU_1">AS</p>
-                            </li> 
+                            </li>
                             <li @click="gotoLightPage('sell.epPage', 'center/sell.ep')">
                                 <i class="iconfont iconicon icon  c2"></i>
                                 <p class="text" v-text="language.BLOCK_1.MENU_2">EP</p>
@@ -127,7 +127,7 @@
 							    <i class="iconfont iconservice icon c2"></i>
 							    <p class="text" v-text="language.BLOCK_1.MENU_13">Donate</p>
 							</li>
-							
+
                         </ul>
                     </div>
                 </div>
@@ -139,34 +139,21 @@
                                 <i class="iconfont iconhaoyouduizhan icon c7"></i>
                                 <p class="text" v-text="language.BLOCK_2.MENU_1">子賬戶管理</p>
                             </li>
-                            <!-- <li @click="gotoDarkPage('my.friendPage', 'center/my.friend')"> -->
 							<li @click="isfriendsPassowrdShow = true">
                                 <i class="iconfont iconhaoyouxuanzhong icon c6"></i>
                                 <p class="text" v-text="language.BLOCK_2.MENU_2">我的好友</p>
                             </li>
-							
-                            <!-- <li @click="gotoDarkPage('my.fans.listPage', 'center/my.fans.list')"> -->
+
 							<li @click="isFansPassowrdShow = true">
                                 <i class="iconfont iconjiegoushu icon c5"></i>
                                 <p class="text" v-text="language.BLOCK_2.MENU_3">我的粉絲(表)</p>
                             </li>
-							
+
                             <li @click="isFansmapPassowrdShow = true" >
                                 <i class="iconfont iconjiegouyansheng icon c3"></i>
                                 <p class="text" v-text="language.BLOCK_2.MENU_4">我的粉絲(圖)</p>
                             </li>
-							
-                            <!--<li v-if="currentUser.LevelNumber > 5" @click="isGrandPassowrdShow = true" >
-                                <i class="iconfont icontubiao1 icon c8"></i>
-                                <p class="text" v-text="language.BLOCK_2.MENU_6">analyze</p>
-                            </li>
-							
-							<!--<li v-if="currentUser.UserID = 48" @click="isScalePassowrdShow = true" >
-							<li @click="isScalePassowrdShow = true" >
-                                <i class="iconfont icon-guiji icon c1"></i>
-                                <p class="text" v-text="language.BLOCK_2.MENU_7">3M</p>
-                            </li>!-->
-							
+
                         </ul>
                     </div>
                 </div>
@@ -174,7 +161,7 @@
                     <p class="title" v-text="language.BLOCK_3.TITLE"></p>
                     <div class="content">
                         <ul class="items">
-                           
+
                             <li @click="gotoDarkPage('rp.recordPage', 'center/records/rp.record')">
                                 <i class="iconfont iconzimur icon c4"></i>
                                 <p class="text" v-text="language.BLOCK_3.MENU_2">RP</p>
@@ -191,9 +178,8 @@
 							    <i class="iconfont iconzimut icon c1"></i>
 							    <p class="text" v-text="language.BLOCK_3.MENU_12">TP</p>
 							</li>
-							 
+
 							<li @click="isincomePassowrdShow = true">
-							<!-- <li @click="gotoDarkPage('profitPage', 'center/profit')"> -->
 							    <i class="iconfont iconqianbao icon c8"></i>
 							    <p class="text" v-text="language.BLOCK_3.MENU_1"></p>
 							</li>
@@ -209,12 +195,10 @@
                                 <i class="iconfont iconzhuanru icon  c8"></i>
                                 <p class="text" v-text="language.BLOCK_3.MENU_6">EP</p>
                             </li>
-							<!-- buy -->
 							<li @click="gotoDarkPage('sub.accountPage', 'center/business.center.Buy')"  >
 								<i class="iconfont iconleijishouyi icon c2"></i>
                                 <p class="text" v-text="language.BLOCK_3.MENU_14"> </p>
                             </li>
-							<!-- sell -->
 							<li @click="gotoDarkPage('sub.accountPage', 'center/business.center.sell')"  >
 								<i class="iconfont iconleijishouyi icon c2"></i>
                                 <p class="text" v-text="language.BLOCK_3.MENU_15"> </p>
@@ -223,7 +207,7 @@
                                 <i class="iconfont iconchaifen icon c1"></i>
                                 <p class="text" v-text="language.BLOCK_3.MENU_11"></p>
                             </li>
-                             
+
                             <li @click="gotoDarkPage('sub.accountPage', 'center/summary_record')" >
 								<i class="iconfont icon-guiji icon c3"></i>
                                 <p class="text" v-text="language.BLOCK_2.MENU_5"> </p>
@@ -236,10 +220,10 @@
 								<i class="iconfont iconservice icon c6"></i>
                                 <p class="text" v-text="language.BLOCK_3.MENU_16"> </p>
                             </li>
-							
-							
-							
-							
+
+
+
+
                         </ul>
                     </div>
                 </div>
@@ -279,7 +263,6 @@
                                 <i class="iconfont iconjisuanqi1 icon c8"></i>
                                 <p class="text" v-text="language.BLOCK_4.MENU_10"></p>
                             </li>
-                            <!-- <li @click="gotoDarkPage('upgrade_recordPage', 'center/child/upgrade_record')" style="display:none"> -->
 							<li @click="isupgradePassowrdShow = true">
                                 <i class="iconfont icondengji icon c9"></i>
                                 <p class="text" v-text="language.BLOCK_4.MENU_9"></p>
@@ -368,11 +351,84 @@
                 </li>
             </ul>
         </div>
+    </div> -->
+
+
+  <div id="app">
+    <div class="Center">
+      <div class="top">
+        <div class="text1">welcome back</div>
+        <div class="text2">{{ currentUser.NickName }}</div>
+
+        <div class="user-info">
+          <div class="user-info-top">
+            <div class="id">ID：{{ currentUser.Pin }}</div>
+            <div class="avatar" :style="{ backgroundImage: `url(${ currentUser.AvatarImage })` }"></div>
+          </div>
+          <div class="user-info-bottom">
+            <div class="item">
+              <div class="icon-items" v-if="currentUser.Credit > 0">
+                <div class="icon-item" v-for="n of Math.min(5, currentUser.Credit)" :key="n" style="background-image: url('/assets/images/center/image2@1x.png')"></div>
+              </div>
+              <div class="none-text" v-else>無</div>
+              <div class="text">{{ language.TOP_UL_TEXT_1 }}</div>
+            </div>
+            <div class="item">
+              <div class="icon-items" v-if="currentUser.InvestmentLevel.StarNumber > 0">
+                <div class="icon-item" v-for="n of Math.min(5, currentUser.InvestmentLevel.StarNumber)" :key="n" style="background-image: url('/assets/images/center/image3@1x.png')"></div>
+              </div>
+              <div class="none-text" v-else>無</div>
+              <div class="text">账户星级</div>
+            </div>
+            <div class="item">
+              <div class="icon-items" v-if="currentUser.InvestmentLevel.DonateNumber">
+                <div class="icon-item" v-for="n of currentUser.InvestmentLevel.DonateNumber" :key="n" style="background-image: url('/assets/images/center/image4@1x.png')"></div>
+              </div>
+              <div class="none-text" v-else>暂无贡献</div>
+              <div class="text">{{ language.TOP_UL_TEXT_3 }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom">
+        <div class="content1">
+          <div class="item" v-for="({ icon, name }, index) of items" :key="index">
+            <div class="icon" :style="{ backgroundImage: `url(${ icon })` }"></div>
+            <div class="name">{{ name }}</div>
+          </div>
+        </div>
+        <div class="content2">
+          <div class="left">
+            <img src="/assets/images/center/image14@1x.png" alt="" class="left-img" />
+            <div class="left-text">自愿捐赠</div>
+          </div>
+          <img src="/assets/images/center/image15@1x.png" alt="" class="right" />
+        </div>
+        <div class="content3">
+          <div class="item" v-for="({ icon, iconWidth, name }, index) of items2" :key="index">
+            <div class="icon-box">
+              <img :src="icon" :style="{ width: iconWidth }" />
+            </div>
+            <div class="name">{{ name }}</div>
+          </div>
+        </div>
+        <div class="content4">
+          <div class="item" v-for="({ name, linearGradient }, index) of items3" :key="index">
+            <div :style="{ backgroundImage: `${ linearGradient }` }" class="item-bg"></div>
+            <div class="text">{{ name }}</div>
+            <div class="more-round"></div>
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="../content/js/vue.js?v=28"></script>
-    <script src="../content/js/vant.min.js?v=28"></script>
-    <script src="../content/js/base.js?v=28"></script>
-    <script src="../content/js/pages/center.js?v=28"></script>
+    <tab-bar :current-index="3"></tab-bar>
+  </div>
+
+  <script src="/content/js/vue.js?v=28"></script>
+  <script src="/content/js/vant.min.js?v=28"></script>
+  <script src="/content/js/base.js?v=28"></script>
+  <script src="/content/js/vue-component.js?v=28"></script>
+  <script src="/content/js/pages/center.js?v=28"></script>
 </body>
 
 </html>

@@ -92,3 +92,50 @@ Vue.component('checkbox', {
     <div class="Checkbox" :class="{ checked }" />
   `
 })
+
+Vue.component('tab-bar', {
+  props: {
+    currentIndex: {
+      type: Number,
+      required: true
+    }
+  },
+  data: () => ({
+    'menus': [{
+        'index': 0,
+        'text': '首頁',
+        'default': 'iconhome',
+        'active': 'iconhomefill',
+        'url': 'home.html'
+    }, {
+        'index': 1,
+        'text': 'AK交易',
+        'default': 'iconpuke',
+        'active': 'iconpuke_fill',
+        'url': 'ace.list.html'
+    }, {
+        'index': 2,
+        'text': 'EP交易',
+        'default': 'iconjiaoyi',
+        'active': 'iconjiaoyi_fill',
+        'url': 'ep.list.html'
+    }, {
+        'index': 3,
+        'text': '我的',
+        'default': 'iconmy',
+        'active': 'iconmyfill',
+        'url': '#'
+    }],
+  }),
+  template: `
+    <div id="bottom" class="panel pos van-hairline--top">
+      <ul id="bottom-menus-items" class="menus clearfix">
+        <li v-for="(item, index) in menus" v-bind:key="index" v-bind:class="{'active': currentIndex === item.index}" @click="window.location = item.url">
+          <i class="iconfont icon" v-bind:class="[currentIndex === item.index ? item.active : item.default]"></i>
+          <p class="menus-text" v-text="item.text"></p>
+          {{ currentIndex }}的撒旦
+        </li>
+      </ul>
+    </div>
+  `
+})

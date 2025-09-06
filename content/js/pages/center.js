@@ -52,7 +52,92 @@ var _vue = new Vue({
             'url': '#'
         }],
         'currentIndex': 3,
-        'statusbarHeight': 0
+        'statusbarHeight': 0,
+
+        items: [
+            {
+                icon: '/assets/images/center/image5@1x.png',
+                name: '出售AK',
+                id: 'sell.acePage',
+                page: 'center/sell.ace'
+            },
+            {
+                icon: '/assets/images/center/image6@1x.png',
+                name: '交易EP',
+                id: 'sell.epPage',
+                page: 'center/sell.ep'
+            },
+            {
+                icon: '/assets/images/center/image7@1x.png',
+                name: '出售EP',
+                id: '',
+                page: ''
+            },
+            {
+                icon: '/assets/images/center/image8@1x.png',
+                name: 'EP转RP',
+                id: '',
+                page: ''
+            },
+            {
+                icon: '/assets/images/center/image9@1x.png',
+                name: 'EP转SP',
+                id: '',
+                page: ''
+            },
+            {
+                icon: '/assets/images/center/image10@1x.png',
+                name: 'RP转SP',
+                id: '',
+                page: ''
+            },
+            {
+                icon: '/assets/images/center/image11@1x.png',
+                name: 'RP转出',
+                id: '',
+                page: ''
+            },
+            {
+                icon: '/assets/images/center/image12@1x.png',
+                name: 'TP转出',
+                id: '',
+                page: ''
+            },
+            {
+                icon: '/assets/images/center/image13@1x.png',
+                name: 'RP+TP',
+                id: '',
+                page: ''
+            }
+        ],
+
+        items2: [
+            {
+                icon: '/assets/images/center/image16@1x.png',
+                iconWidth: 39,
+                name: '子账户',
+            },
+            {
+                icon: '/assets/images/center/image17@1x.png',
+                iconWidth: 31,
+                name: '附近玩家',
+            },
+            {
+                icon: '/assets/images/center/image18@1x.png',
+                iconWidth: 34,
+                name: '全球玩家(表)',
+            },
+            {
+                icon: '/assets/images/center/image19@1x.png',
+                iconWidth: 43,
+                name: '全球玩家(图)',
+            }
+        ],
+
+        items3: [
+            { name: '财务管理', linearGradient: 'linear-gradient(180deg, #B9D8F7 63%, #fff 100%)' },
+            { name: '安全设置', linearGradient: 'linear-gradient(180deg, #D4FAE1 63%, #fff 100%)' }
+        ]
     },
     methods: {
         'confirmDialog': function(action, done) {
@@ -106,7 +191,7 @@ var _vue = new Vue({
                 done();
             }
         },
-		
+
 		'GrandConfirmDialog': function(action, done) {
             if (action === 'confirm') {
                 //if (!this.form.pin) {
@@ -124,7 +209,7 @@ var _vue = new Vue({
                 done();
             }
         },
-		
+
 		'ScaleConfirmDialog': function(action, done) {
             if (action === 'confirm') {
                 //if (!this.form.pin) {
@@ -142,8 +227,8 @@ var _vue = new Vue({
                 done();
             }
         },
-		
-		
+
+
         'fansConfirmDialog': function(action, done) {
             if (action === 'confirm') {
                 //if (!this.form.pin) {

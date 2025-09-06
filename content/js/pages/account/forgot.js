@@ -8,7 +8,7 @@ var _vue = new Vue({
     data: {
         'form': {
             'account': '',
-            'changeType': '1',
+            'changeType': 1,
 			'mnemonicid1': '',
 			'QuestionTitle': '',
 			'mnemonicstr1': '',
@@ -28,21 +28,15 @@ var _vue = new Vue({
             if (!this.form.account) {
                 APP.GLOBAL.toastMsg(this.language.ERROR_1);
             } else {
-                this.nextStepTo();
+                this.doSubmitAjax();
             }
         },
-		
-		'nextStepTo': function() {
-            window.location = '../account/forgot1.html?' +
-                '&account=' + this.form.account +
-				'&changeType=' + this.form.changeType ;
-        },
-		
+
 		'searchPlayer': function () {
             if (!this.form.account) return;
 
             if (this.form.account.length < 5) {
-                APP.GLOBAL.toastMsg(this.language.ERROR_1);
+                APP.GLOBAL.toastMsg(this.language.ERROR_7);
                 return;
             }
 
@@ -59,6 +53,12 @@ var _vue = new Vue({
                         APP.GLOBAL.toastMsg(result.Msg);
                     } else {
                         _vue.isNotFound = false;
+                        _vue.QuestionTitle 	= result.QuestionTitle;
+						_vue.mnemonicid1 	= result.mnemonicid1;
+						_vue.QuestionId 	= result.QuestionId;
+						_vue.form.mnemonicid1 = result.mnemonicid1;
+						_vue.form.mnemonickey = result.mnemonickey;
+						_vue.form.QuestionId  = result.QuestionId;
 
                     }
 
@@ -66,7 +66,7 @@ var _vue = new Vue({
                 }
             });
         },
-		
+
         'doSubmitAjax': function () {
             APP.GLOBAL.toastLoading({ 'message': this.language.SUBMIT_TEXT });
 
@@ -104,7 +104,7 @@ var _vue = new Vue({
         if (APP.CONFIG.IS_RUNTIME) {
             this.statusbarHeight = plus.navigator.getStatusbarHeight();
         }
-
+		this.searchPlayer();
         //this.getCodeAjax();
     }
 });
