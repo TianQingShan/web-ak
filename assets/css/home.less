@@ -1,0 +1,56 @@
+#app-head {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 18px;
+    background-color: #fff;
+
+    .language {
+        font-size: 22px;
+        line-height: 22px;
+        font-weight: 600;
+        color: #222;
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        column-gap: 2px;
+
+        &::after {
+            display: block;
+            content: "";
+            width: 12px;
+            aspect-ratio: 1;
+            background-image: url('/assets/icon/icon1@1x.png');
+            background-repeat: no-repeat;
+            background-size: contain;
+            margin-top: 7px;
+        }
+    }
+    .message{
+        display: flex;
+        align-items: center;
+    }
+}
+
+#app-content{
+    .notice{
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        min-height:35px ;
+        padding:0 18px;
+        .noticeIcon{
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+        }
+        .noticeMessage{
+            flex: 1;
+            font-size: 14px;
+        }
+    }
+
+    .dataInfo{
+        
+    }
+}

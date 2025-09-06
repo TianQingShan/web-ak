@@ -1,17 +1,41 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
-    <link href="../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../content/css/base.css" rel="stylesheet" />
-    <link href="../../content/css/pages/subpages/notice.css" rel="stylesheet" />
+    <link href="/content/css/vant.css" rel="stylesheet" />
+    <link href="/content/css/base.css" rel="stylesheet" />
+    <link href="/assets/css/vue-component.css" rel="stylesheet" />
+    <!-- <link href="/content/css/pages/subpages/notice.css" rel="stylesheet" /> -->
+    <link href="/assets/css/notice.css" rel="stylesheet" />
     <title></title>
-    
+
 </head>
+
 <body>
     <div id="app">
-        <h4 class="caption" v-text="language.TITLE_TEXT"></h4>
+        <div class="noticePage">
+            <div class="notice">
+                <div class="content">
+                    <div class="textWrap">
+                        <h4 class="title" v-text="language.TITLE_TEXT"></h4>
+                        <p class="text text1">为了长久运营，使每位玩家获得长远收益，确保做到“低调运营、积极发展、安全第一”的原则，请各位玩家遵守以下守则，做好整体配合。</p>
+                        <p class="textTitle">01 不上网</p>
+                        <p class="text text2">业务推广信息不上网，禁止在互联网平台公开使用AK的LOGO、公司介绍、奖励制度、收入截图、视频录音等相关信息推广业务，互联网平台包括但不限于Facebook、Youtube、Twitter、Instagram、Wechat、Tiktalk、微信朋友圈、抖音、腾讯视频、优酷、喜马拉雅、微博等社交媒体平台。</p>
+                        <p class="textTitle">02 不误导</p>
+                        <p class="text text2">一人一户，每位玩家只可注册一个主账户，超出的主账户均视为违规账户。</p>
+                    </div>
+                    <img class="bg" src="/assets/images/notice/notice_bg.png" />
+                    <div class="close">
+                        <custom-button @click="closeNotice" :height="60" text="我知道了"></custom-button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- <h4 class="caption" v-text="language.TITLE_TEXT"></h4>
         <div class="bg">
             <img src="../../content/img/notice/notice_bg.png" />
             <div v-if="currentLanuage === 'cn'" class="context" v-cloak>
@@ -52,11 +76,12 @@
 
             </div>
             <i class="iconfont iconbaseline-close-px close" @click="closeNotice"></i>
-        </div>
+        </div> -->
     </div>
     <script src="../../content/js/vue.js?v=28"></script>
     <script src="../../content/js/vant.min.js?v=28"></script>
     <script src="../../content/js/base.js?v=28"></script>
+    <script src="/content/js/vue-component.js?v=28"></script>
     <script>
         var _vue = new Vue({
             el: '#app',
@@ -83,4 +108,5 @@
         });
     </script>
 </body>
+
 </html>

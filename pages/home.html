@@ -4,21 +4,20 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
     <title>AK</title>
-    <link href="../content/css/base.css" rel="stylesheet" />
-    <link href="../content/css/vant.css" rel="stylesheet" />
-    <link href="../content/css/pages/home.css" rel="stylesheet" />
-    <link href="../content/css/bottom.css" rel="stylesheet" />
+    <link href="/content/css/base.css" rel="stylesheet" />
+    <link href="/content/css/vant.css" rel="stylesheet" />
+    <link href="/content/css/pages/home.css" rel="stylesheet" />
+    <link href="/content/css/bottom.css" rel="stylesheet" />
+    <link href="/assets/css/home.css" rel="stylesheet" >
+    
 </head>
 <body>
     <div id="app">
         <div id="app-head" class="fixed shadow" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
-            <button class="right-back"
-                    @click="APP.GLOBAL.gotoNewWindow('languagesPage', 'subpages/languages')"
-                    v-text="language.BUTTON_1">
-                語言切換
-            </button>
-            <div class="app-head-text" v-text="language.TITLE_TEXT">AK</div>
-            <i class="iconfont icongonggao1 submit-button" @click="APP.GLOBAL.gotoNewWindow('notice.listPage', 'subpages/notice.list')"></i>
+            <div class="language" @click="APP.GLOBAL.gotoNewWindow('languagesPage', '../subpages/languages', {param:'from=home'})">{{ language.BUTTON_1 }}</div>
+            <div class="message">
+                <img src="/assets/images/home/message.png">
+            </div>
         </div>
         <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
             <div v-if="isLoading" class="loading-box p50">
@@ -37,14 +36,14 @@
                     <img src="../content/img/reloading.svg" class="pull_refresh_img" />
                     <span class="pull_refresh_text" v-text="language.LOADING_TEXT"></span>
                 </div>
-                <div class="block notice" v-if="pageModel.lastNotice">
-                    <div class="block_content">
-                        <p class="middle" @click="gotoNotice">
-                            <i class="iconfont icongonggao"></i>
-                            <span v-text="language.NOTICE_TITLE + pageModel.lastNotice.Title"></span>
-                        </p>
-                    </div>
+                <div class="notice">
+                    <div class="noticeIcon"><img src="/assets/images/home/notice-icon.png"></div>
+                    <div class="noticeMessage">{{language.NOTICE_TITLE}} {{pageModel.lastNotice.Title}}</div>
                 </div>
+                <div class="dataInfo">
+                    <div class="content"></div>
+                </div>
+
                 <div class="block bg">
                     <p class="block_title">
                         <i class="iconfont iconbanknote"></i>
@@ -208,6 +207,8 @@
                 </li>
             </ul>
         </div>
+
+
         <van-popup class="notice_frame"
                    v-model="isNoticeShow"
                    v-cloak
