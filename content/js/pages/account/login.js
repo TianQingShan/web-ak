@@ -7,8 +7,8 @@ var _vue = new Vue({
         'isDropdownList': false,
         'isLogin': false,
         'form': {
-            'account': '',
-            'password': '',
+            'account': 'tutu0518',
+            'password': 'Q1w2e3A',
             'client': 'WEB'
         },
         'request': {
