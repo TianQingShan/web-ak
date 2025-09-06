@@ -1,0 +1,89 @@
+.CustomButton {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #fff;
+  background-image: linear-gradient(
+    90deg,
+    #07c160 0%,
+    #0fe373 50%,
+    #07c160 100%
+  );
+  border-radius: 999px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &::before {
+    content: "";
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top left;
+    background-image: url('/assets/images/image1@1x.png');
+    opacity: .54;
+  }
+}
+
+.TopBack {
+  position: relative;
+
+  .icon {
+    width: 40px;
+    aspect-ratio: 1;
+    background-image: url('/assets/icon/icon2@1x.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+  }
+
+  .title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    line-height: 22px;
+    font-weight: 600;
+  }
+}
+
+.Checkbox {
+  width: 28px;
+  aspect-ratio: 1;
+  position: relative;
+  border-radius: 999px;
+  overflow: hidden;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &::before {
+    border: 2px solid #999;
+    border-radius: 999px;
+  }
+
+  &::after {
+    background-color: #07C160;
+    background-image: url('/assets/icon/icon3@1x.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: auto;
+    display: none;
+  }
+
+  &.checked::after {
+    display: block;
+  }
+}

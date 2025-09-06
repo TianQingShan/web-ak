@@ -4,22 +4,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
     <title></title>
-    <link href="../../content/css/base.css" rel="stylesheet" />
-    <link href="../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../content/css/pages/account/forgot.css" rel="stylesheet" />
-	<link href="../../content/css/pages/center/security/mnemonic.sub.css" rel="stylesheet" />
-    
+    <link href="/content/css/base.css" rel="stylesheet" />
+    <link href="/content/css/vant.css" rel="stylesheet" />
+    <link href="/assets/css/vue-component.css" rel="stylesheet" />
+    <link href="/assets/css/forgot.css" rel="stylesheet" />
+	<link href="/content/css/pages/center/security/mnemonic.sub.css" rel="stylesheet" />
+
 </head>
 <body>
-    <div id="app">
+    <!-- <div id="app">
         <div id="app-head" class="van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
             <i id="app-back-button" class="iconfont iconzuo right-back"></i>
             <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
         </div>
         <div id="app-content">
-             
+
             <div class="input_group">
-				 
+
 				<div class="input_line">
                     <span class="input_text" v-text="language.INPUT_TEXT_2"></span>
                     <div class="input_control">
@@ -27,26 +28,69 @@
                         <div class="choice_block right" v-bind:class="{ 'active': form.changeType == 2 }" @click="form.changeType=2" v-text="language.CHECK_2"></div>
                     </div>
                 </div>
-				
+
                 <div class="input_line van-hairline--bottom">
                     <span class="input_text" v-text="language.INPUT_TEXT_1"></span>
                     <input type="text" class="input_control" @blur="searchPlayer" v-model="form.account" v-bind:placeholder="language.INPUT_PLACEHOLDER_1" maxlength="15" />
                 </div>
-		 
-				
- 
-			
-			
-			 
-                 
-               
+
+
+
+
+
+
+
+
             </div>
             <button class="confirm_button" @click="nextStep" v-text="language.BUTTON_1"></button>
         </div>
+    </div> -->
+
+  <div id="app">
+    <div class="Forgot">
+      <top-back title="忘记密码"></top-back>
+      <div class="content">
+        <div class="item username">
+          <div class="label">玩家登录名</div>
+          <input type="text" class="input" placeholder="请输入您的登录名" />
+        </div>
+        <div class="item password-type">
+          <div class="password-type-item">
+            <div class="label">修改登录密码</div>
+            <Checkbox :checked="false"></Checkbox>
+          </div>
+          <div class="password-type-item">
+            <div class="label">修改交易密码</div>
+            <Checkbox :checked="false"></Checkbox>
+          </div>
+        </div>
+        <div class="item new-password">
+          <div class="new-password-item">
+            <div class="label">新密码</div>
+            <input type="password" class="input" placeholder="请输入新登录密码" />
+          </div>
+          <div class="new-password-item">
+            <div class="label">确认新密码</div>
+            <input type="password" class="input" placeholder="请再次输入新登录密码" />
+          </div>
+        </div>
+        <div class="item mnemonic">
+          <div class="label">请根据数字填写助记词</div>
+          <input type="text" class="input" />
+        </div>
+        <div class="item custom-question">
+          <div class="label">您的自定义问题！（答案可随意）</div>
+          <input type="text" class="input" placeholder="点击输入问题答案" />
+        </div>
+      </div>
+      <custom-button text="下一步"></custom-button>
     </div>
-    <script src="../../content/js/vue.js?v=28"></script>
-    <script src="../../content/js/vant.min.js?v=28"></script>
-    <script src="../../content/js/base.js?v=28"></script>
-    <script src="../../content/js/pages/account/forgot.js?v=28"></script>
+  </div>
+
+  <script src="/content/js/vue.js?v=28"></script>
+  <script src="/content/js/vant.min.js?v=28"></script>
+  <script src="/content/js/base.js?v=28"></script>
+  <script src="/content/js/vue-component.js?v=28"></script>
+  <script src="/content/js/pages/account/forgot.js?v=28"></script>
 </body>
 </html>

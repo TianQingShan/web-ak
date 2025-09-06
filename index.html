@@ -4,35 +4,33 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title></title>
-    <link href="content/css/vant.css" rel="stylesheet" />
-    <link href="content/css/base.css" rel="stylesheet" />
-    <link href="content/css/pages/index.css" rel="stylesheet" />
+    <link href="/content/css/vant.css" rel="stylesheet" />
+    <link href="/content/css/base.css" rel="stylesheet" />
+    <link href="/assets/css/vue-component.css" rel="stylesheet" />
+    <link href="/assets/css/index.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="app" v-cloak>
-        <div id="app-head" class="van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
-            <i v-if="APP.GLOBAL.queryString('from')"
-               id="app-back-button"
-               class="iconfont iconzuo right-back"></i>
-            <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+    <div id="app">
+      <div class="Index">
+        <top-back :title="language.TITLE_TEXT"></top-back>
+        <div class="items">
+          <div
+            class="item"
+            v-for="({ name, url }, index) of lines"
+            :key="index"
+            @click="selectedIndex = index">
+            <div class="name">{{ name }}</div>
+            <checkbox :checked="selectedIndex === index"></checkbox>
+          </div>
         </div>
-        <div id="app-content">
-            <ul class="lines">
-                <li v-for="(item,index) in lines"
-                    v-bind:key="index"
-                    v-bind:class="{'van-hairline--bottom': index !== lines.length - 1, 'checked': selectedIndex === index}"
-                    @click="selectedIndex = index">
-                    <i class="iconfont" v-bind:class="[selectedIndex === index ? 'iconcheckboxchecked' : 'iconcheckboxunchecked']"></i>
-                    <span class="text" v-text="item.name"></span>
-                </li>
-            </ul>
-            <button class="confirm_button" @click="confirmLine" v-text="language.CONFIRM_BUTTON"></button>
-        </div>
+        <custom-button :text="language.CONFIRM_BUTTON" @click="confirmLine"></custom-button>
+      </div>
     </div>
-    <script src="content/js/vue.js?v=22"></script>
-    <script src="content/js/vant.min.js?v=22"></script>
-    <script src="content/js/base.js?v=22"></script>
-    <script src="content/js/pages/index.js?v=22"></script>
-    <script src="https://cdn.jsdelivr.net/npm/less" ></script>
+
+    <script src="/content/js/vue.js?v=22"></script>
+    <script src="/content/js/vant.min.js?v=22"></script>
+    <script src="/content/js/base.js?v=22"></script>
+    <script src="/content/js/vue-component.js"></script>
+    <script src="/content/js/pages/index.js?v=22"></script>
 </body>
 </html>

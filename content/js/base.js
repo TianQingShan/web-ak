@@ -1,4 +1,4 @@
-﻿var APP_NAME = 'AK'; 
+﻿var APP_NAME = 'AK';
 var APP = {
     'CONFIG': {
         'TIME_OUT': 59,
@@ -560,24 +560,24 @@ function pageLoaded() {
         };
 
         var user = APP.GLOBAL.getUserModel();
-		
+
 		if (!user.IsMnemonic && !_any()) {
             window.location = '/pages/center/security/mnemonic.cn.html?from=first&url=' + encodeURIComponent(window.location);
             return;
         }
-        
+
 		if (!user.IsSetSecurityQuestion && !_any()) {
             window.location = '/pages/center/security/reset.question.html?from=first&url=' + encodeURIComponent(window.location);
             return;
         }
-		
+
 		if (!user.IsStrong && !_any()) {
             window.location = '/pages/center/security/change.pin.html?from=first&url=' + encodeURIComponent(window.location);
             return;
         }
-		
-		
-		
+
+
+
     }
 
     window.addEventListener('scroll', function() {
