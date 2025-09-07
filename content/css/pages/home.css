@@ -231,3 +231,75 @@
         width: 100%;
         height: 100%;
     }
+
+/* 展开折叠动画样式 */
+.expandable-container {
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0px 0px 10px #f1f1f1;
+    overflow: hidden;
+}
+
+.expand-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 0;
+    font-weight: bold;
+    color: #068dfe;
+}
+
+.expand-icon {
+    transition: transform 0.3s ease;
+    font-size: 0.8em;
+}
+
+.expand-icon.expanded {
+    transform: rotate(180deg);
+}
+
+.expand-content {
+    overflow: hidden;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f1f1;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+}
+
+.detail-item .label {
+    color: #666;
+    font-size: 0.9em;
+}
+
+.detail-item .value {
+    color: #333;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+/* Vue动画过渡效果 */
+.expand-enter-active, .expand-leave-active {
+    transition: all 0.3s ease;
+    max-height: 300px;
+    opacity: 1;
+}
+
+.expand-enter, .expand-leave-to {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+
