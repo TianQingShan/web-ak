@@ -20,13 +20,10 @@
     methods: {
         'doSearchAjax': function () {
             if (!this.pageModel.searchKey) {
-                APP.GLOBAL.toastMsg(this.language.ERROR_1);
+                _vue.$toast(this.language.ERROR_1)
                 return;
             } else if (this.pageModel.searchKey.length < 5) {
-                APP.GLOBAL.toastMsg(this.language.ERROR_2);
-                return;
-            } else if (!/^[0-9]*$/.test(this.pageModel.searchKey)) {
-                APP.GLOBAL.toastMsg(this.language.ERROR_3);
+                _vue.$toast(this.language.ERROR_2)
                 return;
             }
 
@@ -34,7 +31,7 @@
             this.pageModel.list = [];
 
             APP.GLOBAL.ajax({
-                url: APP.CONFIG.BASE_URL+'Public_Waited',
+                url: APP.CONFIG.BASE_URL + 'Public_Waited',
                 data: {
                     'p': 1,
                     'pageSize': this.pageModel.pageSize,
@@ -59,7 +56,7 @@
             this.pageModel.pageIndex = 1;
 
             APP.GLOBAL.ajax({
-                url: APP.CONFIG.BASE_URL+'Public_Waited',
+                url: APP.CONFIG.BASE_URL + 'Public_Waited',
                 data: {
                     'p': this.pageModel.pageIndex,
                     'pageSize': this.pageModel.pageSize
@@ -83,7 +80,7 @@
         },
         'loadMore': function () {
             APP.GLOBAL.ajax({
-                url: APP.CONFIG.BASE_URL+'Public_Waited',
+                url: APP.CONFIG.BASE_URL + 'Public_Waited',
                 data: {
                     'p': this.pageModel.pageIndex,
                     'pageSize': this.pageModel.pageSize,
@@ -115,7 +112,16 @@
             LSE.install('queue', function (lang) {
                 Vue.set(_vue, 'language', lang);
             });
-        }
+        },
+        'handleScroll': function () {
+            const container = this.$refs.scrollContainer;
+            if (!container) return;
+            const { scrollTop, scrollHeight, clientHeight } = container;
+            const isBottom = scrollTop + clientHeight >= scrollHeight - 10;
+            if (isBottom) {
+                this.windowScroll()
+            }
+        },
     },
     created: function () {
         this.changeLanguage();
@@ -127,6 +133,7 @@
     mounted: function () {
         this.loadPageData();
 
-        window.scrollBottom = this.windowScroll;
+        // window.scrollBottom = this.windowScroll;
+
     }
 });

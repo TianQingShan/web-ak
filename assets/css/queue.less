@@ -1,4 +1,7 @@
 #app-content {
+    flex-grow: 1;
+    overflow-y: auto;
+
     .queue-page {
         display: flex;
         justify-content: space-between;
@@ -13,6 +16,7 @@
         padding: 0 15px;
         margin: 10px 0;
 
+
         .search-box {
             display: flex;
             justify-content: left;
@@ -22,6 +26,7 @@
             flex: 1;
             border-radius: 60px;
             padding-left: 20px;
+            position: relative;
 
             .search-input {
                 padding-left: 10px;
@@ -29,6 +34,24 @@
                 height: 40px;
                 border: none;
                 font-size: 14px;
+            }
+
+            .clear {
+                background-color: rgba(153, 153, 153, 1);
+                width: 20px;
+                height: 20px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                position: absolute;
+                right: 10px;
+                top: 10px;
+
+                i {
+                    font-size: 10px;
+                    color:#fff;
+                }
             }
         }
 
@@ -47,6 +70,7 @@
         margin: 0 15px;
         flex: 1;
         overflow: auto;
+        position: relative;
 
         .list-head {
             height: 55px;
@@ -54,6 +78,10 @@
             display: flex;
             justify-content: space-between;
             border-bottom: 1px dashed #E6E6E6;
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            left: 0;
 
             .item {
                 line-height: 55px;
@@ -69,6 +97,7 @@
             .list {
                 .item-wrap {
                     display: flex;
+                    border-radius: 4px;
 
                     .item {
                         height: 44px;
@@ -82,6 +111,10 @@
                         font-weight: bold;
                         color: rgba(102, 102, 102, 1);
                     }
+                }
+
+                .item-wrap:nth-child(even) {
+                    background-color: rgba(245, 245, 245, 1);
                 }
             }
         }
@@ -105,7 +138,7 @@
 
     .data-info {
         margin: 20px 15px;
-        height: 100px;
+        height: 80px;
         display: flex;
         justify-content: left;
         gap: 15px;
@@ -119,10 +152,12 @@
             font-size: 14px;
             color: #fff;
             padding-left: 18px;
-            .label{
+
+            .label {
                 font-size: 14px;
             }
-            .value{
+
+            .value {
                 font-size: 22px;
             }
 
@@ -130,7 +165,8 @@
                 background: url(/assets/images/queue/id.svg) no-repeat calc(100% - 20px) center;
                 background-color: rgba(7, 193, 96, 1);
             }
-            &.right{
+
+            &.right {
                 background: url(/assets/images/queue/pd.svg) no-repeat calc(100% - 20px) center;
                 background-color: rgba(7, 193, 96, 1);
             }

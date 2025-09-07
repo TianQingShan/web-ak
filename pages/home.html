@@ -19,7 +19,7 @@
             <div class="language"
                 @click="APP.GLOBAL.gotoNewWindow('languagesPage', '../subpages/languages', {param:'from=home'})">{{
                 language.BUTTON_1 }}</div>
-            <div class="message">
+            <div class="message" @click="APP.GLOBAL.gotoNewWindow('notice.listPage', 'subpages/notice.list')">
                 <img src="/assets/images/home/message.svg">
             </div>
         </div>
@@ -151,8 +151,8 @@
                         <div class="bottom kline" v-show="isExpanded"></div>
                     </transition>
                 </div>
-
-                <!-- <div class="block highChart">
+<!-- 
+                <div class="block highChart">
                     <p class="block_title">
                         <i class="iconfont icontubiao1"></i>
                         <span v-text="language.BLOCK_TITLE_4">PRICE</span>

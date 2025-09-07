@@ -23,11 +23,14 @@
                 <div class="search-wrap" :style="{top:(45 + statusbarHeight)}">
                     <div class="search-box">
                         <img src="/assets//images/queue/search-icon.svg">
-                        <input class="search-input" type="text" placeholder="搜索玩家ID" v-model="pageModel.searchKey">
+                        <input class="search-input" type="number" :placeholder="language.SEARCH_PLACEHOLDER" v-model="pageModel.searchKey" @keyup.enter="doSearchAjax">
+                        <div class="clear" v-show="pageModel.searchKey" @click="loadPageData">
+                            <i id="app-back-button" class="iconfont iconbaseline-close-px right-back"></i>
+                        </div>
                     </div>
-                    <div class="btn">搜索</div>
+                    <div class="btn" @click="doSearchAjax">搜索</div>
                 </div>
-                <div class="list-wrap">
+                <div class="list-wrap" @scroll="handleScroll" ref="scrollContainer">
                     <div class="list-head">
                         <div class="item first" v-text="language.HEAD_TEXT_1"></div>
                         <div class="item id" v-text="language.HEAD_TEXT_2"></div>
@@ -44,7 +47,7 @@
                                 <i class="iconfont icon-wushuju"></i>
                                 <p class="none-data-text" v-text="language.NONE_DATA"></p>
                             </div>
-                            <div class="list" v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
+                            <div class="list">
                                 <div class="item-wrap" v-for="(item,index) in pageModel.list">
                                     <div class="item first" v-text="item.ID"></div>
                                     <div class="item id" v-text="item.FlowNumber"></div>
@@ -87,49 +90,6 @@
                     <li class="mo">{{language.HEAD_TEXT_3}}($)</li>
                     <li class="time" v-text="language.HEAD_TEXT_4"></li>
                 </ul>
-            </div> -->
-            <!-- <div v-if="isLoading" class="loading-box">
-                <van-loading color="black"></van-loading>
-                <p class="loading-text" v-text="language.LOADING_TEXT"></p>
-            </div>
-            <div v-else v-cloak>
-                <div v-if="pageModel.list.length==0" class="none-data">
-                    <i class="iconfont icon-wushuju"></i>
-                    <p class="none-data-text" v-text="language.NONE_DATA"></p>
-                </div>
-                <div v-else class="container" v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
-                    <div class="list_container">
-                        <ul class="queue clearfix" v-bind:class="{'odd': index % 2 != 0}"
-                            v-for="(item,index) in pageModel.list" v-bind:key="index">
-                            <li class="first"
-                                v-text="pageModel.queueCount - ((pageModel.lastFlowNumber - item.FlowNumber) + 1) + 1">
-                            </li> !
-                            <li class="first" v-text="item.ID"></li>
-                            <li class="id" v-text="item.FlowNumber"></li>
-                            <li class="mo" v-text="item.AP"></li>
-                            <li class="time" v-text="item.CreateTime"></li>
-                        </ul>
-                        <div v-if="pageModel.isLoadMore" class="load_more clearfix">
-                            <van-loading color="black"></van-loading>
-                            <span class="load_text" v-text="language.LOADING_TEXT"></span>
-                        </div>
-                        <div v-if="pageModel.isLoadComplete" class="load_more_complete">
-                            <span class="load_text" v-text="language.NOMORE"></span>
-                        </div>
-                    </div>
-                    <div class="info" v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}" v-show="pageModel.isShowBottom">
-                        <ul class="clearfix">
-                            <li>
-                                <p class="number" v-text="pageModel.lastFlowNumber"></p>
-                                <p class="text" v-text="language.BOTTOM_TEXT_1"></p>
-                            </li>
-                            <li>
-                                <p class="number" v-text="numberFormat(pageModel.queueCount, 0)"></p>
-                                <p class="text" v-text="language.BOTTOM_TEXT_2"></p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
             </div> -->
         </div>
     </div>
