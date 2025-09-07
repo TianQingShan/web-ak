@@ -1,8 +1,7 @@
 #app-head {
     display: flex;
     justify-content: space-between;
-    padding: 0 18px;
-    background-color: #fff;
+    padding: 0 15px;
 
     .language {
         font-size: 22px;
@@ -26,31 +25,432 @@
             margin-top: 7px;
         }
     }
-    .message{
+
+    .message {
         display: flex;
         align-items: center;
     }
 }
 
-#app-content{
-    .notice{
+#app-content {
+    .notice {
         display: flex;
         justify-content: left;
         align-items: center;
-        min-height:35px ;
-        padding:0 18px;
-        .noticeIcon{
+        min-height: 35px;
+        padding: 0 15px;
+        margin-top: 10px;
+        margin-bottom: 22px;
+        background-color: #fff;
+
+        .noticeIcon {
             margin-right: 10px;
             display: flex;
             align-items: center;
         }
-        .noticeMessage{
+
+        .noticeMessage {
             flex: 1;
             font-size: 14px;
         }
     }
 
-    .dataInfo{
-        
+    .dataInfo {
+        .dataContentTop {
+            width: 100%;
+            height: 220px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-left: 12px;
+            gap: 10px;
+
+            .left,
+            .right {
+                width: 50%;
+
+                .titleLabel {
+                    margin-bottom: 6px;
+
+                    span {
+                        font-family: SF Pro;
+                        font-size: 11px;
+                        line-height: 22px;
+
+                    }
+                }
+            }
+
+            .left {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                border-radius: 20px;
+                min-width: 178px;
+                height: 220px;
+                padding-left: 20px;
+                background-color: #fff;
+
+                .leftTop {
+                    margin-bottom: 36px;
+                }
+
+                .titleLabel {
+                    font-family: PingFang SC;
+                    font-weight: 600;
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: rgba(102, 102, 102, 1);
+                }
+
+                .value {
+                    color: rgba(0, 0, 0, 1);
+                    font-family: Oswald;
+                    font-weight: 500;
+                    font-size: 26px;
+                    line-height: 22px;
+
+                    span {
+                        font-family: SF Pro;
+                        font-size: 11px;
+                        line-height: 22px;
+
+                    }
+
+                }
+            }
+
+            .right {
+                // width: 140px;
+                padding-left: 40px;
+                height: 220px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                background-color: rgba(7, 193, 96, 1);
+                border-radius: 60px 0 0 60px;
+                background-image: url('/assets/images/home/data-info-bg.svg');
+                background-repeat: no-repeat;
+                background-position: calc(100%) top;
+                position: relative;
+
+                .leftTop {
+                    margin-bottom: 28px;
+                }
+
+                .titleLabel {
+                    color: #fff;
+                    font-family: Oswald;
+                    font-weight: 500;
+                    font-size: 28px;
+                    line-height: 22px;
+                }
+
+                .value {
+                    color: rgba(255, 255, 255, 0.8);
+
+                }
+
+                &::after {
+                    display: block;
+                    content: "";
+                    position: absolute;
+                    right: -10px;
+                    top: -6px;
+                    width: 100%;
+                    height: 100%;
+                    z-index: -1;
+                    border-radius: 60px 0 0 60px;
+                    background-color: rgba(194, 192, 193, 1);
+                    transform: rotate(1deg);
+                }
+            }
+        }
+
+        .dataContentCenter,
+        .dataContentBottom {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px;
+            gap: 10px;
+            margin-bottom: 16px;
+
+
+            .left,
+            .right {
+                width: calc(50% - 5px);
+                height: 88px;
+                box-sizing: border-box;
+                padding: 15px;
+                padding-left: 20px;
+                background-color: #fff;
+                border-radius: 20px;
+
+
+                .titleLabel {
+                    font-family: PingFang SC;
+                    font-weight: 600;
+
+                    font-size: 16px;
+                    line-height: 22px;
+                    color: rgba(102, 102, 102, 1);
+                    margin-bottom: 6px;
+                }
+
+                .value {
+                    color: rgba(0, 0, 0, 1);
+                    font-family: Oswald;
+                    font-weight: 500;
+                    font-size: 26px;
+                    line-height: 22px;
+
+                    span {
+                        font-family: SF Pro;
+                        font-size: 11px;
+                        line-height: 22px;
+
+                    }
+
+                }
+            }
+        }
+    }
+
+    .AkValue {
+        // width: 100%;
+        padding: 12px 20px;
+
+        margin: 0 15px;
+        // height: 196px;
+        border-radius: 14px;
+        background: linear-gradient(176.32deg, #C0C3FF 2.84%, #ECEDFF 16.97%, #FFFFFF 30.83%);
+
+
+        .top {
+            display: flex;
+            justify-content: space-between;
+
+            .left {
+                .titleLabel {
+                    font-family: SF Pro;
+                    font-weight: 590;
+                    font-size: 16px;
+                    line-height: 22px;
+                }
+
+                .rateLabel {
+                    margin-top: 30px;
+
+                    .rate {
+                        font-family: Oswald;
+                        font-weight: 500;
+                        font-size: 40px;
+                        line-height: 22px;
+
+                        >span {
+                            font-size: 16px;
+                        }
+                    }
+
+                    .label {
+                        font-size: 12px;
+                        margin-left: 15px;
+                    }
+                }
+            }
+        }
+
+        .bottom {
+            display: flex;
+            justify-content: space-between;
+            padding-top: 24px;
+            padding-bottom: 12px;
+            align-items: center;
+
+            .item {
+                // width: 33.3333%;
+
+                .value {
+                    font-family: Oswald;
+                    font-weight: 500;
+                    font-size: 20px;
+                    line-height: 22px;
+
+                    span {
+                        font-size: 12px;
+                    }
+                }
+
+                .label {
+                    color: rgba(102, 102, 102, 1);
+                    font-size: 11px;
+                    text-align: center;
+                }
+            }
+
+            .line {
+                width: 1px;
+                height: 30px;
+                background-color: rgba(241, 241, 241, 1);
+            }
+        }
+    }
+
+    .buyAndSell {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+        // padding: 0 25px;
+        margin: 0 15px;
+        margin-top: 22px;
+
+        .left,
+        .right {
+            height: 115px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: self-start;
+            background-color: #fff;
+            border-radius: 20px;
+            padding-left: 20px;
+
+            .label {
+                margin-bottom: 24px;
+                font-family: SF Pro;
+                font-weight: 600;
+                font-style: Semibold;
+                font-size: 16px;
+                line-height: 22px;
+                color: rgba(51, 51, 51, 1);
+
+            }
+
+            .value {
+                font-family: Oswald;
+                font-weight: 700;
+                font-style: Bold;
+                font-size: 26px;
+                line-height: 22px;
+                color: rgba(51, 51, 51, 1);
+
+                >span {
+                    font-family: SF Pro;
+                    font-weight: 500;
+                    font-size: 13px;
+                    line-height: 22px;
+
+                }
+
+            }
+        }
+
+        .left {
+            flex: 1;
+
+        }
+
+        .right {
+            width: 100px;
+        }
+    }
+
+    .klineBox {
+        border-radius: 14px;
+        margin: 0 12px;
+        margin-top: 20px;
+        background-color: #fff;
+        padding: 24px 0;
+
+        .top {
+            padding: 0 24px;
+
+            .titleLabel {
+                font-family: SF Pro;
+                font-weight: 590;
+                font-size: 16px;
+                line-height: 22px;
+            }
+
+            .price {
+                margin-top: 10px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+
+                .left {
+                    display: flex;
+                    justify-content: left;
+                    align-items: end;
+                    padding-left: 22px;
+
+                    .img {
+                        img {
+                            display: block;
+                        }
+                    }
+
+                    .priceVal {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        margin-left: 10px;
+
+                        .priceNum {
+                            font-size: 36px;
+                            color: #000;
+                            font-weight: 500;
+
+                            span {
+                                font-size: 18px;
+                            }
+                        }
+
+                        .time {
+                            font-size: 12px;
+                            color: rgba(102, 102, 102, 1);
+                        }
+                    }
+                }
+
+                .right {
+
+                    animation: isExpanded 2s ease-in-out infinite;
+
+                    img {
+                        transform: translateY(0) rotate(180deg);
+                        transition: all .3s;
+                    }
+                }
+
+                .right.active {
+                    img {
+                        transform: translateY(0) rotate(0);
+                    }
+                }
+            }
+        }
+
+        .kline {
+            margin-top: 26px;
+            height: 300px;
+        }
+    }
+}
+
+@keyframes isExpanded {
+    0% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    25% {
+        opacity: .6;
+        transform: translateY(3px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
     }
 }

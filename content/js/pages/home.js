@@ -7,6 +7,7 @@
         'isReloading': false,
         'isNoticeShow': false,
         'statusbarHeight': 0,
+        'isExpanded': false,
         'pageModel': {
             'lastNotice': null,
             'currentStockPrice': 0,
@@ -50,6 +51,9 @@
         'language': {}
     },
     methods: {
+        'toggleExpand': function() {
+            this.isExpanded = !this.isExpanded;
+        },
         'gotoNotice': function() {
             APP.GLOBAL.gotoNewWindow('last.notice.detailPage', 'subpages/last.notice.detail', {
                 'param': 'nId=' + this.pageModel.lastNotice.Id

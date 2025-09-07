@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
@@ -8,15 +9,18 @@
     <link href="/content/css/vant.css" rel="stylesheet" />
     <link href="/content/css/pages/home.css" rel="stylesheet" />
     <link href="/content/css/bottom.css" rel="stylesheet" />
-    <link href="/assets/css/home.css" rel="stylesheet" >
-    
+    <link href="/assets/css/home.css" rel="stylesheet">
+
 </head>
+
 <body>
     <div id="app">
         <div id="app-head" class="fixed shadow" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
-            <div class="language" @click="APP.GLOBAL.gotoNewWindow('languagesPage', '../subpages/languages', {param:'from=home'})">{{ language.BUTTON_1 }}</div>
+            <div class="language"
+                @click="APP.GLOBAL.gotoNewWindow('languagesPage', '../subpages/languages', {param:'from=home'})">{{
+                language.BUTTON_1 }}</div>
             <div class="message">
-                <img src="/assets/images/home/message.png">
+                <img src="/assets/images/home/message.svg">
             </div>
         </div>
         <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
@@ -24,159 +28,131 @@
                 <van-loading color="black"></van-loading>
                 <p class="loading-text" v-text="language.LOADING_TEXT"></p>
             </div>
-            <van-pull-refresh v-model="isReloading"
-                              @refresh="onRefresh"
-                              v-else
-                              v-cloak
-                              v-bind:pulling-text="language.PULLING_TEXT"
-                              v-bind:loosing-text="language.LOOSING_TEXT"
-                              v-bind:loading-text="language.LOADING_TEXT"
-                              v-bind:success-text="language.SUCCESS_TEXT">
+            <van-pull-refresh v-model="isReloading" @refresh="onRefresh" v-else v-cloak
+                v-bind:pulling-text="language.PULLING_TEXT" v-bind:loosing-text="language.LOOSING_TEXT"
+                v-bind:loading-text="language.LOADING_TEXT" v-bind:success-text="language.SUCCESS_TEXT">
                 <div slot="loading" class="pull_refresh">
                     <img src="../content/img/reloading.svg" class="pull_refresh_img" />
                     <span class="pull_refresh_text" v-text="language.LOADING_TEXT"></span>
                 </div>
                 <div class="notice">
-                    <div class="noticeIcon"><img src="/assets/images/home/notice-icon.png"></div>
+                    <div class="noticeIcon"><img src="/assets/images/home/notice-icon.svg"></div>
                     <div class="noticeMessage">{{language.NOTICE_TITLE}} {{pageModel.lastNotice.Title}}</div>
                 </div>
                 <div class="dataInfo">
-                    <div class="content"></div>
+                    <div class="dataContentTop">
+                        <div class="left">
+                            <div class="leftTop">
+                                <div class="titleLabel">{{language.BLOCK_1_TEXT_9}}</div>
+                                <div class="value">{{numberFormat(currentUser.TP, 2)}}<span>$</span></div>
+                            </div>
+                            <div class="leftBottom">
+                                <div class="titleLabel">{{language.BLOCK_1_TEXT_4}}</div>
+                                <div class="value">{{numberFormat(currentUser.RP, 2)}} <span>$</span></div>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <div class="leftTop">
+                                <div class="titleLabel">{{numberFormat(currentUser.ACECount,0)}}
+                                    <span>{{language.BLOCK_1_TEXT_1}}</span>
+                                </div>
+                                <div class="value">{{language.BLOCK_1_TEXT_2}}</div>
+                            </div>
+                            <div class="leftBottom">
+                                <div class="titleLabel">{{numberFormat(currentUser.TotalACE + currentUser.ACECount, 0)}}
+                                    <span>{{language.BLOCK_1_TEXT_1}}</span>
+                                </div>
+                                <div class="value">{{language.BLOCK_1_TEXT_3}}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="dataContentCenter">
+                        <div class="left">
+                            <div class="titleLabel">{{language.BLOCK_1_TEXT_5}}</div>
+                            <div class="value">{{numberFormat(currentUser.EP, 2)}} <span>$</span></div>
+                        </div>
+                        <div class="right">
+                            <div class="titleLabel">{{language.BLOCK_1_TEXT_6}}</div>
+                            <div class="value">{{numberFormat(currentUser.SP, 2)}} <span>$</span></div>
+                        </div>
+                    </div>
+                    <div class="dataContentBottom">
+                        <div class="left">
+                            <div class="titleLabel">{{language.BLOCK_1_TEXT_7}}</div>
+                            <div class="value">{{numberFormat(currentUser.AP, 2)}} <span>$</span></div>
+                        </div>
+                        <div class="right">
+                            <div class="titleLabel">{{language.BLOCK_1_TEXT_8}}</div>
+                            <div class="value">{{numberFormat(currentUser.WeeklyMoney, 2)}} <span>$</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="AkValue">
+                    <div class="top">
+                        <div class="left">
+                            <div class="titleLabel">{{language.BLOCK_TITLE_2}}</div>
+                            <div class="rateLabel">
+                                <span class="rate">{{numberFormat(currentUser.Rate, 2)}}<span>%</span></span>
+                                <span class="label">{{language.BLOCK_2_TEXT_1}}</span>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <img src="/assets/images/home/ak-value-right-icon.svg">
+                        </div>
+                    </div>
+                    <div class="bottom">
+                        <div class="item">
+                            <div class="value">{{numberFormat(joinCapital,2)}}<span>$</span></div>
+                            <div class="label">{{language.BLOCK_2_TEXT_2}}</div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="item">
+                            <div class="value">{{numberFormat(pageModel.profitData.CurrentACEPrice, 2)}}<span>$</span>
+                            </div>
+                            <div class="label">{{language.BLOCK_2_TEXT_3}}</div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="item">
+                            <div class="value">{{numberFormat(pageModel.profitData.TotalSelledAce, 2)}}<span>$</span>
+                            </div>
+                            <div class="label">{{language.BLOCK_2_TEXT_4}}</div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="buyAndSell">
+                    <div class="left" @click="gotoQueue">
+                        <div class="label">{{language.BLOCK_3_TEXT_1}}</div>
+                        <div class="value">{{numberFormat(pageModel.realData.TotalBuyMoney, 2)}}<span>$</span></div>
+                    </div>
+                    <div class="right">
+                        <div class="label">{{language.BLOCK_3_TEXT_2}}</div>
+                        <div class="value">0 <span>$</span></div>
+                    </div>
                 </div>
 
-                <div class="block bg">
-                    <p class="block_title">
-                        <i class="iconfont iconbanknote"></i>
-                        <span v-text="language.BLOCK_TITLE_1">我的資產</span>
-                    </p>
-                    <div class="block_content">
-                        <ul class="assets">
-                            <li>
-                                <p class="value">
-                                    <span v-text="numberFormat(currentUser.ACECount, 0)"></span>
-                                    <sup v-text="language.BLOCK_1_TEXT_1">AK</sup>
-                                </p>
-                                <p class="text" v-text="language.BLOCK_1_TEXT_2">AS</p>
-                            </li>
-                            <li>
-                                <p class="value">
-                                    <span v-text="numberFormat(currentUser.TotalACE + currentUser.ACECount, 0)"></span>
-                                    <sup v-text="language.BLOCK_1_TEXT_1">AK</sup>
-                                </p>
-                                <p class="text" v-text="language.BLOCK_1_TEXT_3">AK(Main+Sub)</p>
-                            </li>
-							<li>
-							    <p class="value">
-							        <span v-text="numberFormat(currentUser.TP, 2)">0</span>
-							        <sup>＄</sup>
-							    </p>
-							    <p class="text" v-text="language.BLOCK_1_TEXT_9">TP</p>
-							</li>
-                            <li>
-                                <p class="value">
-                                    <span v-text="numberFormat(currentUser.RP, 2)"></span>
-                                    <sup>＄</sup>
-                                </p>
-                                <p class="text" v-text="language.BLOCK_1_TEXT_4">RP</p>
-                            </li>
-                            <li>
-                                <p class="value">
-                                    <span v-text="numberFormat(currentUser.EP, 2)"></span>
-                                    <sup>＄</sup>
-                                </p>
-                                <p class="text" v-text="language.BLOCK_1_TEXT_5">EP</p>
-                            </li>
-                            <li>
-                                <p class="value">
-                                    <span v-text="numberFormat(currentUser.SP, 2)"></span>
-                                    <sup>＄</sup>
-                                </p>
-                                <p class="text" v-text="language.BLOCK_1_TEXT_6">SP</p>
-                            </li>
-							
-						 
-							 
-							
-                            <li>
-                                <p class="value">
-                                    <span v-text="numberFormat(currentUser.AP, 2)"></span>
-                                    <sup>＄</sup>
-                                </p>
-                                <p class="text" v-text="language.BLOCK_1_TEXT_7">AP</p>
-                            </li>
-                            <li>
-                                <p class="value">
-                                    <span v-text="numberFormat(currentUser.WeeklyMoney, 2)"></span>
-                                    <sup>＄</sup>
-                                </p>
-                                <p class="text" v-text="language.BLOCK_1_TEXT_8">Week</p>
-                            </li>
-                            
-                        </ul>
-                    </div>
-                </div>
-                <div class="block">
-                    <p class="block_title">
-                        <i class="iconfont icontubiao"></i>
-                        <span v-text="language.BLOCK_TITLE_2">AK價值</span>
-                    </p>
-                    <div class="block_content">
-                        <div class="top_context">
-                            <span class="number color_red" v-text="pageModel.profitData.Percent" style="display:none"></span>
-							<span class="number color_red" v-text="numberFormat(currentUser.Rate, 2)"></span>
-                            <span class="color_red">%</span>
-                            <p class="text" v-text="language.BLOCK_2_TEXT_1">收益率</p>
+                <div class="klineBox">
+                    <div class="top">
+                        <div class="titleLabel">{{language.BLOCK_TITLE_4}}</div>
+                        <div class="price">
+                            <div class="left">
+                                <div class="img"><img src="/assets/images/home/home-kline-price-icon.svg" /></div>
+                                <div class="priceVal">
+                                    <div class="priceNum">{{numberFormat(pageModel.currentStockPrice, 3)}}<span>$</span>
+                                    </div>
+                                    <div class="time">{{language.BLOCK_4_TEXT_1 + updateTime}}</div>
+                                </div>
+                            </div>
+                            <div class="right" :class="{active:isExpanded}" @click="toggleExpand"><img
+                                    src="/assets/images/home/home-kline-down-icon.svg" /></div>
                         </div>
-                        <ul class="profit">
-                            <li>
-                                <p class="value">
-                                    <span v-text="joinCapital"></span>
-                                    <sup>＄</sup>
-                                </p>
-                                <p class="text" v-text="language.BLOCK_2_TEXT_2">初始成本</p>
-                            </li>
-                            <li>
-                                <p class="value">
-                                    <span v-text="pageModel.profitData.CurrentACEPrice"></span>
-                                    <sup>＄</sup>
-                                </p>
-                                <p class="text" v-text="language.BLOCK_2_TEXT_3">CurrentACEPrice</p>
-                            </li>
-                            <li>
-                                <p class="value">
-                                    <span v-text="numberFormat(pageModel.profitData.TotalSelledAce, 0)"></span>
-                                    <sup>＄</sup>
-                                </p>
-                                <p class="text" v-text="language.BLOCK_2_TEXT_4">TotalSelledAce</p>
-                            </li>
-                        </ul>
                     </div>
+                    <transition name="expand">
+                        <div class="bottom kline" v-show="isExpanded"></div>
+                    </transition>
                 </div>
-                <div class="block">
-                    <p class="block_title">
-                        <i class="iconfont iconjiaoyi1"></i>
-                        <span v-text="language.BLOCK_TITLE_3">SELL / BUY</span>
-                    </p>
-                    <div class="block_content">
-                        <ul class="sell">
-                            <li @click="gotoQueue">
-                                <p class="value">
-                                    <span v-text="numberFormat(pageModel.realData.TotalBuyMoney, 2)"></span>
-                                    <sup>＄</sup>
-                                </p>
-                                <p class="text" v-text="language.BLOCK_3_TEXT_1">BUY</p>
-                            </li>
-                            <li>
-                                <p class="value">
-                                    <span>0</span>
-                                    <sup>＄</sup>
-                                </p>
-                                <p class="text" v-text="language.BLOCK_3_TEXT_2">SELL</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="block highChart">
+
+                <!-- <div class="block highChart">
                     <p class="block_title">
                         <i class="iconfont icontubiao1"></i>
                         <span v-text="language.BLOCK_TITLE_4">PRICE</span>
@@ -193,26 +169,22 @@
                         </div>
                         <div v-else id="container" style="width:100%; height:300px"></div>
                     </div>
-                </div>
+                </div> -->
             </van-pull-refresh>
         </div>
         <div id="bottom" class="panel pos van-hairline--top">
             <ul id="bottom-menus-items" class="menus clearfix">
-                <li v-for="(item, index) in menus"
-                    v-bind:key="index"
-                    v-bind:class="{'active': currentIndex === item.index}"
-                    @click="window.location = item.url">
-                    <i class="iconfont icon" v-bind:class="[currentIndex === item.index ? item.active : item.default]"></i>
+                <li v-for="(item, index) in menus" v-bind:key="index"
+                    v-bind:class="{'active': currentIndex === item.index}" @click="window.location = item.url">
+                    <i class="iconfont icon"
+                        v-bind:class="[currentIndex === item.index ? item.active : item.default]"></i>
                     <p class="menus-text" v-text="item.text"></p>
                 </li>
             </ul>
         </div>
 
 
-        <van-popup class="notice_frame"
-                   v-model="isNoticeShow"
-                   v-cloak
-                   v-bind:close-on-click-overlay="false">
+        <van-popup class="notice_frame" v-model="isNoticeShow" v-cloak v-bind:close-on-click-overlay="false">
             <iframe src="subpages/notice.html"></iframe>
         </van-popup>
     </div>
@@ -223,4 +195,5 @@
     <script src="../content/js/highcharts-zh_CN.js?v=28"></script>
     <script src="../content/js/pages/home.js?v=28"></script>
 </body>
+
 </html>
