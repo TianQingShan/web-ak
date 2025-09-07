@@ -1,16 +1,16 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
-    <title></title>
-    <link href="../content/css/base.css" rel="stylesheet" />
-    <link href="../content/css/vant.css" rel="stylesheet" />
-    <link href="../content/css/pages/ace.list.css" rel="stylesheet" />
-    <link href="../content/css/bottom.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+  <title></title>
+  <link href="/content/css/base.css" rel="stylesheet" />
+  <link href="/content/css/vant.css" rel="stylesheet" />
+  <link href="/assets/css/vue-component.css" rel="stylesheet" />
+  <link href="/assets/css/ace.list.css" rel="stylesheet" />
 </head>
 <body>
-    <div id="app">
+    <!-- <div id="app">
         <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
             <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
             <button v-show="!isLoading" class="submit-button" @click="APP.GLOBAL.gotoNewWindow('my.acePage', 'secondpage/my.ace')">
@@ -68,7 +68,7 @@
                                     <p class="value" v-text="numberFormat(item.Success * item.SinglePrice, 3)"></p>
                                     <p class="text" v-text="language.LI_3_TEXT">價值美金</p>
                                 </li>
-		 
+
                             </ul>
                             <p class="time" v-text="item.CreateTime"></p>
                         </li>
@@ -94,10 +94,58 @@
                 </li>
             </ul>
         </div>
+    </div> -->
+
+  <div id="app">
+    <div class="AceList">
+      <div class="top">
+        <div class="left">{{ language.TITLE_TEXT }}</div>
+        <div class="right" @click="APP.GLOBAL.gotoNewWindow('my.acePage', 'secondpage/my.ace')">
+          <div class="text">{{ language.BUTTON_1 }}</div>
+          <img class="icon" src="/assets/icon/icon4@1x.png" />
+        </div>
+      </div>
+      <div class="items">
+        <div
+          class="item"
+          v-for="(item, index) of pageModel.list"
+          :key="index"
+          @click="gotoDetail(item)">
+          <div class="item-top">
+            <div class="avatar"></div>
+            <div class="name">{{ item.Seller.FlowNumber }}</div>
+          </div>
+          <div class="item-bottom">
+            <div class="item-bottom-item">
+              <div class="value">{{ numberFormat(item.ReadonlyStockCount, 0) }}</div>
+              <div class="label">挂卖总数</div>
+            </div>
+            <div class="item-bottom-item">
+              <div class="value">{{ numberFormat(item.Success, 0) }}</div>
+              <div class="label">已成交</div>
+            </div>
+            <div class="item-bottom-item">
+              <div class="value">{{ numberFormat(item.SinglePrice, 3) }}</div>
+              <div class="label">股价</div>
+            </div>
+            <div class="item-bottom-item">
+              <div class="value" style="color: #07C160;">{{ numberFormat(item.Success * item.SinglePrice, 3) }}</div>
+              <div class="label">价值</div>
+            </div>
+          </div>
+          <div class="status">
+            <div class="text">交易完成</div>
+            <img class="icon" src="/assets/icon/icon5@1x.png" />
+          </div>
+        </div>
+      </div>
     </div>
-    <script src="../content/js/vue.js?v=28"></script>
-    <script src="../content/js/vant.min.js?v=28"></script>
-    <script src="../content/js/base.js?v=28"></script>
-    <script src="../content/js/pages/ace.list.js?v=28"></script>
+    <tab-bar :current-index="1"></tab-bar>
+  </div>
+  <script src="/content/js/vue.js?v=28"></script>
+  <script src="/content/js/vant.min.js?v=28"></script>
+  <script src="/content/js/base.js?v=28"></script>
+  <script src="/content/js/vue-component.js?v=28"></script>
+  <script src="/content/js/pages/ace.list.js?v=28"></script>
 </body>
 </html>

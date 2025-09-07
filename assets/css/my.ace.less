@@ -1,0 +1,106 @@
+.MyAce {
+  flex-grow: 1;
+  background-color: #f5f5f5;
+  margin: 10px 20px 0;
+
+  .tab-items {
+    border: 1px solid #07C160;
+    padding: 8px;
+    display: flex;
+    border-radius: 999px;
+    margin-top: 20px;
+
+    .tab-item {
+      width: 0;
+      flex-grow: 1;
+      border-radius: 999px;
+      padding: 11px 0;
+      font-weight: 860;
+      font-size: 13px;
+      line-height: 22px;
+      color: #222;
+      text-align: center;
+
+      &.active {
+        color: #fff;
+        background-color: #07C160;
+      }
+    }
+  }
+
+  .items {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+
+    .item {
+      background-color: #fff;
+      padding-top: 24px;
+      position: relative;
+
+      .top {
+        padding-bottom: 20px;
+        margin: 0 20px 14px;
+        border-bottom: 1px solid #07C160;
+
+        .text {
+          margin: 0 13px;
+          font-weight: 590;
+          font-size: 16px;
+          line-height: 22px;
+          color: #333;
+        }
+      }
+
+      .bottom {
+        display: flex;
+        column-gap: 83px;
+        justify-content: center;
+
+        .bottom-item {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          row-gap: 5px;
+
+          .bottom-item-value {
+            font-weight: 500;
+            font-size: 20px;
+            line-height: 22px;
+            color: #000;
+          }
+
+          .bottom-item-label {
+            font-weight: 600;
+            font-size: 12px;
+            line-height: 22px;
+            color: #666;
+          }
+        }
+      }
+
+      .time {
+        margin-top: 8px;
+        background-image: linear-gradient(90deg, #00FF7A 0%, #07C160 50%, #00FF7A 100%);
+        padding: 3px 0;
+        font-size: 11px;
+        line-height: 22px;
+        color: #fff;
+        font-weight: 400;
+        text-align: center;
+      }
+
+      .status {
+        position: absolute;
+        top: 0;
+        right: 0;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 22px;
+        color: #fff;
+        background-color: #07C160;
+      }
+    }
+  }
+}

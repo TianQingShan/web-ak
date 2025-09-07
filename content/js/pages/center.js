@@ -53,91 +53,7 @@ var _vue = new Vue({
         }],
         'currentIndex': 3,
         'statusbarHeight': 0,
-
-        items: [
-            {
-                icon: '/assets/images/center/image5@1x.png',
-                name: '出售AK',
-                id: 'sell.acePage',
-                page: 'center/sell.ace'
-            },
-            {
-                icon: '/assets/images/center/image6@1x.png',
-                name: '交易EP',
-                id: 'sell.epPage',
-                page: 'center/sell.ep'
-            },
-            {
-                icon: '/assets/images/center/image7@1x.png',
-                name: '出售EP',
-                id: '',
-                page: ''
-            },
-            {
-                icon: '/assets/images/center/image8@1x.png',
-                name: 'EP转RP',
-                id: '',
-                page: ''
-            },
-            {
-                icon: '/assets/images/center/image9@1x.png',
-                name: 'EP转SP',
-                id: '',
-                page: ''
-            },
-            {
-                icon: '/assets/images/center/image10@1x.png',
-                name: 'RP转SP',
-                id: '',
-                page: ''
-            },
-            {
-                icon: '/assets/images/center/image11@1x.png',
-                name: 'RP转出',
-                id: '',
-                page: ''
-            },
-            {
-                icon: '/assets/images/center/image12@1x.png',
-                name: 'TP转出',
-                id: '',
-                page: ''
-            },
-            {
-                icon: '/assets/images/center/image13@1x.png',
-                name: 'RP+TP',
-                id: '',
-                page: ''
-            }
-        ],
-
-        items2: [
-            {
-                icon: '/assets/images/center/image16@1x.png',
-                iconWidth: 39,
-                name: '子账户',
-            },
-            {
-                icon: '/assets/images/center/image17@1x.png',
-                iconWidth: 31,
-                name: '附近玩家',
-            },
-            {
-                icon: '/assets/images/center/image18@1x.png',
-                iconWidth: 34,
-                name: '全球玩家(表)',
-            },
-            {
-                icon: '/assets/images/center/image19@1x.png',
-                iconWidth: 43,
-                name: '全球玩家(图)',
-            }
-        ],
-
-        items3: [
-            { name: '财务管理', linearGradient: 'linear-gradient(180deg, #B9D8F7 63%, #fff 100%)' },
-            { name: '安全设置', linearGradient: 'linear-gradient(180deg, #D4FAE1 63%, #fff 100%)' }
-        ]
+        langFileInitFinished: false
     },
     methods: {
         'confirmDialog': function(action, done) {
@@ -379,6 +295,8 @@ var _vue = new Vue({
                 for (var i = 0; i < _vue.menus.length; i++) {
                     _vue.menus[i].text = lang['BOTTOM_MENU_' + (i + 1)];
                 }
+
+                _vue.langFileInitFinished = true
             });
         }
     },
@@ -403,6 +321,113 @@ var _vue = new Vue({
             } else {
                 return document.body.clientWidth;
             }
+        },
+
+        getItems() {
+            const { language, langFileInitFinished } = this
+
+            if (!langFileInitFinished) return []
+
+            return ([
+            {
+                icon: '/assets/images/center/image5@1x.png',
+                name: language.BLOCK_1.MENU_1,
+                id: 'sell.acePage',
+                page: 'center/sell.ace'
+            },
+            {
+                icon: '/assets/images/center/image6@1x.png',
+                name: '交易EP',
+                id: '',
+                page: ''
+            },
+            {
+                icon: '/assets/images/center/image7@1x.png',
+                name: language.BLOCK_1.MENU_2,
+                id: 'sell.epPage',
+                page: 'center/sell.ep'
+            },
+            {
+                icon: '/assets/images/center/image8@1x.png',
+                name: language.BLOCK_1.MENU_3,
+                id: 'ep.to.rpPage',
+                page: 'center/ep.to.rp'
+            },
+            {
+                icon: '/assets/images/center/image9@1x.png',
+                name: language.BLOCK_1.MENU_4,
+                id: 'ep.to.spPage',
+                page: 'center/ep.to.sp'
+            },
+            {
+                icon: '/assets/images/center/image10@1x.png',
+                name: language.BLOCK_1.MENU_5,
+                id: 'rp.to.spPage',
+                page: 'center/rp.to.sp'
+            },
+            {
+                icon: '/assets/images/center/image11@1x.png',
+                name: language.BLOCK_1.MENU_6,
+                id: 'rp.outPage',
+                page: 'center/rp.out'
+            },
+            {
+                icon: '/assets/images/center/image12@1x.png',
+                name: language.BLOCK_1.MENU_11,
+                id: 'tp.outPage',
+                page: 'center/tp.out'
+            },
+            {
+                icon: '/assets/images/center/image13@1x.png',
+                name: language.BLOCK_1.MENU_12,
+                id: 'rptp.outPage',
+                page: 'center/rptp.out'
+            }
+        ])
+        },
+        getItems2() {
+            const { language, langFileInitFinished } = this
+
+            if (!langFileInitFinished) return []
+
+            return ([
+                {
+                    icon: '/assets/images/center/image16@1x.png',
+                    iconWidth: 39,
+                    name: language.BLOCK_2.MENU_1
+                },
+                {
+                    icon: '/assets/images/center/image17@1x.png',
+                    iconWidth: 31,
+                    name: language.BLOCK_2.MENU_2
+                },
+                {
+                    icon: '/assets/images/center/image18@1x.png',
+                    iconWidth: 34,
+                    name: language.BLOCK_2.MENU_3
+                },
+                {
+                    icon: '/assets/images/center/image19@1x.png',
+                    iconWidth: 43,
+                    name: language.BLOCK_2.MENU_4
+                }
+            ])
+        },
+        getItems3() {
+            const { language, langFileInitFinished } = this
+
+            if (!langFileInitFinished) return []
+
+            return ([
+                {
+                    name: language.BLOCK_3.TITLE,
+                    linearGradient: 'linear-gradient(180deg, #B9D8F7 63%, #fff 100%)'
+                },
+                {
+                    name: language.BLOCK_4.TITLE,
+                    linearGradient: 'linear-gradient(180deg, #D4FAE1 63%, #fff 100%)'
+                }
+            ])
         }
     },
     created: function() {
