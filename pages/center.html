@@ -20,7 +20,7 @@
         <div class="text2">{{ currentUser.NickName }}</div>
 
         <div class="user-info">
-          <div class="user-info-top">
+          <div class="user-info-top" @click="isPassowrdShow = true">
             <div class="id">ID：{{ currentUser.Pin }}</div>
             <div class="avatar" :style="{ backgroundImage: `url(${ currentUser.AvatarImage })` }"></div>
           </div>
@@ -85,6 +85,11 @@
       </div>
     </div>
     <tab-bar :current-index="3"></tab-bar>
+
+    <van-dialog v-model="isPassowrdShow" show-cancel-button v-bind:before-close="confirmDialog" v-bind:confirm-button-text="language.DIALOG_BUTTON_1" v-bind:cancel-button-text="language.DIALOG_BUTTON_2">
+        <h4 class="dialog_title" v-text="language.DIALOG_TITLE"></h4>
+        <van-field v-model="form.pin" type="password" v-bind:label="language.DIALOG_LABEL" v-bind:placeholder="language.DIALOG_PLACEHOLDER" />
+    </van-dialog>
   </div>
 
   <script src="/content/js/vue.js?v=28"></script>
