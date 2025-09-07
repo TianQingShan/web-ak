@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
@@ -10,6 +11,7 @@
     <link href="/assets/css/notice_list.css" rel="stylesheet">
     <script src="html5plus://ready"></script>
 </head>
+
 <body>
     <div id="app">
         <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
@@ -28,21 +30,18 @@
                 </div>
                 <div v-else class="notice_content">
                     <ul>
-                        <li v-for="(item, index) in list.data"
-                            v-bind:key="index"
-                            @click="gotoDetail(item)">
-                            <div class="clearfix">
-                                <div class="left_content">
-                                    <p class="title" v-text="item.Title"></p>
-                                    <p class="text" v-text="item.Text"></p>
-                                    <p class="time">
-                                        <span v-text="item.CreateTime"></span>
-                                        <i class="iconfont iconservice" v-if="item.IsService"></i>
-                                    </p>
+                        <li class="msg-item" v-for="(item, index) in list.data" v-bind:key="index" @click="gotoDetail(item)">
+                            <div class="title">
+                                <div class="left">
+                                    <div class="title">
+                                        <img src="/assets/images/notice/message.svg" /><span>{{item.Title}}</span>
+                                    </div>
                                 </div>
-                                <div class="right_content">
-                                    <i class="iconfont iconjiantou"></i>
-                                </div>
+                                <div class="right">{{item.CreateTime}}</div>
+                            </div>
+                            <div class="content">
+                                <div class="left">{{item.Text}}</div>
+                                <div class="right"><i class="iconfont iconjiantou"></i></div>
                             </div>
                         </li>
                     </ul>
@@ -88,7 +87,7 @@
                     }
 
                     APP.GLOBAL.ajax({
-                        url: APP.CONFIG.BASE_URL+'Notice_List',
+                        url: APP.CONFIG.BASE_URL + 'Notice_List',
                         data: {
                             'p': this.list.pageIndex,
                             'pageSize': this.list.pageSize
@@ -133,4 +132,5 @@
         });
     </script>
 </body>
+
 </html>
