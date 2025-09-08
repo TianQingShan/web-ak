@@ -8,7 +8,8 @@
     <link href="/content/css/base.css" rel="stylesheet" />
     <link href="/content/css/vant.css" rel="stylesheet" />
     <link href="/content/css/pages/home.css" rel="stylesheet" />
-    <link href="/content/css/bottom.css" rel="stylesheet" />
+    <!-- <link href="/content/css/bottom.css" rel="stylesheet" /> -->
+    <link href="/assets/css/vue-component.css" rel="stylesheet">
     <link href="/assets/css/home.css" rel="stylesheet">
 
 </head>
@@ -151,7 +152,7 @@
                         <div class="bottom kline" v-show="isExpanded"></div>
                     </transition>
                 </div>
-<!-- 
+                <!-- 
                 <div class="block highChart">
                     <p class="block_title">
                         <i class="iconfont icontubiao1"></i>
@@ -172,7 +173,8 @@
                 </div> -->
             </van-pull-refresh>
         </div>
-        <div id="bottom" class="panel pos van-hairline--top">
+
+        <!-- <div id="bottom" class="panel pos van-hairline--top">
             <ul id="bottom-menus-items" class="menus clearfix">
                 <li v-for="(item, index) in menus" v-bind:key="index"
                     v-bind:class="{'active': currentIndex === item.index}" @click="window.location = item.url">
@@ -181,8 +183,9 @@
                     <p class="menus-text" v-text="item.text"></p>
                 </li>
             </ul>
-        </div>
+        </div> -->
 
+        <tab-bar></tab-bar>
 
         <van-popup class="notice_frame" v-model="isNoticeShow" v-cloak v-bind:close-on-click-overlay="false">
             <iframe src="subpages/notice.html"></iframe>
@@ -194,6 +197,7 @@
     <script src="../content/js/hightcharts.js?v=28"></script>
     <script src="../content/js/highcharts-zh_CN.js?v=28"></script>
     <script src="../content/js/pages/home.js?v=28"></script>
+    <script src="/content/js/vue-component.js?v=28"></script>
 </body>
 
 </html>
