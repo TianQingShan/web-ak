@@ -68,7 +68,8 @@
           <img src="/assets/images/center/image15@1x.png" alt="" class="right" />
         </div>
         <div class="content3">
-          <div class="item" v-for="({ icon, iconWidth, name }, index) of getItems2" :key="index">
+          <div class="item" v-for="({ icon, iconWidth, name,id,page }, index) of getItems2" :key="index"
+            @click="APP.GLOBAL.gotoNewWindow(id, page)">
             <div class="icon-box">
               <img :src="icon" :style="{ width: iconWidth }" />
             </div>

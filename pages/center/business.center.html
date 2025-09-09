@@ -6,7 +6,7 @@
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
     <title></title>
     <link href="../../content/css/base.css" rel="stylesheet" />
-    <!-- <link href="../../content/css/vant.css" rel="stylesheet" /> -->
+    <link href="../../content/css/vant.css" rel="stylesheet" />
     <!-- <link href="../../content/css/pages/center/business.center.css" rel="stylesheet" /> -->
     <link rel="stylesheet" href="/assets/css/business.center.css">
     <link href="/assets/css/vue-component.css" rel="stylesheet">
@@ -19,7 +19,7 @@
             <div class="app-head-text" v-text="language.TITLE_TEXT">TITLE_TEXT</div>
         </div> -->
         <div class="header">
-            <top-back :title="language.TITLE_TEXT"  title-color="rgba(51,51,51,1)" />
+            <top-back :title="language.TITLE_TEXT" title-color="rgba(51,51,51,1)" />
         </div>
         <div id="app-content">
             <van-tabs v-model="tabActive" v-cloak @change="tabChange">
@@ -37,62 +37,31 @@
                         <div v-else>
                             <ul class="list buy-list">
                                 <li v-for="(item,index) in tabControl[0].list" v-bind:key="index">
-                                    <div class="top clearfix">
-                                        <span class="fn" v-text="item.FlowNumber"></span>
-                                        <span class="state" v-text="item.StatusText"></span>
-                                    </div>
-                                    <ul class="info" v-bind:class="{'w50': item.Status === 8}">
-                                        <li>
-                                            <p class="value" v-text="numberFormat(item.EPAmount, 0)"></p>
-                                            <p class="text" v-text="language.LI_1_TEXT">EPAmount</p>
-                                        </li>
-                                        <li>
-                                            <p class="value" v-text="getBuyTime(item)">‭‬</p>
-                                            <p class="text" v-text="language.LI_2_TEXT">LI_2_TEXT</p>
-                                        </li>
-                                        <li v-if="item.Status !== 8">
-                                            <p class="value" v-text="getTimeout(item)"
-                                                v-bind:class="{'red': isTimeout(item)}">‭‬</p>
-                                            <p class="text" v-text="language.LI_3_TEXT">LI_3_TEXT</p>
-                                        </li>
-                                    </ul>
-                                    <div class="time clearfix">
-                                        <div class="icons">
-                                            <img v-if="item.ReceiveType === '1' || item.ReceiveType === null"
-                                                src="../../content/img/pays/yl_pay.png" />
-                                            <img v-if="item.ReceiveType === '2'"
-                                                src="../../content/img/pays/usdt_pay.png" />
+                                    <div class="state">{{item.StatusText}}</div>
+                                    <div class="info">
+                                        <div class="info-left">
+                                            <div class="value">{{numberFormat(item.EPAmount, 0)}}</div>
+                                            <div class="label">EP数量</div>
                                         </div>
-                                        <span class="time_text" v-text="item.CreateTime"></span>
+                                        <div class="info-center">
+                                            <div class="value">{{getPaymentTime(item)}}</div>
+                                            <div class="label">购买时间</div>
+                                        </div>
+                                        <div class="info-right">
+                                            <div v-if="item.Status !== 8">
+                                                <div class="value" :class="{'red': isTimeout(item)}">
+                                                    {{getTimeout(item)}}</div>
+                                                <div class="label">超时时间</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <!-- <div class="bottom"
-                                        v-if="item.Status !== 8 && item.Status !== 128 && item.Status !== 64">
-                                        <van-button v-if="item.Status === 2" hairline class="left default" size="small"
-                                            @click="gotoSellInfo(item)" v-text="language.BUTTON_5">查看賣家信息</van-button>
-                                        <van-button v-if="item.Status === 2" size="small" type="info"
-                                            @click="confirmPay(item)" v-text="language.BUTTON_1">確認付款</van-button>
-                                        <van-button v-if="item.Status === 2" hairline size="small" class="default"
-                                            @click="cancelBuy(item)" v-text="language.BUTTON_2">取消購買</van-button>
-                                        <van-button v-if="item.Status === 4" size="small" type="danger"
-                                            @click="showComplaint(item)" v-text="language.BUTTON_3">我要投訴</van-button>
-                                        <van-button
-                                            v-if="item.Status === 16 || item.Status === 32 || item.Status === 256"
-                                            size="small" type="danger" @click="showProof(item)"
-                                            v-text="language.BUTTON_4">上傳憑證</van-button>
-                                    </div> -->
-                                    <div class="bottom">
-                                        <van-button hairline class="left default" size="small"
-                                            @click="gotoSellInfo(item)" v-text="language.BUTTON_5">查看賣家信息</van-button>
-                                        <van-button size="small" type="info"
-                                            @click="confirmPay(item)" v-text="language.BUTTON_1">確認付款</van-button>
-                                        <van-button hairline size="small" class="default"
-                                            @click="cancelBuy(item)" v-text="language.BUTTON_2">取消購買</van-button>
-                                        <van-button size="small" type="danger"
-                                            @click="showComplaint(item)" v-text="language.BUTTON_3">我要投訴</van-button>
-                                        <van-button
-                                            
-                                            size="small" type="danger" @click="showProof(item)"
-                                            v-text="language.BUTTON_4">上傳憑證</van-button>
+                                    <div class="time">{{item.CreateTime}}</div>
+                                    <div class="btns" v-if="item.Status !== 8 && item.Status !== 128 && item.Status !== 64">
+                                        <div v-if="item.Status === 2" class="button primary" @click="gotoSellInfo(item)">查看賣家信息</div>
+                                        <div v-if="item.Status === 2" class="button success" @click="confirmPay(item)">確認付款</div>
+                                        <div v-if="item.Status === 2" class="button danger" @click="cancelBuy(item)">取消購買</div>
+                                        <div v-if="item.Status === 4" class="button warning"  @click="showComplaint(item)">我要投訴</div>
+                                        <div v-if="item.Status === 16 || item.Status === 32 || item.Status === 256" class="button warning" @click="showProof(item)">上傳憑證</div>
                                     </div>
                                 </li>
                             </ul>
@@ -147,28 +116,12 @@
                                         </div>
                                     </div>
                                     <div class="time">{{item.CreateTime}}</div>
-                                    <div class="btns"
-                                        v-if="item.Status !== 8 && item.Status !== 128 && item.Status !== 64">
-                                        <van-button v-if="item.Status === 1" size="small" type="danger"
-                                            v-text="language.BUTTON_7" @click="cancelSell(item)">取消挂賣</van-button>
-                                        <van-button v-if="item.Status === 4" size="small" type="info"
-                                            @click="confirmReceive(item)" v-text="language.BUTTON_6">確認收款</van-button>
-                                        <van-button v-if="item.Status === 2 || item.Status === 4" size="small"
-                                            type="danger" @click="showComplaint(item)"
-                                            v-text="language.BUTTON_3">我要投訴</van-button>
-                                        <van-button
-                                            v-if="item.Status === 16 || item.Status === 32 || item.Status === 256"
-                                            size="small" type="danger" @click="showProof(item)"
-                                            v-text="language.BUTTON_4">上傳憑證</van-button>
+                                    <div class="btns" v-if="item.Status !== 8 && item.Status !== 128 && item.Status !== 64">
+                                        <div v-if="item.Status === 1" class="button danger"  @click="cancelSell(item)">取消挂賣</div>
+                                        <div v-if="item.Status === 4" class="button primary"  @click="confirmReceive(item)">確認收款</div>
+                                        <div v-if="item.Status === 2 || item.Status === 4" class="button warning"  @click="showComplaint(item)">我要投訴</div>
+                                        <div v-if="item.Status === 16 || item.Status === 32 || item.Status === 256" class="button warning"  @click="showProof(item)">上傳憑證</div>
                                     </div>
-                                    <!-- <div class="time clearfix">
-                                        <div class="mp" v-if="item.BuyerPhone">
-                                            <a v-bind:href="'tel:' + item.BuyerPhone"
-                                                v-text="language.BUYER_PHONE_TEXT + item.BuyerPhone"></a>
-                                        </div>
-                                        <span class="time_text" v-text="item.CreateTime"></span>
-                                    </div> -->
-
                                 </li>
                             </ul>
 
@@ -181,8 +134,8 @@
                             <div v-if="tabControl[1].isLoadComplete1" class="load_more_complete">
                                 <span class="load_text" v-text="language.LOAD_COMPLETE_TEXT">沒有更多的數據了...</span>
                             </div>
-
                             <!-- test -->
+
 
                             <!-- test -->
                             <!-- <div v-if="tabControl[1].isLoadMore" class="load_more clearfix">

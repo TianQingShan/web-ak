@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
@@ -7,52 +8,57 @@
     <link href="../../content/css/base.css" rel="stylesheet" />
     <link href="../../content/css/vant.css" rel="stylesheet" />
     <link href="../../content/css/pages/center/Donate_Record.css" rel="stylesheet" />
-	 
+    <link href="/assets/css/vue-component.css" rel="stylesheet">
 </head>
+
 <body>
     <div id="app">
-        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+        <!-- <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
             <i id="app-back-button" class="iconfont iconzuo right-back"></i>
             <div class="app-head-text" v-text="language.TITLE_TEXT">业绩图表</div>
+        </div> -->
+        <div class="header">
+            <top-back :title="language.TITLE_TEXT" title-color="rgba(51,51,51,1)" />
         </div>
         <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
             <div v-if="isLoading" class="loading-box p50">
                 <van-loading color="black"></van-loading>
                 <p class="loading-text" v-text="language.LOADING_TEXT">正在載入...</p>
             </div>
-			
-			
-			
+
+
+
             <div v-else v-cloak>
                 <div v-if="pageModel.list.length == 0" class="none-data p50">
                     <i class="iconfont iconkong"></i>
                     <p class="none-data-text" v-text="language.NONE_DATA">暫無子賬戶</p>
                 </div>
-				
+
                 <div v-else class="list_content" v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
-				<form action="/" class="input_group">
-							<van-search v-bind:placeholder="language.INPUT_PLACEHOLDER_2" v-model="Search"  @search="SearchloadPageData"  maxlength="100">
-								<i slot="left-icon" class="iconfont iconsousuo"></i>
-							</van-search>
-						</form>
+                    <form action="/" class="input_group">
+                        <van-search v-bind:placeholder="language.INPUT_PLACEHOLDER_2" v-model="Search"
+                            @search="SearchloadPageData" maxlength="100">
+                            <i slot="left-icon" class="iconfont iconsousuo"></i>
+                        </van-search>
+                    </form>
                     <ul class="list">
-                        <li v-for="(item,index) in pageModel.list"  v-bind:key="index" >
-							
-							 
-							<div  class="top clearfix " @click="choiceUser(item.FlowNumber)" >
-								<img v-lazy="item.Avatar" class="avatar" />
-                                <div class="top_right" >
-                                     
-                                     
-                                     
-                                     
+                        <li v-for="(item,index) in pageModel.list" v-bind:key="index">
+
+
+                            <div class="top clearfix " @click="choiceUser(item.FlowNumber)">
+                                <img v-lazy="item.Avatar" class="avatar" />
+                                <div class="top_right">
+
+
+
+
                                     <p class="fn small" v-text="'ID：' + item.FlowNumber"></p>
                                 </div>
                             </div>
-							
-                            <div class="middle" >
-                                <ul class="info"    >
-									<li style='width: 10%; margin-top:10px; font-weight: bold; font-size: 1.4em;'>
+
+                            <div class="middle">
+                                <ul class="info">
+                                    <li style='width: 10%; margin-top:10px; font-weight: bold; font-size: 1.4em;'>
                                         <p class="text" v-text="(index-1) + 1">1</p>
                                     </li>
                                     <li>
@@ -67,35 +73,42 @@
                                         <p class="value" v-text="item.Standard"></p>
                                         <p class="text" v-text="item.StartStr3">3</p>
                                     </li>
-									 
+
                                 </ul>
- 
-								
-                                <div  class="bottom clearfix"  >
-									<div class="left">
-										<i class="iconfont iconkong" style="padding-left:6px;padding-right:6px; color:#0099FF"></i>
-									</div>
-									<span class="left" style="padding-left:6px;color:#5c6875" v-text="item.Standard" ></span>    
+
+
+                                <div class="bottom clearfix">
+                                    <div class="left">
+                                        <i class="iconfont iconkong"
+                                            style="padding-left:6px;padding-right:6px; color:#0099FF"></i>
+                                    </div>
+                                    <span class="left" style="padding-left:6px;color:#5c6875"
+                                        v-text="item.Standard"></span>
                                 </div>
                             </div>
                         </li>
                     </ul>
-					
-			 
-					
-					   <div class="input_group bottom clearfix bottom_ui"  style="display:none;" >
-								<div class="left">
-									<i class="iconfont iconbangzhu" style="padding-left:6px;padding-right:6px; color:#0099FF"></i>
-								</div>
-								<span class="left" style="padding-left:6px;color:#5c6875" v-text="pageModel.bottomTip1" ></span>
-								<span class="left" style="padding-left:6px;color:#5c6875;padding-top:6px;" v-text="pageModel.bottomTip2" ></span>
-								<span class="left" style="padding-left:6px;color:#5c6875;padding-top:6px;" v-text="pageModel.bottomTip3" ></span>
-								<span class="left" style="padding-left:6px;color:#5c6875;padding-top:6px;" v-text="pageModel.bottomTip4" ></span>
-								<span class="left" style="padding-left:6px;color:#5c6875;padding-top:6px;" v-text="pageModel.bottomTip5" ></span>
-						</div>
-				 
-					
-					
+
+
+
+                    <div class="input_group bottom clearfix bottom_ui" style="display:none;">
+                        <div class="left">
+                            <i class="iconfont iconbangzhu"
+                                style="padding-left:6px;padding-right:6px; color:#0099FF"></i>
+                        </div>
+                        <span class="left" style="padding-left:6px;color:#5c6875" v-text="pageModel.bottomTip1"></span>
+                        <span class="left" style="padding-left:6px;color:#5c6875;padding-top:6px;"
+                            v-text="pageModel.bottomTip2"></span>
+                        <span class="left" style="padding-left:6px;color:#5c6875;padding-top:6px;"
+                            v-text="pageModel.bottomTip3"></span>
+                        <span class="left" style="padding-left:6px;color:#5c6875;padding-top:6px;"
+                            v-text="pageModel.bottomTip4"></span>
+                        <span class="left" style="padding-left:6px;color:#5c6875;padding-top:6px;"
+                            v-text="pageModel.bottomTip5"></span>
+                    </div>
+
+
+
                     <div v-if="pageModel.isLoadMore" class="load_more clearfix">
                         <van-loading color="black"></van-loading>
                         <span class="load_text" v-text="language.LOADING_TEXT"></span>
@@ -104,14 +117,11 @@
                         <span class="load_text" v-text="language.NOMORE"></span>
                     </div>
                 </div>
-                 
-                
+
+
             </div>
         </div>
-		<van-popup class="notice_frame"
-                   v-model="isNoticeShow"
-                   v-cloak
-                   v-bind:close-on-click-overlay="false">
+        <van-popup class="notice_frame" v-model="isNoticeShow" v-cloak v-bind:close-on-click-overlay="false">
             <iframe src="../subpages/Level.html"></iframe>
         </van-popup>
     </div>
@@ -119,5 +129,7 @@
     <script src="../../content/js/vant.min.js?v=28"></script>
     <script src="../../content/js/base.js?v=28"></script>
     <script src="../../content/js/pages/center/Donate_Record.js?v=29"></script>
+    <script src="/content/js/vue-component.js?v=28"></script>
 </body>
+
 </html>

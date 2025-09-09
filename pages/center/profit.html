@@ -19,30 +19,35 @@
             <i id="app-back-button" class="iconfont iconzuo right-back"></i>
             <div class="app-head-text" v-text="language.TITLE_TEXT">收益明細</div>
         </div> -->
-        <div class="header">
-            <top-back title="收益明细"  title-color="rgba(51,51,51,1)" />
-        </div>
+
         <div id="app-content">
-            <div class="input_group">
-                <div class="input_line van-hairline--bottom">
-                    <span class="input_text" v-text="language.INPUT_TEXT_1">查詢日期</span>
-                    <div class="input_control r-1" v-bind:class="{'gray': !dateTimeObj.display}"
-                        @click="isShowDateTime = true"
-                        v-text="!dateTimeObj.display ? language.INPUT_PLACEHOLDER_1 : dateTimeObj.display">請選擇查詢日期</div>
+            <div class="header">
+                <top-back title="收益明细" title-color="rgba(51,51,51,1)" />
+            </div>
+
+            <div class="select-date" @click="isShowDateTime = true">
+                <div class="label">查询日期</div>
+                <div class="right-date">
+                    <div class="date">{{!dateTimeObj.display ? "请选择日期" : dateTimeObj.display}}</div>
                     <i class="iconfont iconjiantou arrow"></i>
                 </div>
             </div>
+
             <div v-if="isSearchMode" v-cloak>
                 <div v-if="dateTimeObj.isLoading" class="loading-box">
                     <van-loading color="black"></van-loading>
                     <p class="loading-text" v-text="language.LOADING_TEXT"></p>
                 </div>
                 <div v-else class="week_list">
-                    <p class="title">
+                    <!-- <p class="title">
                         <span v-text="dateTimeObj.month+ language.RESULT_TITLE"></span>
                         <b class="red" v-text="numberFormat(result.MonthTotalMoney, 2)"></b>
                         <span>EP</span>
-                    </p>
+                    </p> -->
+                    <div class="title">
+                        <div class="number">{{numberFormat(result.MonthTotalMoney, 2)}} <span>EP</span></div>
+                        <div class="label">{{dateTimeObj.month + language.RESULT_TITLE}}</div>
+                    </div>
                     <van-cell-group>
                         <van-cell v-bind:value="numberFormat(result.FirstWeek, 2)" is-link @click="gotoDetail(1)">
                             <div slot="title">

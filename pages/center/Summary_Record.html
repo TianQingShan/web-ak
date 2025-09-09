@@ -8,14 +8,17 @@
     <link href="../../content/css/base.css" rel="stylesheet" />
     <link href="../../content/css/vant.css" rel="stylesheet" />
     <link href="../../content/css/pages/center/sell.ace.css" rel="stylesheet" />
-
+    <link href="/assets/css/vue-component.css" rel="stylesheet">
 </head>
 
 <body>
     <div id="app">
-        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+        <!-- <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
             <i id="app-back-button" class="iconfont iconzuo right-back"></i>
             <div class="app-head-text"  v-text="language.yjgjjl">匯總記錄</div>
+        </div> -->
+        <div class="header">
+            <top-back :title="language.yjgjjl" title-color="rgba(51,51,51,1)" />
         </div>
         <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
             <!-- <div v-if="isLoading" class="loading-box p50">
@@ -48,6 +51,7 @@
     <script src="../../content/js/vant.min.js?v=28"></script>
     <script src="../../content/js/base.js?v=28"></script>
     <script src="../../content/js/pages/center/summary_record.js"></script>
+    <script src="/content/js/vue-component.js?v=28"></script>
 </body>
 
 </html>
