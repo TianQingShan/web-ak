@@ -13,17 +13,17 @@ var _vue = new Vue({
         'language': {},
         'form': {
             'pin': '',
-			'answer': ''
+            'answer': ''
         },
         'isPassowrdShow': false,
         'isFansPassowrdShow': false,
-		'isFansmapPassowrdShow': false,
-		'isincomePassowrdShow': false,
-		'isfriendsPassowrdShow': false,
-		'isGrandPassowrdShow': false,
-		'isScalePassowrdShow': false,
-		'isupgradePassowrdShow': false,
-		'display': {
+        'isFansmapPassowrdShow': false,
+        'isincomePassowrdShow': false,
+        'isfriendsPassowrdShow': false,
+        'isGrandPassowrdShow': false,
+        'isScalePassowrdShow': false,
+        'isupgradePassowrdShow': false,
+        'display': {
             'questionDisplay': ''
         },
         'menus': [{
@@ -56,24 +56,24 @@ var _vue = new Vue({
         langFileInitFinished: false
     },
     methods: {
-        'confirmDialog': function(action, done) {
+        'confirmDialog': function (action, done) {
             if (action === 'confirm') {
-                if (!this.form.pin) {
-                    done(false);
-                    APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_1);
-                } else if (this.form.pin.length < 6) {
-                    done(false);
-                    APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_2);
-                } else {
+                // if (!this.form.pin) {
+                //     done(false);
+                //     APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_1);
+                // } else if (this.form.pin.length < 6) {
+                //     done(false);
+                //     APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_2);
+                // } else {
                     done();
                     this.doCheckPINAjax('center/profile.html');
-                }
+                // }
             } else {
                 this.form.pin = '';
                 done();
             }
         },
-		'incomeConfirmDialog': function(action, done) {
+        'incomeConfirmDialog': function (action, done) {
             if (action === 'confirm') {
                 //if (!this.form.pin) {
                 //    done(false);
@@ -82,15 +82,15 @@ var _vue = new Vue({
                 //    done(false);
                 //    APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_2);
                 //} else {
-                    done();
-                    this.doCheckAnswerAjax('center/profit.html');
+                done();
+                this.doCheckAnswerAjax('center/profit.html');
                 //}
             } else {
                 this.form.pin = '';
                 done();
             }
         },
-		'friendsConfirmDialog': function(action, done) {
+        'friendsConfirmDialog': function (action, done) {
             if (action === 'confirm') {
                 //if (!this.form.pin) {
                 //    done(false);
@@ -99,26 +99,8 @@ var _vue = new Vue({
                 //    done(false);
                 //    APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_2);
                 //} else {
-                    done();
-                    this.doCheckAnswerAjax('center/my.friend.html');
-                //}
-            } else {
-                this.form.pin = '';
                 done();
-            }
-        },
-
-		'GrandConfirmDialog': function(action, done) {
-            if (action === 'confirm') {
-                //if (!this.form.pin) {
-                //    done(false);
-                //    APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_1);
-                //} else if (this.form.pin.length < 6) {
-                //    done(false);
-                //    APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_2);
-                //} else {
-                    done();
-                    this.doCheckAnswerAjax('center/analyze.html');
+                this.doCheckAnswerAjax('center/my.friend.html');
                 //}
             } else {
                 this.form.pin = '';
@@ -126,7 +108,7 @@ var _vue = new Vue({
             }
         },
 
-		'ScaleConfirmDialog': function(action, done) {
+        'GrandConfirmDialog': function (action, done) {
             if (action === 'confirm') {
                 //if (!this.form.pin) {
                 //    done(false);
@@ -135,8 +117,26 @@ var _vue = new Vue({
                 //    done(false);
                 //    APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_2);
                 //} else {
-                    done();
-                    this.doCheckAnswerAjax('center/analyze_level.html?first=true');
+                done();
+                this.doCheckAnswerAjax('center/analyze.html');
+                //}
+            } else {
+                this.form.pin = '';
+                done();
+            }
+        },
+
+        'ScaleConfirmDialog': function (action, done) {
+            if (action === 'confirm') {
+                //if (!this.form.pin) {
+                //    done(false);
+                //    APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_1);
+                //} else if (this.form.pin.length < 6) {
+                //    done(false);
+                //    APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_2);
+                //} else {
+                done();
+                this.doCheckAnswerAjax('center/analyze_level.html?first=true');
                 //}
             } else {
                 this.form.pin = '';
@@ -145,7 +145,7 @@ var _vue = new Vue({
         },
 
 
-        'fansConfirmDialog': function(action, done) {
+        'fansConfirmDialog': function (action, done) {
             if (action === 'confirm') {
                 //if (!this.form.pin) {
                 //    done(false);
@@ -154,16 +154,16 @@ var _vue = new Vue({
                 //    done(false);
                 //    APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_2);
                 //} else {
-                    done();
-                    /* this.doCheckPINAjax('center/my.fans.tree.html'); */
-					this.doCheckAnswerAjax('center/my.fans.list.html');
+                done();
+                /* this.doCheckPINAjax('center/my.fans.tree.html'); */
+                this.doCheckAnswerAjax('center/my.fans.list.html');
                 //}
             } else {
                 this.form.pin = '';
                 done();
             }
         },
-		'fansmapConfirmDialog': function(action, done) {
+        'fansmapConfirmDialog': function (action, done) {
             if (action === 'confirm') {
                 //if (!this.form.pin) {
                 //    done(false);
@@ -172,16 +172,16 @@ var _vue = new Vue({
                 //    done(false);
                 //    APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_2);
                 //} else {
-                    done();
-                    /* this.doCheckPINAjax('center/my.fans.tree.html'); */
-					this.doCheckAnswerAjax('center/my.fans.tree.html');
+                done();
+                /* this.doCheckPINAjax('center/my.fans.tree.html'); */
+                this.doCheckAnswerAjax('center/my.fans.tree.html');
                 //}
             } else {
                 this.form.pin = '';
                 done();
             }
         },
-		'upgradeConfirmDialog': function(action, done) {
+        'upgradeConfirmDialog': function (action, done) {
             if (action === 'confirm') {
                 //if (!this.form.pin) {
                 //    done(false);
@@ -190,18 +190,18 @@ var _vue = new Vue({
                 //    done(false);
                 //    APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_2);
                 //} else {
-                    done();
-                    this.doCheckAnswerAjax('center/child/upgrade_record.html');
+                done();
+                this.doCheckAnswerAjax('center/child/upgrade_record.html');
                 //}
             } else {
                 this.form.pin = '';
                 done();
             }
         },
-		'loadPageData': function() {
+        'loadPageData': function () {
             APP.GLOBAL.ajax({
-				url:APP.CONFIG.BASE_URL+'Question_Get1',
-                success: function(result) {
+                url: APP.CONFIG.BASE_URL + 'Question_Get1',
+                success: function (result) {
                     if (result.Error) {
                         APP.GLOBAL.toastMsg(result.Msg);
                         return;
@@ -213,15 +213,15 @@ var _vue = new Vue({
                 }
             });
         },
-        'doCheckPINAjax': function(url) {
+        'doCheckPINAjax': function (url) {
             APP.GLOBAL.toastLoading(this.language.DIALOG_TOAST);
 
             APP.GLOBAL.ajax({
-                url: APP.CONFIG.BASE_URL+'Check_TransactionPassword',
+                url: APP.CONFIG.BASE_URL + 'Check_TransactionPassword',
                 data: this.form,
-                success: function(result) {
+                success: function (result) {
                     _vue.form.pin = '';
-					_vue.form.answer = '';
+                    _vue.form.answer = '';
                     APP.GLOBAL.closeToastLoading();
 
                     if (result.Error) {
@@ -233,15 +233,15 @@ var _vue = new Vue({
                 }
             });
         },
-		'doCheckAnswerAjax': function(url) {
+        'doCheckAnswerAjax': function (url) {
             APP.GLOBAL.toastLoading(this.language.DIALOG_TOAST);
 
             APP.GLOBAL.ajax({
-                url: APP.CONFIG.BASE_URL+'Check_Answer',
+                url: APP.CONFIG.BASE_URL + 'Check_Answer',
                 data: this.form,
-                success: function(result) {
+                success: function (result) {
                     _vue.form.pin = '';
-					_vue.form.answer = '';
+                    _vue.form.answer = '';
                     APP.GLOBAL.closeToastLoading();
 
                     if (result.Error) {
@@ -253,30 +253,30 @@ var _vue = new Vue({
                 }
             });
         },
-        'updateUserModel': function() {
+        'updateUserModel': function () {
             Vue.set(this, 'currentUser', APP.GLOBAL.getUserModel());
         },
-        'gotoDarkPage': function(id, page) {
+        'gotoDarkPage': function (id, page) {
             APP.GLOBAL.gotoNewWindow(id, page);
         },
-        'gotoLightPage': function(id, page) {
+        'gotoLightPage': function (id, page) {
             APP.GLOBAL.gotoNewWindow(id, page);
         },
-        'logoutAccount': function() {
+        'logoutAccount': function () {
             APP.GLOBAL.confirmMsg({
                 'title': this.language.EXIT_TITLE,
                 'message': this.language.EXIT_TEXT,
-                'confirmCallback': function() {
+                'confirmCallback': function () {
                     _vue.doLogoutAjax();
                 }
             });
         },
-        'doLogoutAjax': function() {
+        'doLogoutAjax': function () {
             APP.GLOBAL.toastLoading(this.language.EXIT_TOAST_TEXT);
 
             APP.GLOBAL.ajax({
-                url: APP.CONFIG.BASE_URL+'Logout',
-                success: function(result) {
+                url: APP.CONFIG.BASE_URL + 'Logout',
+                success: function (result) {
                     if (result.Error) {
                         APP.GLOBAL.toastMsg(result.Msg);
                         return;
@@ -287,8 +287,8 @@ var _vue = new Vue({
                 }
             });
         },
-        'changeLanguage': function() {
-            LSE.install('center', function(lang) {
+        'changeLanguage': function () {
+            LSE.install('center', function (lang) {
                 Vue.set(_vue, 'language', lang);
                 _vue.isInstallLanuage = true;
 
@@ -301,7 +301,7 @@ var _vue = new Vue({
         }
     },
     computed: {
-        'regTime': function() {
+        'regTime': function () {
             // var t = this
 
             return
@@ -315,7 +315,7 @@ var _vue = new Vue({
                 return regDate.getFullYear() + '/' + (regDate.getMonth() + 1) + '/' + regDate.getDate();
             }
         },
-        'screenWidth': function() {
+        'screenWidth': function () {
             if (APP.CONFIG.IS_RUNTIME && APP.CONFIG.SYSTEM_NAME !== 'ios') {
                 return window.screen.width;
             } else {
@@ -329,61 +329,61 @@ var _vue = new Vue({
             if (!langFileInitFinished) return []
 
             return ([
-            {
-                icon: '/assets/images/center/image5@1x.png',
-                name: language.BLOCK_1.MENU_1,
-                id: 'sell.acePage',
-                page: 'center/sell.ace'
-            },
-            {
-                icon: '/assets/images/center/image6@1x.png',
-                name: '交易EP',
-                id: '',
-                page: ''
-            },
-            {
-                icon: '/assets/images/center/image7@1x.png',
-                name: language.BLOCK_1.MENU_2,
-                id: 'sell.epPage',
-                page: 'center/sell.ep'
-            },
-            {
-                icon: '/assets/images/center/image8@1x.png',
-                name: language.BLOCK_1.MENU_3,
-                id: 'ep.to.rpPage',
-                page: 'center/ep.to.rp'
-            },
-            {
-                icon: '/assets/images/center/image9@1x.png',
-                name: language.BLOCK_1.MENU_4,
-                id: 'ep.to.spPage',
-                page: 'center/ep.to.sp'
-            },
-            {
-                icon: '/assets/images/center/image10@1x.png',
-                name: language.BLOCK_1.MENU_5,
-                id: 'rp.to.spPage',
-                page: 'center/rp.to.sp'
-            },
-            {
-                icon: '/assets/images/center/image11@1x.png',
-                name: language.BLOCK_1.MENU_6,
-                id: 'rp.outPage',
-                page: 'center/rp.out'
-            },
-            {
-                icon: '/assets/images/center/image12@1x.png',
-                name: language.BLOCK_1.MENU_11,
-                id: 'tp.outPage',
-                page: 'center/tp.out'
-            },
-            {
-                icon: '/assets/images/center/image13@1x.png',
-                name: language.BLOCK_1.MENU_12,
-                id: 'rptp.outPage',
-                page: 'center/rptp.out'
-            }
-        ])
+                {
+                    icon: '/assets/images/center/image5@1x.png',
+                    name: language.BLOCK_1.MENU_1,
+                    id: 'sell.acePage',
+                    page: 'center/sell.ace'
+                },
+                {
+                    icon: '/assets/images/center/image6@1x.png',
+                    name: '交易EP',
+                    id: '',
+                    page: ''
+                },
+                {
+                    icon: '/assets/images/center/image7@1x.png',
+                    name: language.BLOCK_1.MENU_2,
+                    id: 'sell.epPage',
+                    page: 'center/sell.ep'
+                },
+                {
+                    icon: '/assets/images/center/image8@1x.png',
+                    name: language.BLOCK_1.MENU_3,
+                    id: 'ep.to.rpPage',
+                    page: 'center/ep.to.rp'
+                },
+                {
+                    icon: '/assets/images/center/image9@1x.png',
+                    name: language.BLOCK_1.MENU_4,
+                    id: 'ep.to.spPage',
+                    page: 'center/ep.to.sp'
+                },
+                {
+                    icon: '/assets/images/center/image10@1x.png',
+                    name: language.BLOCK_1.MENU_5,
+                    id: 'rp.to.spPage',
+                    page: 'center/rp.to.sp'
+                },
+                {
+                    icon: '/assets/images/center/image11@1x.png',
+                    name: language.BLOCK_1.MENU_6,
+                    id: 'rp.outPage',
+                    page: 'center/rp.out'
+                },
+                {
+                    icon: '/assets/images/center/image12@1x.png',
+                    name: language.BLOCK_1.MENU_11,
+                    id: 'tp.outPage',
+                    page: 'center/tp.out'
+                },
+                {
+                    icon: '/assets/images/center/image13@1x.png',
+                    name: language.BLOCK_1.MENU_12,
+                    id: 'rptp.outPage',
+                    page: 'center/rptp.out'
+                }
+            ])
         },
         getItems2() {
             const { language, langFileInitFinished } = this
@@ -420,18 +420,22 @@ var _vue = new Vue({
 
             return ([
                 {
+                    id: 'financial_management',
+                    page: 'center/financial_management',
+
                     name: language.BLOCK_3.TITLE,
                     linearGradient: 'linear-gradient(180deg, #B9D8F7 63%, #fff 100%)'
                 },
                 {
+
                     name: language.BLOCK_4.TITLE,
                     linearGradient: 'linear-gradient(180deg, #D4FAE1 63%, #fff 100%)'
                 }
             ])
         }
     },
-    created: function() {
+    created: function () {
         this.changeLanguage();
-		this.loadPageData();
+        this.loadPageData();
     }
 });

@@ -1,21 +1,29 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
     <title></title>
     <link href="../../content/css/base.css" rel="stylesheet" />
     <link href="../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../content/css/pages/center/split.record.css" rel="stylesheet" />
-    
+    <!-- <link href="../../content/css/pages/center/split.record.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="/assets//css/split.record.css">
+    <link rel="stylesheet" href="/assets/css/vue-component.css">
+
+
 </head>
+
 <body>
     <div id="app">
-        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+        <!-- <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
             <i id="app-back-button" class="iconfont iconzuo right-back"></i>
             <div class="app-head-text" v-text="language.TITLE_TEXT">買賣中心</div>
+        </div> -->
+        <div class="header">
+            <top-back title="RP記錄" title-color="rgba(51, 51, 51, 1)" bg-color="transparent"></top-back>
         </div>
-        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+        <div id="app-content">
             <div v-if="isLoading" class="loading-box">
                 <van-loading color="black"></van-loading>
                 <p class="loading-text" v-text="language.LOADING_TEXT">正在載入...</p>
@@ -27,24 +35,43 @@
                 </div>
                 <div v-else class="list_content">
                     <ul>
-                        <li v-for="(item,index) in pageModel.list" 
-                            v-bind:key="index">
-                            <p class="time" v-text="item.CreateTime"></p>
+                        <li v-for="(item,index) in pageModel.list" v-bind:key="index">
+                            <div class="info">
+                                <div class="amount">
+                                    <div class="left">
+                                        <div class="value">{{item.BeforeAce}}</div>
+                                        <div class="label">拆分前AK</div>
+                                    </div>
+                                    <div class="right">
+                                        <div class="value red">{{item.AfterAce}}</div>
+                                        <div class="label">拆分后AK</div>
+                                    </div>
+                                </div>
+                                <div class="number">
+                                    <div class="left">
+                                        <div class="value">{{item.Cycle}}</div>
+                                        <div class="label">拆分批次</div>
+                                    </div>
+                                    <div class="right">
+                                        <div class="value">{{item.Multiple}}</div>
+                                        <div class="label">拆分倍率</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="time">{{item.CreateTime}}</div>
+                            <!-- <p class="time" v-text="item.CreateTime"></p>
                             <div class="info_content">
-                                <div class="line first clearfix">
+                                <div class="line first">
                                     <div class="bl">
                                         <p class="number" v-text="item.BeforeAce"></p>
                                         <p class="text" v-text="language.BEFORE_SPLIT">拆分前AK</p>
-                                    </div>
-                                    <div class="bl middle">
-                                        <i class="iconfont iconchaifen"></i>
                                     </div>
                                     <div class="bl after">
                                         <p class="number" v-text="item.AfterAce"></p>
                                         <p class="text" v-text="language.AFTER_SPLIT">拆分后AK</p>
                                     </div>
                                 </div>
-                                <div class="line last clearfix">
+                                <div class="line last">
                                     <div class="bl">
                                         <p class="number" v-text="item.Cycle"></p>
                                         <p class="text" v-text="language.SPLIT_BATCH">拆分批次</p>
@@ -55,7 +82,7 @@
                                         <p class="text" v-text="language.SPLIT_MULTIPLE">拆分倍率</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </li>
                     </ul>
                     <div v-if="pageModel.isLoadMore" class="load_more clearfix">
@@ -73,5 +100,7 @@
     <script src="../../content/js/vant.min.js?v=28"></script>
     <script src="../../content/js/base.js?v=28"></script>
     <script src="../../content/js/pages/center/split.record.js?v=28"></script>
+    <script src="/content/js/vue-component.js?v=28"></script>
 </body>
+
 </html>

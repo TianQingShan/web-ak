@@ -2,14 +2,14 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
-    <title></title>
-    <link href="/content/css/base.css" rel="stylesheet" />
-    <link href="/content/css/vant.css" rel="stylesheet" />
-    <link href="/content/css/pages/center.css" rel="stylesheet" />
-    <link href="/assets/css/vue-component.css" rel="stylesheet" />
-    <link href="/assets/css/center.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+  <title></title>
+  <link href="/content/css/base.css" rel="stylesheet" />
+  <link href="/content/css/vant.css" rel="stylesheet" />
+  <link href="/content/css/pages/center.css" rel="stylesheet" />
+  <link href="/assets/css/vue-component.css" rel="stylesheet" />
+  <link href="/assets/css/center.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -27,21 +27,24 @@
           <div class="user-info-bottom">
             <div class="item">
               <div class="icon-items" v-if="currentUser.Credit > 0">
-                <div class="icon-item" v-for="n of Math.min(5, currentUser.Credit)" :key="n" style="background-image: url('/assets/images/center/image2@1x.png')"></div>
+                <div class="icon-item" v-for="n of Math.min(5, currentUser.Credit)" :key="n"
+                  style="background-image: url('/assets/images/center/image2@1x.png')"></div>
               </div>
               <div class="none-text" v-else>無</div>
               <div class="text">{{ language.TOP_UL_TEXT_1 }}</div>
             </div>
             <div class="item">
               <div class="icon-items" v-if="currentUser.InvestmentLevel.StarNumber > 0">
-                <div class="icon-item" v-for="n of Math.min(5, currentUser.InvestmentLevel.StarNumber)" :key="n" style="background-image: url('/assets/images/center/image3@1x.png')"></div>
+                <div class="icon-item" v-for="n of Math.min(5, currentUser.InvestmentLevel.StarNumber)" :key="n"
+                  style="background-image: url('/assets/images/center/image3@1x.png')"></div>
               </div>
               <div class="none-text" v-else>無</div>
               <div class="text">账户星级</div>
             </div>
             <div class="item">
               <div class="icon-items" v-if="currentUser.InvestmentLevel.DonateNumber">
-                <div class="icon-item" v-for="n of currentUser.InvestmentLevel.DonateNumber" :key="n" style="background-image: url('/assets/images/center/image4@1x.png')"></div>
+                <div class="icon-item" v-for="n of currentUser.InvestmentLevel.DonateNumber" :key="n"
+                  style="background-image: url('/assets/images/center/image4@1x.png')"></div>
               </div>
               <div class="none-text" v-else>暂无贡献</div>
               <div class="text">{{ language.TOP_UL_TEXT_3 }}</div>
@@ -51,10 +54,7 @@
       </div>
       <div class="bottom">
         <div class="content1">
-          <div
-            class="item"
-            v-for="({ icon, name, id, page }, index) of getItems"
-            :key="index"
+          <div class="item" v-for="({ icon, name, id, page }, index) of getItems" :key="index"
             @click="gotoLightPage(id, page)">
             <div class="icon" :style="{ backgroundImage: `url(${ icon })` }"></div>
             <div class="name">{{ name }}</div>
@@ -76,7 +76,8 @@
           </div>
         </div>
         <div class="content4">
-          <div class="item" v-for="({ name, linearGradient }, index) of getItems3" :key="index">
+          <div class="item" v-for="({ name, linearGradient,id,page }, index) of getItems3" :key="index"
+            @click="APP.GLOBAL.gotoNewWindow(id, page)">
             <div :style="{ backgroundImage: `${ linearGradient }` }" class="item-bg"></div>
             <div class="text">{{ name }}</div>
             <div class="more-round"></div>
@@ -86,9 +87,11 @@
     </div>
     <tab-bar :current-index="3"></tab-bar>
 
-    <van-dialog v-model="isPassowrdShow" show-cancel-button v-bind:before-close="confirmDialog" v-bind:confirm-button-text="language.DIALOG_BUTTON_1" v-bind:cancel-button-text="language.DIALOG_BUTTON_2">
-        <h4 class="dialog_title" v-text="language.DIALOG_TITLE"></h4>
-        <van-field v-model="form.pin" type="password" v-bind:label="language.DIALOG_LABEL" v-bind:placeholder="language.DIALOG_PLACEHOLDER" />
+    <van-dialog v-model="isPassowrdShow" show-cancel-button v-bind:before-close="confirmDialog"
+      v-bind:confirm-button-text="language.DIALOG_BUTTON_1" v-bind:cancel-button-text="language.DIALOG_BUTTON_2">
+      <h4 class="dialog_title" v-text="language.DIALOG_TITLE"></h4>
+      <van-field v-model="form.pin" type="password" v-bind:label="language.DIALOG_LABEL"
+        v-bind:placeholder="language.DIALOG_PLACEHOLDER" />
     </van-dialog>
   </div>
 

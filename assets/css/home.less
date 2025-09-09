@@ -33,6 +33,8 @@
 }
 
 #app-content {
+    padding-bottom: 82px;
+
     .notice {
         display: flex;
         justify-content: left;
@@ -359,8 +361,7 @@
 
     .klineBox {
         border-radius: 14px;
-        margin: 0 12px;
-        margin-top: 20px;
+        margin: 20px 12px;
         background-color: #fff;
         padding: 24px 0;
 
@@ -440,15 +441,31 @@
     }
 }
 
+.notice_frame {
+    width: 100%;
+    height: 500px;
+    background-color: transparent;
+}
+
+
+.notice_frame iframe {
+    border: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
 @keyframes isExpanded {
     0% {
         opacity: 1;
         transform: translateY(0);
     }
+
     25% {
         opacity: .6;
         transform: translateY(3px);
     }
+
     100% {
         opacity: 1;
         transform: translateY(0);

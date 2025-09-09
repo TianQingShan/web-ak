@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title></title>
+    <link href="/content/css/vant.css" rel="stylesheet" />
+    <link href="/content/css/base.css" rel="stylesheet" />
+    <link href="/assets/css/financial_management.css" rel="stylesheet">
+    <link href="/assets/css/vue-component.css" rel="stylesheet">
+</head>
+
+<body>
+    <div id="app">
+        <div class="header">
+            <top-back title="财务管理" bg-color="transparent" title-color="rgba(51,51,51,1)" />
+        </div>
+        <div class="page-content">
+            <div class="nav-list">
+                <div class="item" v-for="item in navList" :key="item.label"
+                    @click="APP.GLOBAL.gotoNewWindow(item.id, item.page)">
+                    <div class="left">
+                        <img :src="item.icon" />
+                        <span>{{item.label}}</span>
+                    </div>
+                    <div class="right">
+                        <img src="/assets/images//financial/arraw-right.svg" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../content/js/vue.js?v=28"></script>
+    <script src="../../content/js/vant.min.js?v=28"></script>
+    <script src="../../content/js/base.js?v=28"></script>
+    <script src="/content/js/vue-component.js?v=28"></script>
+    <script>
+        var _vue = new Vue({
+            el: '#app',
+            data: {
+                navList: [
+                    {
+                        label: "RP记录",
+                        id: "rp.record",
+                        page: "records/rp.record",
+                        icon: "/assets/images/financial/rp.svg"
+                    },
+                    {
+                        label: "SP记录",
+                        id: "sp.record",
+                        page: "records/sp.record",
+                        icon: "/assets/images/financial/sp.svg"
+                    },
+                    {
+                        label: "EP记录",
+                        id: "ep.record",
+                        page: "records/ep.record",
+                        icon: "/assets/images/financial/ep.svg"
+                    },
+                    {
+                        label: "TP记录",
+                        id: "tp.record",
+                        page: "records/tp.record",
+                        icon: "/assets/images/financial/tp.svg"
+                    },
+                    {
+                        label: "收益明细",
+                        id: "sy.profit",
+                        page: "profit",
+                        icon: "/assets/images/financial/sy.svg"
+                    },
+                    {
+                        label: "EP转出记录",
+                        id: "ep.out.record",
+                        page: "records/ep.out.record",
+                        icon: "/assets/images/financial/epzc.svg"
+                    },
+                    {
+                        label: "EP转入记录",
+                        id: "ep.in.record",
+                        page: "records/ep.in.record",
+                        icon: "/assets/images/financial/epzr.svg"
+                    },
+                    {
+                        label: "EP购买记录",
+                        id: "business.center",
+                        page: "business.center",
+                        icon: "/assets/images/financial/epBuy.svg"
+                    },
+                    {
+                        label: "EP出售记录",
+                        id: "business.center",
+                        page: "business.center",
+                        icon: "/assets/images/financial/epSell.svg"
+                    },
+                    {
+                        label: "拆分记录",
+                        id: "split.record",
+                        page: "split.record",
+                        icon: "/assets/images/financial/cf.svg"
+                    },
+                    {
+                        label: "一键归集明细",
+                        id: "rp.record",
+                        page: "records/rp.record",
+                        icon: "/assets/images/financial/gj.svg"
+                    },
+                    {
+                        label: "捐赠销毁记录",
+                        id: "rp.record",
+                        page: "records/rp.record",
+                        icon: "/assets/images/financial/zz.svg"
+                    },
+                ],
+            },
+        });
+    </script>
+</body>
+
+</html>

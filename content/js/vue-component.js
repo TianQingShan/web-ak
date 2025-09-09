@@ -62,11 +62,16 @@ Vue.component('top-back', {
       type: String,
       required: false,
       default: '#333'
+    },
+    bgColor: {
+      type: String,
+      required: false,
+      default: '#fff'
     }
   },
 
   template: `
-    <div class="TopBack">
+    <div class="TopBack" :style="{ backgroundColor: bgColor}">
       <div class="icon" @click="APP.GLOBAL.closeWindow"></div>
       <div class="title" :style="{ fontSize: titleFontSize + 'px', color: titleColor }">
         {{ title }}

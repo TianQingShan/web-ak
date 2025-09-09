@@ -1,21 +1,27 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
     <title></title>
     <link href="../../../content/css/base.css" rel="stylesheet" />
     <link href="../../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../../content/css/pages/center/records/record.base.css" rel="stylesheet" />
-    
+    <link href="/assets/css/rp.record.css" rel="stylesheet" />
+    <!-- <link href="../../../content/css/pages/center/records/record.base.css" rel="stylesheet" /> -->
+    <link rel="stylesheet" href="/assets/css/vue-component.css">
 </head>
+
 <body>
     <div id="app">
-        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+        <!-- <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
             <i id="app-back-button" class="iconfont iconzuo right-back"></i>
             <div class="app-head-text" v-text="language.TITLE_TEXT">SP記錄</div>
+        </div> -->
+        <div class="header">
+            <top-back title="SP記錄" title-color="rgba(51, 51, 51, 1)" bg-color="transparent"></top-back>
         </div>
-        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+        <div id="app-content">
             <div v-if="pageModel.isLoading" class="loading-box p50">
                 <van-loading color="black"></van-loading>
                 <p class="loading-text" v-text="language.LOADING_TEXT"></p>
@@ -27,18 +33,22 @@
                 </div>
                 <div v-else>
                     <ul class="list">
-                        <li v-for="(item,index) in pageModel.list"
-                            v-bind:key="index">
-                            <p class="line clearfix">
-                                <span class="text" 
-                                      v-text="(item.OperationType === 1 ? '+ ' : '- ') + numberFormat(item.Amount, 2)"
-                                      v-bind:class="[item.OperationType === 1 ? 'green' : 'red']"></span>
-                                <span class="value" v-text="numberFormat(item.SurplusTotalAmount, 2)"></span>
-                            </p>
-                            <p class="line">
-                                <span class="text time" v-text="item.TypeName"></span>
-                                <span class="value time" v-text="item.Time"></span>
-                            </p>
+                        <li v-for="(item,index) in pageModel.list" v-bind:key="index">
+                            <div class="left">
+                                <div class="img">
+                                    <img src="/assets/images/financial/sp.svg" />
+                                </div>
+                                <div>
+                                    <div class="title">{{item.TypeName}}</div>
+                                    <div class="time">{{item.Time}}</div>
+                                </div>
+                            </div>
+                            <div class="right">
+                                <div class="amount" :class="[item.OperationType === 1 ? 'green' : 'red']">
+                                    {{(item.OperationType === 1 ? '+' : '-') + numberFormat(item.Amount,
+                                    2)}}</div>
+                                <div class="value">{{numberFormat(item.SurplusTotalAmount, 2)}}</div>
+                            </div>
                         </li>
                     </ul>
                     <div v-if="pageModel.isLoadMore" class="load_more clearfix">
@@ -56,5 +66,7 @@
     <script src="../../../content/js/vant.min.js?v=28"></script>
     <script src="../../../content/js/base.js?v=28"></script>
     <script src="../../../content/js/pages/center/records/sp.record.js?v=28"></script>
+    <script src="/content/js/vue-component.js?v=28"></script>
 </body>
+
 </html>
