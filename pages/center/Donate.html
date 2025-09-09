@@ -2,97 +2,118 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
-    <title></title>
-    <link href="../../content/css/base.css" rel="stylesheet" />
-    <link href="../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../content/css/pages/center/Donate.css" rel="stylesheet" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+  <title></title>
+  <link href="/content/css/base.css" rel="stylesheet" />
+  <link href="/content/css/vant.css" rel="stylesheet" />
+  <link href="/assets/css/vue-component.css" rel="stylesheet" />
+  <link href="/assets/css/Donate.css" rel="stylesheet" />
 </head>
 
 <body>
-    <div id="app">
-        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
-            <i id="app-back-button" class="iconfont iconzuo right-back" ></i>
-            <div class="app-head-text" v-text="language.TITLE_TEXT">出售EP</div>
-            <i class="iconfont iconhome submit-button"  @click="gotoback" ></i>
-        </div>
-        <div v-if="isLoading" class="loading-box p50">
-            <van-loading color="black"></van-loading>
-            <p class="loading-text" v-text="language.LOADING_TEXT"></p>
-        </div>
-        <div id="app-content" v-else v-cloak v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}" v-bind:class="{'iphone': APP.CONFIG.IsSafeArea()}">
-             
-            <div class="input_group">
-                
-				<div class="warn">
-					<p class="caption" v-text="language.WARN_CAPTION"></p>
-					<p class="text" v-text="language.WARN_TEXT"></p>
-					
-					 
-				</div>
-				 
+  <!-- <div id="app">
+      <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+          <i id="app-back-button" class="iconfont iconzuo right-back" ></i>
+          <div class="app-head-text" v-text="language.TITLE_TEXT">出售EP</div>
+          <i class="iconfont iconhome submit-button"  @click="gotoback" ></i>
+      </div>
+      <div v-if="isLoading" class="loading-box p50">
+          <van-loading color="black"></van-loading>
+          <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+      </div>
+      <div id="app-content" v-else v-cloak v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}" v-bind:class="{'iphone': APP.CONFIG.IsSafeArea()}">
 
-            </div>
-            <van-tabs v-model="tabIndex" class="input_group" @change="tabChanged">
-                <van-tab v-bind:title="language.TAB_1">
-					<div class="input_group">
-						<div class="input_line">
-							<span class="input_text" v-text="language.BALANCE_5">EP</span>
-							<div class="input_control" v-text="display.EP" ></div>
-						</div>
-						<div class="input_line">
-							<span class="input_text" v-text="language.INPUT_TEXT_6">Donate </span>
-							<input type="text" class="input_control"  v-model="form.EP" maxlength="64" v-bind:placeholder="language.INPUT_PLACEHOLDER_6" />
-							<button class="all" @click="selectedAllItem('EP')" v-text="language.ALL" >Paste</button>
-						</div>
-					</div>
-					<div class="input_group">
-						<div class="input_line">
-							<span class="input_text" v-text="language.INPUT_TEXT_16">谷歌驗證碼</span>
-							<input type="tel" class="input_control" v-model="form.gCode" style="flex: 1;width: 0;" v-bind:placeholder="language.INPUT_PLACEHOLDER_16" maxlength="6" />
-							<button class="all" @click="clipFunc">Paste</button>
-						</div>
-					</div>
-					<button class="confirm_button" v-text="language.BUTTON_1" @click="doSubmitAjax">确认销毁</button>
-                </van-tab>
-				
-                <van-tab v-bind:title="language.TAB_2">
-                    <div class="input_group">
-						 <button class="confirm_button" onclick="window.location.href='Donate.as.html'">点击捐赠</button>
-					</div>
-					 
-                </van-tab>
-				
-				<van-tab v-bind:title="language.TAB_3">
-                    <div class="input_group">
-						<div class="input_line">
-							<span class="input_text" v-text="language.BALANCE_6">BALANCE_1</span>
-							<div class="input_control" v-text="display.SP" ></div>
-						</div>
-						<div class="input_line">
-							<span class="input_text" v-text="language.INPUT_TEXT_6">Donate</span>
-							<input type="text" class="input_control"  v-model="form.SP" maxlength="64" v-bind:placeholder="language.INPUT_PLACEHOLDER_6" />
-							<button class="all" @click="selectedAllItem('SP')" v-text="language.ALL" >Paste</button>
-						</div>
-					</div>
-					<div class="input_group">
-						<div class="input_line">
-							<span class="input_text" v-text="language.INPUT_TEXT_16">谷歌驗證碼</span>
-							<input type="tel" class="input_control" v-model="form.gCode" style="flex: 1;width: 0;" v-bind:placeholder="language.INPUT_PLACEHOLDER_16" maxlength="6" />
-							<button class="all" @click="clipFunc">Paste</button>
-						</div>
-					</div>
-					<button class="confirm_button" v-text="language.BUTTON_1" @click="doSubmitAjax">确认销毁</button>
-                </van-tab>
-            </van-tabs>
+          <div class="input_group">
 
+      <div class="warn">
+        <p class="caption" v-text="language.WARN_CAPTION"></p>
+        <p class="text" v-text="language.WARN_TEXT"></p>
+
+
+      </div>
+
+
+          </div>
+          <van-tabs v-model="tabIndex" class="input_group" @change="tabChanged">
+              <van-tab v-bind:title="language.TAB_1">
+        <div class="input_group">
+          <div class="input_line">
+            <span class="input_text" v-text="language.BALANCE_5">EP</span>
+            <div class="input_control" v-text="display.EP" ></div>
+          </div>
+          <div class="input_line">
+            <span class="input_text" v-text="language.INPUT_TEXT_6">Donate </span>
+            <input type="text" class="input_control"  v-model="form.EP" maxlength="64" v-bind:placeholder="language.INPUT_PLACEHOLDER_6" />
+            <button class="all" @click="selectedAllItem('EP')" v-text="language.ALL" >Paste</button>
+          </div>
         </div>
+        <div class="input_group">
+          <div class="input_line">
+            <span class="input_text" v-text="language.INPUT_TEXT_16">谷歌驗證碼</span>
+            <input type="tel" class="input_control" v-model="form.gCode" style="flex: 1;width: 0;" v-bind:placeholder="language.INPUT_PLACEHOLDER_16" maxlength="6" />
+            <button class="all" @click="clipFunc">Paste</button>
+          </div>
+        </div>
+        <button class="confirm_button" v-text="language.BUTTON_1" @click="doSubmitAjax">确认销毁</button>
+              </van-tab>
+
+              <van-tab v-bind:title="language.TAB_2">
+                  <div class="input_group">
+            <button class="confirm_button" onclick="window.location.href='Donate.as.html'">点击捐赠</button>
+        </div>
+
+              </van-tab>
+
+      <van-tab v-bind:title="language.TAB_3">
+                  <div class="input_group">
+          <div class="input_line">
+            <span class="input_text" v-text="language.BALANCE_6">BALANCE_1</span>
+            <div class="input_control" v-text="display.SP" ></div>
+          </div>
+          <div class="input_line">
+            <span class="input_text" v-text="language.INPUT_TEXT_6">Donate</span>
+            <input type="text" class="input_control"  v-model="form.SP" maxlength="64" v-bind:placeholder="language.INPUT_PLACEHOLDER_6" />
+            <button class="all" @click="selectedAllItem('SP')" v-text="language.ALL" >Paste</button>
+          </div>
+        </div>
+        <div class="input_group">
+          <div class="input_line">
+            <span class="input_text" v-text="language.INPUT_TEXT_16">谷歌驗證碼</span>
+            <input type="tel" class="input_control" v-model="form.gCode" style="flex: 1;width: 0;" v-bind:placeholder="language.INPUT_PLACEHOLDER_16" maxlength="6" />
+            <button class="all" @click="clipFunc">Paste</button>
+          </div>
+        </div>
+        <button class="confirm_button" v-text="language.BUTTON_1" @click="doSubmitAjax">确认销毁</button>
+              </van-tab>
+          </van-tabs>
+
+      </div>
+  </div> -->
+
+  <div id="app">
+    <div class="Donate">
+      <top-back title="捐赠销毁"></top-back>
+      <div class="content-container">
+        <div class="content1">销毁后，将无法恢复</div>
+        <div class="content2">
+          <div class="tab-items">
+            <div class="tab-item">销毁EP</div>
+            <div class="tab-item">销毁AK</div>
+            <div class="tab-item">销毁SP</div>
+          </div>
+          <template v-if="true">销毁EPContent</template>
+          <template v-else-if="false">销毁AKContent</template>
+          <template v-else-if="false">销毁SPContent</template>
+        </div>
+      </div>
     </div>
-    <script src="../../content/js/vue.js?v=30"></script>
-    <script src="../../content/js/vant.min.js?v=30"></script>
-    <script src="../../content/js/base.js?v=30"></script>
-    <script src="../../content/js/pages/center/Donate.js?v=30"></script>
+  </div>
+  <script src="/content/js/vue.js?v=30"></script>
+  <script src="/content/js/vant.min.js?v=30"></script>
+  <script src="/content/js/base.js?v=30"></script>
+  <script src="/content/js/vue-component.js?v=28"></script>
+  <script src="/content/js/pages/center/Donate.js?v=30"></script>
 </body>
 
 </html>
