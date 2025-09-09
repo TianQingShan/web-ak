@@ -71,6 +71,7 @@ Vue.component('top-back', {
       <div class="title" :style="{ fontSize: titleFontSize + 'px', color: titleColor }">
         {{ title }}
       </div>
+      <slot name="right"></slot>
     </div>
   `
 })
@@ -151,6 +152,38 @@ Vue.component('tab-bar', {
           <p class="menus-text" v-text="item.text"></p>
         </li>
       </ul>
+    </div>
+  `
+})
+
+Vue.component('google-v-code', {
+  template: `
+    <div class="GoogleVCode">
+      <div class="g-text">谷歌驗證碼</div>
+      <input class="g-input" placeholder="请输入谷歌驗證碼" />
+      <img class="g-icon" src="/assets/svg/icon6.svg" />
+    </div>
+  `
+})
+
+Vue.component('hold-assets', {
+  props: {
+    /** 持有资产名称 */
+    label: {
+      type: String,
+      required: true
+    },
+
+    /** 持有资产值 */
+    value: {
+      type: String,
+      required: true
+    }
+  },
+  template: `
+    <div class="HoldAssets">
+      <div class="icon" :data-text="label"></div>
+      <div class="value">{{ value}}</div>
     </div>
   `
 })

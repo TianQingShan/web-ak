@@ -158,7 +158,7 @@ var _vue = new Vue({
 			this.form.bankBranchNameID = item.Id;
             this.isBankNameShow = false;
         },
-	
+
         'tabChanged': function(index) {
             this.form.receiveType = index + 1;
             this.changeItems(index);
@@ -297,7 +297,8 @@ var _vue = new Vue({
         'loadPageData': function() {
             APP.GLOBAL.ajax({
 				url: APP.CONFIG.BASE_URL+'Mnemonic_Get01',
-				
+                error() {
+                },
                 success: function(result) {
                     if (result.Error) {
                         APP.GLOBAL.toastMsg(result.Msg);
@@ -319,13 +320,13 @@ var _vue = new Vue({
 		                APP.GLOBAL.toastMsg(result.Msg);
 		                return;
 		            }
-		
+
 		            _vue.nationNameList = result.Data;
 		            _vue.isLoadingBank = false;
 					_vue.form.EPFee = result.EPFee;
 					_vue.display.Global = result.Global;
 					_vue.display.ExchangeUsdt = result.ExchangeUsdt;
-					if (result.EPFee	===1 ) 
+					if (result.EPFee	===1 )
 					{
 						_vue.display.EPFeeDisplay 	= '5 EP';
 						_vue.display.sellTotalAmount = numberFormat(parseInt(_vue.form.epAmount)+5, 0) + '    EP';
@@ -335,9 +336,9 @@ var _vue = new Vue({
 						_vue.display.EPFeeDisplay 	= '5 TP';
 						_vue.display.sellTotalAmount = numberFormat(parseInt(_vue.form.epAmount), 0) + ' EP  + 5 TP';
 					}
-					
+
 		        },
-				
+
 		    });
 		},
         'loadBankName': function() {
@@ -352,8 +353,8 @@ var _vue = new Vue({
 
                     _vue.bankNameList = result.Data;
                     _vue.isLoadingBank = false;
-					
-					
+
+
                 }
             });
         },
@@ -362,9 +363,9 @@ var _vue = new Vue({
             this.display.amountText = this.language.INPUT_PLACEHOLDER_1;
             //this.form.epAmount = 111;
             this.display.sellTotalAmount = '0';
-			
- 
-			if (index === 0 || index === 2) 
+
+
+			if (index === 0 || index === 2)
 			{
            		 this.form.epAmount = 150;
 			}
@@ -405,13 +406,13 @@ var _vue = new Vue({
 			{
 				this.display.EPFeeDisplay =  ' 5  EP';
 				this.display.sellTotalAmount = numberFormat(parseInt(value)+5, 0) + '    EP';
-			}	
+			}
 			if (this.form.EPFee === 2)
 			{
 				this.display.EPFeeDisplay = '  5  TP';
 				this.display.sellTotalAmount = numberFormat(parseInt(value), 0) + ' EP  +  5 TP';
 			}
-			
+
         },
         'form.bankNumber': function(v) {
             if (!v) {

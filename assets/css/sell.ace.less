@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: column;
 
-  .bottom {
+  .content-container {
     margin-top: 29px;
     position: relative;
     display: flex;
@@ -162,46 +162,6 @@
 
       .content3-bottom {
         margin-top: 28px;
-        width: 100%;
-        background-color: rgba(245, 245, 245, 1);
-        border-radius: 22px;
-        padding: 11px 16px;
-        display: flex;
-        align-items: center;
-
-        .content3-bottom-text {
-          font-weight: 600;
-          font-size: 14px;
-          line-height: 22px;
-          color: rgba(51, 51, 51, 1);
-          margin-right: 8px;
-          padding-right: 8px;
-          position: relative;
-
-          &::before {
-            content: "";
-            position: absolute;
-            top: 50%;
-            right: 0;
-            transform: translateY(-50%);
-            width: 1px;
-            height: 14px;
-            background-color: rgba(153, 153, 153, 1);
-
-          }
-        }
-
-        .content3-bottom-input {
-          flex-grow: 1;
-          font-weight: 400;
-          font-size: 14px;
-          line-height: 22px;
-          color: rgba(153, 153, 153, 1);
-        }
-
-        .content3-bottom-icon {
-          width: 20px;
-        }
       }
     }
   }
