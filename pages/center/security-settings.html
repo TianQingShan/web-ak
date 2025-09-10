@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+  <title></title>
+  <link href="/content/css/base.css" rel="stylesheet" />
+  <link href="/content/css/vant.css" rel="stylesheet" />
+  <link href="/assets/css/vue-component.css" rel="stylesheet" />
+  <link href="/assets/css/security-settings.css" rel="stylesheet" />
+</head>
+
+<body>
+  <div id="app">
+    <div class="SecuritySettings">
+      <div class="top">
+        <top-back title="安全设置"></top-back>
+      </div>
+
+      <div class="content-container">
+        <div class="content1">
+          <div
+            class="item"
+            v-for="({ key, icon, text, iconBoxLinearGradient, iconWidth }, index) of items"
+            :key="index"
+            @click="handleItemClick(key)">
+            <div class="left">
+              <div class="icon-box" :style="{ backgroundImage: `${ iconBoxLinearGradient }` }">
+                <img class="icon" :src="icon" :style="{ width: `${ iconWidth }px` }" />
+              </div>
+              <div class="text">{{ text }}</div>
+            </div>
+            <img class="arrow" src="/assets/svg/icon4.svg" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/content/js/vue.js?v=30"></script>
+  <script src="/content/js/vant.min.js?v=30"></script>
+  <script src="/content/js/base.js?v=30"></script>
+  <script src="/content/js/vue-component.js?v=28"></script>
+  <script src="/content/js/pages/center/security-settings.js?v=30"></script>
+</body>
+
+</html>

@@ -98,15 +98,31 @@
         <div class="content1">销毁后，将无法恢复</div>
         <div class="content2">
           <div class="tab-items">
-            <div class="tab-item">销毁EP</div>
+            <div class="tab-item active">销毁EP</div>
             <div class="tab-item">销毁AK</div>
             <div class="tab-item">销毁SP</div>
           </div>
-          <template v-if="true">销毁EPContent</template>
-          <template v-else-if="false">销毁AKContent</template>
-          <template v-else-if="false">销毁SPContent</template>
+          <div class="tab-content">
+            <div class="tab-content-items">
+              <div class="tab-content-item select-account">
+                <div class="label">选择账户</div>
+                <div class="value">當前賬戶</div>
+              </div>
+              <div class="tab-content-item balance">
+                <div class="label">AK余额</div>
+                <input class="input" type="text" placeholder="0" />
+              </div>
+              <div class="tab-content-item number">
+                <div class="label">销毁数量</div>
+                <input class="input" type="text" placeholder="0" />
+                <div class="all-button">全部</div>
+              </div>
+            </div>
+            <google-v-code></google-v-code>
+          </div>
         </div>
       </div>
+      <custom-button text="确认销毁"></custom-button>
     </div>
   </div>
   <script src="/content/js/vue.js?v=30"></script>

@@ -76,7 +76,7 @@
           </div>
         </div>
         <div class="content4">
-          <div class="item" v-for="({ name, linearGradient,id,page }, index) of getItems3" :key="index"
+          <div class="item" v-for="({ name, linearGradient, id, page }, index) of getItems3" :key="index"
             @click="APP.GLOBAL.gotoNewWindow(id, page)">
             <div :style="{ backgroundImage: `${ linearGradient }` }" class="item-bg"></div>
             <div class="text">{{ name }}</div>

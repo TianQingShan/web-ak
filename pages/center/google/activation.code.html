@@ -1,53 +1,126 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title></title>
-    <link href="../../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../../content/css/base.css" rel="stylesheet" />
-    <link href="../../../content/css/pages/center/google/activation.code.css" rel="stylesheet" />
-    <script src="html5plus://ready"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title></title>
+  <link href="/content/css/vant.css" rel="stylesheet" />
+  <link href="/content/css/base.css" rel="stylesheet" />
+  <link href="/assets/css/vue-component.css" rel="stylesheet" />
+  <link href="/assets/css/activation.code.css" rel="stylesheet" />
+  <script src="html5plus://ready"></script>
 </head>
 <body>
-    <div id="app">
-        <div class="bg"></div>
-        <div id="app-head" class="fixed">
-            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
-            <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
-            <button v-if="!isActive"
-                    class="submit-button" 
-                    v-text="language.SUBMIT_BUTTON" 
-                    @click="gotoUnbind">解除綁定</button>
+  <!-- <div id="app">
+      <div class="bg"></div>
+      <div id="app-head" class="fixed">
+          <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+          <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+          <button v-if="!isActive"
+                  class="submit-button"
+                  v-text="language.SUBMIT_BUTTON"
+                  @click="gotoUnbind">解除綁定</button>
+      </div>
+      <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+          <div v-if="!isActive">
+              <van-password-input v-bind:value="form.gCode"
+                                  v-bind:mask="false"
+                                  v-bind:focused="true"
+                                  v-bind:info="language.PASSWORD_INFO"></van-password-input>
+              <van-number-keyboard v-bind:show="true"
+                                    @input="onInput"
+                                    @delete="onDelete"></van-number-keyboard>
+          </div>
+          <div v-else v-cloak class="box">
+              <i class="iconfont icon-jurassic_quanxian"></i>
+              <div class="key">
+                  <p class="title" v-text="language.BOX_TITLE">您的激活碼（用于协助好友激活Google验证）</p>
+                  <input id="aCode" readonly v-bind:value="pageModel.activeCode" />
+              </div>
+              <button class="confirm_button"
+                      v-text="language.BUTTON_TEXT"
+                      data-clipboard-target="#aCode">
+                  複製激活碼
+              </button>
+          </div>
+      </div>
+  </div> -->
+
+  <div id="app">
+    <div class="ActivationCode">
+      <top-back title="谷歌验证"></top-back>
+      <div class="content1">
+        <div class="item">
+          <div class="label">激活码</div>
+          <input type="text" class="input" placeholder="請输入推荐人提供的激活码" />
         </div>
-        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
-            <div v-if="!isActive">
-                <van-password-input v-bind:value="form.gCode"
-                                    v-bind:mask="false"
-                                    v-bind:focused="true"
-                                    v-bind:info="language.PASSWORD_INFO"></van-password-input>
-                <van-number-keyboard v-bind:show="true"
-                                     @input="onInput"
-                                     @delete="onDelete"></van-number-keyboard>
-            </div>
-            <div v-else v-cloak class="box">
-                <i class="iconfont icon-jurassic_quanxian"></i>
-                <div class="key">
-                    <p class="title" v-text="language.BOX_TITLE">您的激活碼（用于协助好友激活Google验证）</p>
-                    <input id="aCode" readonly v-bind:value="pageModel.activeCode" />
-                </div>
-                <button class="confirm_button"
-                        v-text="language.BUTTON_TEXT"
-                        data-clipboard-target="#aCode">
-                    複製激活碼
-                </button>
-            </div>
+        <div class="item">
+          <div class="label">交易密码</div>
+          <input type="text" class="input" placeholder="請输入您的交易密码" />
         </div>
+      </div>
+      <custom-button text="激活"></custom-button>
+      <div class="content2">
+        <div class="title">绑定Google验证步骤</div>
+        <div class="step-content">
+          <div class="item">
+            <div class="label">第一步</div>
+            <div class="text">
+              打开AK APP，点击【我的】
+              <img class="arrow" src="/assets/svg/icon16.svg" />
+              【Google验证】
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="label">第二步</div>
+            <div class="text">输入推荐人提供的激活码，填写交易密码。点击【激活】</div>
+          </div>
+
+          <div class="item">
+            <div class="label">第三步</div>
+            <div class="text">出现绑定谷歌身份验证页面，点击复制谷歌密钥。</div>
+          </div>
+
+          <div class="item">
+            <div class="label">第四步</div>
+            <div class="text">打开谷歌身份验证器Google Authenticator（请从百度或 谷歌搜索下载安装】</div>
+          </div>
+
+          <div class="item">
+            <div class="label">第五步</div>
+            <div class="text">
+              在谷歌身份验证器中点击【+】
+              <img class="arrow" src="/assets/svg/icon16.svg" />
+              【输入提供的密钥】，将第三步复制的密钥粘贴进去，点击添加。
+            </div>
+          </div>
+
+          <div class="item">
+            <div class="label">第六步</div>
+            <div class="text">回到AK APP，输入谷歌验证码。</div>
+          </div>
+
+          <div class="item">
+            <div class="label">第七步</div>
+            <div class="text">
+              绑定成功。绑定成功后点【我的】
+              <img class="arrow" src="/assets/svg/icon16.svg" />
+              【Google激活码】即可查看激活码复制给下级绑定。
+            </div>
+          </div>
+        </div>
+        <div class="tip-message">
+          在EP操作合出售AK等页面会要求填写谷歌验证码。 为了您的账号安全，请妥善保管谷歌验证码，不要告诉他人。
+        </div>
+      </div>
     </div>
-    <script src="../../../content/js/vue.js?v=28"></script>
-    <script src="../../../content/js/vant.min.js?v=28"></script>
-    <script src="../../../content/js/base.js?v=28"></script>
-    <script src="../../../content/js/clipboard.min.js?v=28"></script>
-    <script src="../../../content/js/pages/center/google/activation.code.js?v=28"></script>
+  </div>
+  <script src="/content/js/vue.js?v=28"></script>
+  <script src="/content/js/vant.min.js?v=28"></script>
+  <script src="/content/js/base.js?v=28"></script>
+  <script src="/content/js/clipboard.min.js?v=28"></script>
+  <script src="/content/js/vue-component.js?v=28"></script>
+  <script src="/content/js/pages/center/google/activation.code.js?v=28"></script>
 </body>
 </html>
