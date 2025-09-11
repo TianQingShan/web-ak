@@ -1,73 +1,103 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
-    <title></title>
-    <link href="../../../content/css/base.css" rel="stylesheet" />
-    <link href="../../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../../content/css/pages/center/security/change.pin.css" rel="stylesheet" />
-    
+  <meta charset="utf-8" />
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
+  <title></title>
+  <link href="/content/css/base.css" rel="stylesheet" />
+  <link href="/content/css/vant.css" rel="stylesheet" />
+  <link href="/assets/css/vue-component.css" rel="stylesheet" />
+  <link href="/assets/css/change.pin.css" rel="stylesheet" />
+
 </head>
 <body>
-    <div id="app">
-        <div id="app-head" class="van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
-            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
-            <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+  <!-- <div id="app">
+      <div id="app-head" class="van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+          <i id="app-back-button" class="iconfont iconzuo right-back"></i>
+          <div class="app-head-text" v-text="language.TITLE_TEXT"></div>
+      </div>
+      <div id="app-content">
+          <div v-if="isLoadingAnswer" class="loading-box">
+              <van-loading color="black"></van-loading>
+              <p class="loading-text" v-text="language.LOADING"></p>
+          </div>
+          <div v-else v-cloak>
+              <div class="warn text-left" v-if="request.fp == 'change'">
+                  <b>
+                      <i class="iconfont icon-warning-line"></i>
+                      <span v-text="language.WARNING_TITLE"></span>
+                  </b>
+                  <p v-text="language.WARNING_TEXT"></p>
+              </div>
+              <div class="input_content">
+                  <b class="rule" v-text="language.RULE_TITLE"></b>
+                  <ul class="rules">
+                      <li class="rule_item" v-text="language.RULE_ITEM_1"></li>
+                      <li class="rule_item" v-text="language.RULE_ITEM_2"></li>
+                  </ul>
+              </div>
+              <div class="input_group">
+                  <div class="input_line van-hairline--bottom">
+                      <span class="input_text" v-text="language.CURRENT_TRANSFER_PWD">當前交易密碼</span>
+                      <input type="password" class="input_control" v-model="form.oldPassword" maxlength="16" v-bind:placeholder="language.PLEASE_INPUT_CURRENT_TRANSFER_PWD" />
+                  </div>
+                  <div class="input_line van-hairline--bottom">
+                      <span class="input_text" v-text="language.NEW_TRANSFER_PWD">新的交易密碼</span>
+                      <input type="password" class="input_control" v-model="form.password" maxlength="16" v-bind:placeholder="language.PLS_IPT_NEW_PWD" />
+                  </div>
+                  <div class="input_line">
+                      <span class="input_text" v-text="language.CONFIRM_TRANSFER_PWD">重複交易密碼</span>
+                      <input type="password" class="input_control" v-model="confirmPassword" maxlength="16" v-bind:placeholder="language.CONFIRM_NEW_PWD" />
+                  </div>
+              </div>
+              <div class="input_group border">
+                  <div class="input_line full">
+                      <p class="text_line" v-text="questionDisplay"></p>
+                      <input type="text" class="full_control" v-model="form.answer" v-bind:placeholder="language.INPUT_PLACEHOLDER_1" maxlength="10" />
+                  </div>
+              </div>
+              <button class="confirm_button" @click="checkData" v-text="language.CONFIRM_MODIFY">確認更改</button>
+          </div>
+      </div>
+  </div> -->
+
+  <div id="app">
+    <div class="ChangePin">
+      <top-back title="修改交易密码"></top-back>
+      <div class="content-container">
+        <div class="content1">
+          <div class="text">
+            <p>交易密码最少6位；</p>
+            <p>必须包含大写字母、小写字母和数字</p>
+          </div>
         </div>
-        <div id="app-content">
-            <div v-if="isLoadingAnswer" class="loading-box">
-                <van-loading color="black"></van-loading>
-                <p class="loading-text" v-text="language.LOADING"></p>
-            </div>
-            <div v-else v-cloak>
-                <div class="warn text-left" v-if="request.fp == 'change'">
-                    <b>
-                        <i class="iconfont icon-warning-line"></i>
-                        <span v-text="language.WARNING_TITLE"></span>
-                    </b>
-                    <p v-text="language.WARNING_TEXT"></p>
-                </div>
-                <div class="input_content">
-                    <b class="rule" v-text="language.RULE_TITLE"></b>
-                    <ul class="rules">
-                        <li class="rule_item" v-text="language.RULE_ITEM_1"></li>
-                        <li class="rule_item" v-text="language.RULE_ITEM_2"></li>
-                    </ul>
-                </div>
-                <div class="input_group">
-                    <div class="input_line van-hairline--bottom">
-                        <span class="input_text" v-text="language.CURRENT_TRANSFER_PWD">當前交易密碼</span>
-                        <input type="password" class="input_control" v-model="form.oldPassword" maxlength="16" v-bind:placeholder="language.PLEASE_INPUT_CURRENT_TRANSFER_PWD" />
-                    </div>
-                    <div class="input_line van-hairline--bottom">
-                        <span class="input_text" v-text="language.NEW_TRANSFER_PWD">新的交易密碼</span>
-                        <input type="password" class="input_control" v-model="form.password" maxlength="16" v-bind:placeholder="language.PLS_IPT_NEW_PWD" />
-                    </div>
-                    <div class="input_line">
-                        <span class="input_text" v-text="language.CONFIRM_TRANSFER_PWD">重複交易密碼</span>
-                        <input type="password" class="input_control" v-model="confirmPassword" maxlength="16" v-bind:placeholder="language.CONFIRM_NEW_PWD" />
-                    </div>
-                </div>
-                <div class="input_group border">
-                    <div class="input_line full">
-                        <p class="text_line" v-text="questionDisplay"></p>
-                        <input type="text" class="full_control" v-model="form.answer" v-bind:placeholder="language.INPUT_PLACEHOLDER_1" maxlength="10" />
-                    </div>
-                </div>
-                <!-- <p class="warn mt-10 " v-text="language.INPUT_TEXT_6"></p>
-                <div class="input_group border">
-                    <div class="input_line full">
-                        <input type="text" class="full_control" v-model="form.idcard" v-bind:placeholder="language.INPUT_PLACEHOLDER_2"  />
-                    </div>
-                </div> -->
-                <button class="confirm_button" @click="checkData" v-text="language.CONFIRM_MODIFY">確認更改</button>
-            </div>
+        <div class="content2">
+          <div class="item">
+            <div class="label">当前交易密码</div>
+            <input class="input" type="text" placeholder="請輸入当前交易密码" />
+          </div>
+          <div class="item">
+            <div class="label">新交易密码</div>
+            <input class="input" type="text" placeholder="請輸入新的交易密码" />
+          </div>
+          <div class="item">
+            <div class="label">重复交易密码</div>
+            <input class="input" type="text" placeholder="点击重复输入交易密码" />
+          </div>
         </div>
+
+        <div class="content3">
+          <div class="label">您的自定义问题！（答案可随意）</div>
+          <input type="text" class="input" placeholder="点击输入问题答案" />
+        </div>
+      </div>
+      <custom-button text="确认修改"></custom-button>
     </div>
-    <script src="../../../content/js/vue.js?v=28"></script>
-    <script src="../../../content/js/vant.min.js?v=28"></script>
-    <script src="../../../content/js/base.js?v=28"></script>
-    <script src="../../../content/js/pages/center/security/change.pin.js?v=28"></script>
+  </div>
+  <script src="/content/js/vue.js?v=28"></script>
+  <script src="/content/js/vant.min.js?v=28"></script>
+  <script src="/content/js/base.js?v=28"></script>
+  <script src="/content/js/vue-component.js?v=28"></script>
+  <script src="/content/js/pages/center/security/change.pin.js?v=28"></script>
 </body>
 </html>

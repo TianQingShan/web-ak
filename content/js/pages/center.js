@@ -435,6 +435,8 @@ var _vue = new Vue({
                     linearGradient: 'linear-gradient(180deg, #B9D8F7 63%, #fff 100%)'
                 },
                 {
+                    id: 'security-settings',
+                    page: 'center/security-settings',
 
                     name: language.BLOCK_4.TITLE,
                     linearGradient: 'linear-gradient(180deg, #D4FAE1 63%, #fff 100%)'
