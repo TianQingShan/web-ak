@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
@@ -8,65 +9,83 @@
     <link href="../../content/css/vant.css" rel="stylesheet" />
     <link href="../../content/js/orgchart/css/font-awesome.min.css" rel="stylesheet" />
     <link href="../../content/js/orgchart/css/jquery.orgchart.css" rel="stylesheet" />
-    <link href="../../content/css/pages/center/my.fans.tree.css" rel="stylesheet" />
-    
+    <!-- <link href="../../content/css/pages/center/my.fans.tree.css" rel="stylesheet" /> -->
+    <link href="/assets//css/my.fans.tree.css" rel="stylesheet">
+    <link href="/assets/css/vue-component.css" rel="stylesheet">
+
 </head>
+
 <body>
     <div id="app">
-        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+        <!-- <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
             <i id="app-back-button" class="iconfont iconzuo right-back"></i>
             <div class="app-head-text" v-text="language.TITLE_TEXT">我的粉絲(圖)</div>
+        </div> -->
+
+        <div class="page-content">
+            <div class="header">
+                <top-back :title="language.TITLE_TEXT" title-color="rgba(51,51,51,1)"></top-back>
+            </div>
+            <div class="search-warp">
+                <div class="icon"><img src="/assets//images/friend/search-green.svg"></div>
+                <input class="search-input" @blur="isFocus = false" @focus="isFocus = true" type="text" placeholder="请输入ID或登录名" v-model="searchKey"
+                    @keyup.enter="onSearch" maxlength="10">
+                <div class="search-btn" @click="onSearch">搜索</div>
+            </div>
+            <div class="content">
+                <div v-show="isLoading" class="loading-box">
+                    <van-loading color="black"></van-loading>
+                    <p class="loading-text" v-text="language.LOADING_TEXT">正在載入...</p>
+                </div>
+                <div v-show="!isLoading" v-cloak id="chart-container"></div>
+            </div>
+
+            <div class="btns" v-if="!isLoading && !isFocus">
+                <div class="top" v-if="historyList.length!=0">
+                    <div class="btn" @click="historyList.length != 0 && gotoBack()">
+                        向上翻页
+                    </div>
+                    <div class="btn" @click="historyList.length != 0 && gotoUpLayer()">
+                        上一层
+                    </div>
+                </div>
+                <div class="btm">
+                    <custom-button :text="'[' + currentFlowNumber + '] ' + language.MY_LEFT_UNDEREST"
+                        @click="myLeftDown" :height="56" />
+                </div>
+            </div>
         </div>
-        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+        <!-- <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
             <form action="/">
-                <van-search class="fixed_top"
-                            v-bind:style="{'top': (45 + statusbarHeight) + 'px'}"
-                            v-model="searchKey"
-                            v-bind:placeholder="language.INPUT_PLAYER_ID"
-                            show-action
-                            @search="onSearch"
-                            @cancel="onCancel"
-                            @blur="isFocus = false"
-                            @focus="isFocus = true">
+                <van-search class="fixed_top" v-bind:style="{'top': (45 + statusbarHeight) + 'px'}" v-model="searchKey"
+                    v-bind:placeholder="language.INPUT_PLAYER_ID" show-action @search="onSearch" @cancel="onCancel"
+                    @blur="isFocus = false" @focus="isFocus = true">
                     <i slot="left-icon" class="iconfont iconsousuo"></i>
                     <div slot="action" @click="onSearch" v-text="language.SEARCH">搜索</div>
                 </van-search>
             </form>
-            <div v-show="isLoading" class="loading-box">
-                <van-loading color="black"></van-loading>
-                <p class="loading-text" v-text="language.LOADING_TEXT">正在載入...</p>
-            </div>
-            <div v-show="!isLoading" v-cloak id="chart-container"></div>
-            <div v-show="!isLoading && !isFocus" class="actions clearfix">
-                <button class="btn up"
-                        v-bind:class="{'enable': historyList.length !== 0, 'safe': APP.CONFIG.IsSafeArea()}"
-                        @click="historyList.length != 0 && gotoBack()"
-                        v-text="language.BUTTON_1"></button>
-                <button class="btn up "						
-						v-bind:class="{'enable': historyList.length !== 0, 'safe': APP.CONFIG.IsSafeArea()}"
-                        @click="historyList.length != 0 && gotoUpLayer()"
-                        v-text="language.BUTTON_3"></button>
-                <button class="btn left_down" 
-                        v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}"
-                        @click="myLeftDown" 
-                        v-text="'[' + currentFlowNumber + '] ' + language.BUTTON_2"></button>
-            </div>
-        </div>
+        </div> -->
         <van-popup v-cloak v-model="isShow" class="panel">
-            <p class="title" v-text="language.POPUP_TITLE">注册类型</p>
-            <van-radio-group v-model="radioType">
-                <van-cell-group>
-                    <van-cell class="type_cell" v-bind:title="language.POPUP_ITEM_1" clickable @click="radioType = '1'">
-                        <van-radio name="1" />
-                    </van-cell>
-                    <van-cell class="type_cell" v-bind:title="language.POPUP_ITEM_2" clickable @click="radioType = '2'">
-                        <van-radio name="2" />
-                    </van-cell>
-                </van-cell-group>
-            </van-radio-group>
-            <div class="type_action clearfix">
-                <button class="confirm_button type_btn cancel" @click="isShow = false" v-text="language.POPUP_BUTTON_1">關閉</button>
-                <button class="confirm_button type_btn" @click="typeConfirm" v-text="language.POPUP_BUTTON_2">確定</button>
+            <div class="content">
+                <div class="title">注册类型</div>
+                <div class="checkbox-wrap">
+                    <div class="check-item">
+                        <div class="item-left">左边</div>
+                        <div class="item-right" @click="radioType = '1'">
+                            <checkbox :checked="radioType == 1 ? true : false" />
+                        </div>
+                    </div>
+                    <div class="check-item">
+                        <div class="item-left">右边</div>
+                        <div class="item-right" @click="radioType = '2'">
+                            <checkbox :checked="radioType == 2 ? true : false" />
+                        </div>
+                    </div>
+                </div>
+                <div class="btns">
+                    <div class="btn cancel" @click="isShow = false" v-text="language.POPUP_BUTTON_1">關閉</div>
+                    <div class="btn confirm" @click="typeConfirm" v-text="language.POPUP_BUTTON_2">確定</div>
+                </div>
             </div>
         </van-popup>
     </div>
@@ -76,5 +95,7 @@
     <script src="../../content/js/orgchart/js/jquery.min.js?v=28"></script>
     <script src="../../content/js/orgchart/js/jquery.orgchart.js?v=28"></script>
     <script src="../../content/js/pages/center/my.fans.tree.js?v=28"></script>
+    <script src="/content/js/vue-component.js?v=28"></script>
 </body>
+
 </html>

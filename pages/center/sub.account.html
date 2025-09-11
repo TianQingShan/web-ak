@@ -1,21 +1,98 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
     <title>子賬戶管理</title>
     <link href="../../content/css/base.css" rel="stylesheet" />
     <link href="../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../content/css/pages/center/sub.account.css" rel="stylesheet" />
+    <!-- <link href="../../content/css/pages/center/sub.account.css" rel="stylesheet" /> -->
+    <link href="/assets/css/sub.account.css" rel="stylesheet">
+    <link href="/assets/css/vue-component.css" rel="stylesheet">
 </head>
+
 <body>
     <div id="app">
-        <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
+        <div class="page-content">
+            <div class="header">
+                <top-back :title="language.TITLE_TEXT" title-color="rgba(51,51,51,1)">
+                    <div v-show="!isLoading" slot="right" class="right" @click="createAccount"><img src="/assets//icon/user.svg"></div>
+                </top-back>
+            </div>
+            <div class="list-wrap" ref="scrollContainer" @scroll="handleScroll">
+                <div v-if="isLoading" class="loading-box">
+                    <van-loading color="black"></van-loading>
+                    <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+                </div>
+                <div v-else v-cloak class="list_content">
+                    <div v-if="pageModel.list.length === 0" class="none-data">
+                        <i class="iconfont iconwu"></i>
+                        <p class="none-data-text">暫無好友信息</p>
+                    </div>
+                    <div v-else>
+                        <div class="list">
+                            <div class="user-info-item" v-for="(item,index) in pageModel.list"
+                                @click="choiceUser(item)">
+                                <div class="grade"><i class="iconfont iconxing"
+                                        v-for="(s, sIndex) in item.LevelNumber"></i>
+                                </div>
+                                <div class="user-info-top">
+                                    <div class="avatar"><img :src="item.AvatarImage"></div>
+                                    <div class="info">
+                                        <div class="name">{{item.MemberNo}}</div>
+                                        <div class="label">ID: {{item.FlowNumber}}</div>
+                                    </div>
+                                </div>
+                                <div class="user-info-center">
+                                    <div class="item">
+                                        <div class="value">{{numberFormat(item.AceAmount, 0)}}</div>
+                                        <div class="label">AK</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="value">{{numberFormat(item.EP, 2)}}</div>
+                                        <div class="label">EP</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="value">{{numberFormat(item.RP, 2)}}</div>
+                                        <div class="label">RP</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="value">{{numberFormat(item.SP, 1)}}</div>
+                                        <div class="label">SP</div>
+                                    </div>
+                                </div>
+                                <div class="user-info-bottom">
+                                    <div class="time">{{item.CreateTime}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="pageModel.isLoadMore" class="load_more clearfix">
+                            <van-loading color="black"></van-loading>
+                            <span class="load_text">正在加載...</span>
+                        </div>
+                        <div v-if="pageModel.isLoadComplete" class="load_more_complete">
+                            <span class="load_text">沒有更多的數據了...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <van-dialog v-model="isPasswordInput" v-bind:title="language.CONFIRM_TRADE"
+                v-bind:before-close="checkPassword" show-cancel-button>
+                <input type="password" ref="passwordBox" maxlength="16" class="pwd_box" v-model="form.password"
+                    v-bind:placeholder="language.INPUT_TRANSFER_PASSWORD" />
+            </van-dialog>
+            <div class="bottom-btn" v-show="pageModel.list.length !== 0">
+                <custom-button @click="allInOne" :height="52" text="一鍵歸集"></custom-button>
+            </div>
+
+        </div>
+        <!-- <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
             <i id="app-back-button" class="iconfont iconzuo right-back"></i>
             <div class="app-head-text" v-text="language.TITLE_TEXT">子賬戶管理</div>
             <i v-show="!isLoading" class="iconfont iconjia submit-button" @click="createAccount"></i>
-        </div>
-        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+        </div> -->
+        <!-- <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
             <div v-if="isLoading" class="loading-box p50">
                 <van-loading color="black"></van-loading>
                 <p class="loading-text" v-text="language.LOADING_TEXT">正在載入...</p>
@@ -27,8 +104,7 @@
                 </div>
                 <div v-else class="list_content" v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}">
                     <ul class="list">
-                        <li v-for="(item,index) in pageModel.list"
-                            v-bind:key="index">
+                        <li v-for="(item,index) in pageModel.list" v-bind:key="index">
                             <div class="top clearfix">
                                 <img v-lazy="item.AvatarImage" class="avatar" />
                                 <div class="top_right">
@@ -72,16 +148,22 @@
                         <span class="load_text" v-text="language.NOMORE"></span>
                     </div>
                 </div>
-                <van-dialog v-model="isPasswordInput" v-bind:title="language.CONFIRM_TRADE" v-bind:before-close="checkPassword" show-cancel-button>
-                    <input type="password" ref="passwordBox" maxlength="16" class="pwd_box" v-model="form.password" v-bind:placeholder="language.INPUT_TRANSFER_PASSWORD" />
+                <van-dialog v-model="isPasswordInput" v-bind:title="language.CONFIRM_TRADE"
+                    v-bind:before-close="checkPassword" show-cancel-button>
+                    <input type="password" ref="passwordBox" maxlength="16" class="pwd_box" v-model="form.password"
+                        v-bind:placeholder="language.INPUT_TRANSFER_PASSWORD" />
                 </van-dialog>
-                <button v-show="pageModel.list.length !== 0" class="confirm_button full" v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}" v-text="language.BUTTON_TEXT_1" @click="allInOne">一鍵歸集</button>
+                <button v-show="pageModel.list.length !== 0" class="confirm_button full"
+                    v-bind:class="{'safe': APP.CONFIG.IsSafeArea()}" v-text="language.BUTTON_TEXT_1"
+                    @click="allInOne">一鍵歸集</button>
             </div>
-        </div>
+        </div> -->
     </div>
     <script src="../../content/js/vue.js?v=28"></script>
     <script src="../../content/js/vant.min.js?v=28"></script>
     <script src="../../content/js/base.js?v=28"></script>
     <script src="../../content/js/pages/center/sub.account.js?v=28"></script>
+    <script src="/content/js/vue-component.js?v=28"></script>
 </body>
+
 </html>

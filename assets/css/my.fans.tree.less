@@ -1,0 +1,241 @@
+.page-content {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .search-warp {
+        margin: 10px 20px;
+        flex-shrink: 0;
+        border: 2px solid #ddd;
+        background-color: #fff;
+        border-radius: 30px;
+        display: flex;
+        justify-content: space-between;
+        height: 45px;
+
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // width: 40px;
+            margin-left: 12px;
+            margin-right: 8px;
+        }
+
+        .search-input {
+            flex: 1;
+            font-size: 14px;
+            color: #999999;
+            border: none;
+            outline: none;
+        }
+
+        .search-btn {
+            min-width: 72px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+            font-size: 14px;
+        }
+    }
+
+    .content {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .btns {
+        .top {
+
+            margin: 0 20px;
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-around;
+            gap: 74px;
+
+            .btn {
+                width: 140px;
+                height: 56px;
+                background-color: #70C160;
+                border-radius: 40px;
+                text-align: center;
+                line-height: 56px;
+                font-size: 13px;
+                color: #fff;
+            }
+        }
+
+        .btm {
+            margin: 45px 45px;
+            margin-bottom: 16px;
+        }
+    }
+}
+
+#chart-container {
+    position: relative;
+    z-index: 0;
+    // padding-top: 44px;
+}
+
+#chart-container .orgchart {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    display: block;
+    background: none;
+    padding: 0;
+    border: 0;
+}
+
+#chart-container .orgchart .node {
+    width: initial !important;
+    border-radius: 20px;
+    overflow: hidden;
+}
+
+#chart-container .orgchart .node .title {
+    // background: linear-gradient(0deg, #EDF5D8, #EDF5D8);
+    background-color: #EDF5D8;
+    padding: 0 10px;
+    color: #222;
+}
+
+#chart-container .orgchart .node .content {
+    border: 1px solid #fff;
+    height: 35px;
+    line-height: 35px;
+    padding: 0 10px;
+}
+
+.orgchart td.right,
+.orgchart td.top,
+.orgchart td.left {
+    border-color: #999;
+}
+
+.orgchart td>.down {
+    background-color: #999;
+}
+
+.actions {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    line-height: 50px;
+    text-align: center;
+    display: flex;
+}
+
+.actions .btn {
+    color: white;
+    font-size: .9em;
+    background-color: #068dfe;
+}
+
+.actions .btn.safe {
+    padding-bottom: 10px;
+}
+
+.actions .btn.up {
+    width: 33.33333%;
+    color: #b1b1b1;
+    font-size: .9em;
+    position: relative;
+    background-color: #e6e6e6;
+}
+
+.actions .btn.up.enable {
+    color: white;
+    background-color: #068dfe;
+}
+
+.actions .btn.left_down {
+    width: 33.33333%;
+}
+
+.actions .btn.left_down:active,
+.actions .btn.up.enable:active {
+    background-color: #047adc;
+}
+
+.van-popup.panel {
+    width: 90%;
+    border-radius: 20px;
+
+    .content {
+        background: linear-gradient(191.1deg, #9BDF8D 8.69%, #E6FFE2 37.08%, #F8F8F8 46.3%);
+        height: 350px;
+
+        &::after {
+            content: "";
+            display: block;
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            top: 0;
+            z-index: 1;
+            background: url(/assets/icon/reg-popup-icon.svg) no-repeat calc(100% - 20px) 15px;
+
+        }
+
+        .title {
+            height: 100px;
+            text-align: center;
+            line-height: 80px;
+            font-family: PingFang SC;
+            font-weight: 600;
+            font-size: 18px;
+
+        }
+
+        .checkbox-wrap {
+            margin: 0 20px;
+            padding: 0 24px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            background-color: #fff;
+            position: relative;
+            z-index: 2;
+
+            .check-item {
+                font-size: 14px;
+                min-height: 54px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                border-bottom: 1px solid #F5F5F5;
+            }
+        }
+
+        .btns {
+            margin: 30px 16px;
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            position: relative;
+            z-index: 2;
+            .btn {
+                flex: 1;
+                background-color: #fff;
+                border: 1px solid rgba(112, 193, 96, 0.2);
+                border-radius: 30px;
+                height: 56px;
+                text-align: center;
+                line-height: 56px;
+                font-size: 16px;
+            }
+
+            .btn.confirm {
+                color: #fff;
+                background: linear-gradient(90deg, #00FF7A 0%, #07C160 50.48%, #00FF7A 100%);
+
+            }
+        }
+    }
+}

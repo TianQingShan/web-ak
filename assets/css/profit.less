@@ -1,3 +1,155 @@
-div{
-    
+.van-popup--bottom {
+    width: calc(100% - 20px);
+    bottom: 10px;
+    border-radius: 8px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.van-popup--bottom .van-hairline--top-bottom::after {
+    border-color: #f1f1f1;
+}
+
+.van-loading {
+    width: 60px;
+    height: 60px;
+}
+
+.van-loading__circular circle {
+    stroke-width: 1;
+}
+
+.select-date {
+    background-color: #fff;
+    border-radius: 30px;
+    margin: 0 10px;
+    padding: 0 24px;
+    height: 62px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+
+    .label {
+        font-family: PingFang SC;
+        font-weight: 600;
+        font-size: 14px;
+        color: rgba(51, 51, 51, 1);
+    }
+
+    .right-date {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+
+        .date {
+            font-size: 14px;
+            color: rgba(51, 51, 51, 1);
+            margin-right: 6px;
+        }
+
+        .iconfont {
+            font-size: 12px;
+            margin-top: 2px;
+        }
+    }
+}
+
+.week_list {
+    margin: 0 20px;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+.week_list .title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 86px;
+    background: linear-gradient(184.91deg, #9BDF8D 4.19%, #E6FFE2 48.48%, #F8F8F8 85.98%);
+
+    .number {
+        color: rgba(255, 0, 0, 1);
+        font-family: Oswald;
+        font-weight: 500;
+        font-size: 26px;
+        line-height: 22px;
+
+        span {
+            font-size: 14px;
+        }
+    }
+
+    .label {
+        font-size: 12px;
+        margin-top: 10px;
+    }
+}
+
+.week_list {
+    width: calc(100% - 20px);
+    margin: 0 auto;
+    margin-top: 20px;
+}
+
+.week_list .van-cell-group {
+    overflow: hidden;
+    border-radius: 7px;
+    font-size: .9em;
+}
+
+.week_list .van-cell-group .van-cell {
+    color: #5c6875;
+}
+
+.week_list .van-cell-group.van-hairline--top-bottom::after {
+    border: 0;
+}
+
+.van-cell {
+    height: 84px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 24px;
+}
+
+.van-cell__title {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    font-size: 14px;
+    color: rgba(102, 102, 102, 1);
+
+}
+
+.van-cell__title .title_style {
+    font-size: 11px;
+    color: #aaa;
+    display: block;
+}
+
+.van-cell__value {
+    -webkit-box-flex: none;
+    -webkit-flex: none;
+    flex: none;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: calc(30% - 12px);
+    font-family: Oswald;
+    font-weight: 500;
+    font-size: 20px;
+    color: rgba(51, 51, 51, 1);
+}
+
+
+.van-picker__cancel,
+.van-picker__confirm {
+    color: rgba(0, 255, 122, 1);
 }

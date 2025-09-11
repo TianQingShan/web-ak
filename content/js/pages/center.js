@@ -65,8 +65,8 @@ var _vue = new Vue({
                 //     done(false);
                 //     APP.GLOBAL.toastMsg(this.language.DIALOG_ERROR_2);
                 // } else {
-                    done();
-                    this.doCheckPINAjax('center/profile.html');
+                done();
+                this.doCheckPINAjax('center/profile.html');
                 // }
             } else {
                 this.form.pin = '';
@@ -392,21 +392,29 @@ var _vue = new Vue({
 
             return ([
                 {
+                    id: `sub.account`,
+                    page: 'center/sub.account',
                     icon: '/assets/images/center/image16@1x.png',
                     iconWidth: 39,
                     name: language.BLOCK_2.MENU_1
                 },
                 {
+                    id: `my.friend`,
+                    page: 'center/my.friend',
                     icon: '/assets/images/center/image17@1x.png',
                     iconWidth: 31,
                     name: language.BLOCK_2.MENU_2
                 },
                 {
+                    id: `my.fans.list`,
+                    page: 'center/my.fans.list',
                     icon: '/assets/images/center/image18@1x.png',
                     iconWidth: 34,
                     name: language.BLOCK_2.MENU_3
                 },
                 {
+                    id: `my.fans.tree`,
+                    page: 'center/my.fans.tree',
                     icon: '/assets/images/center/image19@1x.png',
                     iconWidth: 43,
                     name: language.BLOCK_2.MENU_4

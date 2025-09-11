@@ -1,23 +1,89 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no,viewport-fit=cover" />
     <title></title>
     <link href="../../content/css/base.css" rel="stylesheet" />
     <link href="../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../content/css/pages/center/new.subaccount.css" rel="stylesheet" />
-	<style>
-	.van-dialog__message--has-title{text-align: left;}	
-	</style>
+    <!-- <link href="../../content/css/pages/center/new.subaccount.css" rel="stylesheet" /> -->
+    <link href="/assets//css/new.subaccount.css" rel="stylesheet">
+    <link href="/assets/css/vue-component.css" rel="stylesheet">
+    <style>
+        .van-dialog__message--has-title {
+            text-align: left;
+        }
+    </style>
 </head>
+
 <body>
     <div id="app">
-        <div id="app-head" class="fixed" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
-            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
-            <div class="app-head-text" v-text="language.TITLE_TEXT">新增子賬戶</div>
+        <div class="page-content">
+            <div class="header">
+                <top-back :title="language.TITLE_TEXT" title-color="rgba(51,51,51,1)" />
+            </div>
+            <div v-if="isLoading || isFirstLoading" class="loading-box p50">
+                <van-loading color="black"></van-loading>
+                <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+            </div>
+            <template v-else v-cloak>
+                <div class="content">
+                    <div class="tips">
+                        <div class="icon"><img src="/assets/icon/new-account-tips.svg"></div>
+                        <div class="tips-text">
+                            <div>首次报单</div>
+                            <div>直接推荐的首单必须放在左边最下面的位置</div>
+                        </div>
+                    </div>
+                    <div class="user-info">
+                        <div class="user-info-item" @click="isShowMoney = true">
+                            <div class="item-left">子账户星级</div>
+                            <div class="item-right">
+                                <div class="level" v-html="display.levelText"></div>
+                                <i class="iconfont iconjiantou arrow"></i>
+                            </div>
+                        </div>
+                        <div class="user-info-item">
+                            <div class="item-left">接点人ID</div>
+                            <div class="item-right">
+                                <input type="tel" :readonly="isFirstReport" v-model="nodaPersonDisplay"
+                                    @blur="!isFirstReport && searchPlayer()" maxlength="11" placeholder="请输入接点人ID">
+                            </div>
+                        </div>
+                        <div class="user-info-item">
+                            <div class="item-left">接點人昵稱</div>
+                            <div class="item-right">{{playerNickname}}</div>
+                        </div>
+                    </div>
+                    <div class="section-label">位置</div>
+                    <div class="position-info">
+                        <div class="user-info-item">
+                            <div class="item-left">左边</div>
+                            <div class="item-right" @click="form.position = 1">
+                                <checkbox :checked="form.position == 1 ? true : false" />
+                            </div>
+                        </div>
+                        <div class="user-info-item">
+                            <div class="item-left">右边</div>
+                            <div class="item-right" @click="form.position = 2">
+                                <checkbox :checked="form.position == 2 ? true : false" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="section-label">交易密码</div>
+                    <div class="pwd-box">
+                        <input type="password" class="password" v-model="form.mPassword" maxlength="16"
+                            placeholder="请输入您的交易密码">
+                    </div>
+                </div>
+                <div class="submit">
+                    <custom-button text="确认提交" @click="checkData" :height="56" />
+                </div>
+            </template>
         </div>
-        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
+
+        <!-- <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
             <div v-if="isLoading || isFirstLoading" class="loading-box p50">
                 <van-loading color="black"></van-loading>
                 <p class="loading-text" v-text="language.LOADING_TEXT"></p>
@@ -33,21 +99,15 @@
                     </div>
                     <div class="input_line van-hairline--bottom">
                         <span class="input_text" v-text="language.INPUT_TEXT_1">子賬戶星級</span>
-                        <div class="input_control r-1"
-                             v-bind:class="{'gray': !form.investmentAmount}"
-                             @click="isShowMoney = true"
-                             v-html="display.levelText"></div>
+                        <div class="input_control r-1" v-bind:class="{'gray': !form.investmentAmount}"
+                            @click="isShowMoney = true" v-html="display.levelText"></div>
                         <i class="iconfont iconjiantou arrow"></i>
                     </div>
                     <div class="input_line van-hairline--bottom">
                         <span class="input_text" v-text="language.INPUT_TEXT_2">接點人ID</span>
-                        <input type="tel"
-                               v-bind:readonly="isFirstReport"
-                               class="input_control"
-                               v-model="nodaPersonDisplay"
-                               @blur="!isFirstReport && searchPlayer()"
-                               v-bind:placeholder="language.INPUT_PLACEHOLDER_2"
-                               maxlength="11" />
+                        <input type="tel" v-bind:readonly="isFirstReport" class="input_control"
+                            v-model="nodaPersonDisplay" @blur="!isFirstReport && searchPlayer()"
+                            v-bind:placeholder="language.INPUT_PLACEHOLDER_2" maxlength="11" />
                     </div>
                     <div class="input_line van-hairline--bottom">
                         <span class="input_text" v-text="language.INPUT_TEXT_3">接點人昵稱</span>
@@ -60,11 +120,13 @@
                         <span class="input_text" v-text="language.INPUT_TEXT_4">位置選擇</span>
                         <div class="input_control">
                             <div class="pos">
-                                <div class="block" v-bind:class="{'checked': form.position === 1}" @click="form.position = 1">
+                                <div class="block" v-bind:class="{'checked': form.position === 1}"
+                                    @click="form.position = 1">
                                     <i v-show="form.position === 1" class="iconfont iconiconselected"></i>
                                     <span v-text="language.POS_LEFT">左區</span>
                                 </div>
-                                <div class="block" v-bind:class="{'checked': form.position === 2}" @click="form.position = 2">
+                                <div class="block" v-bind:class="{'checked': form.position === 2}"
+                                    @click="form.position = 2">
                                     <i v-show="form.position === 2" class="iconfont iconiconselected"></i>
                                     <span v-text="language.POS_RIGHT">右區</span>
                                 </div>
@@ -75,29 +137,26 @@
                 <div class="input_group">
                     <div class="input_line">
                         <span class="input_text" v-text="language.INPUT_TEXT_5">交易密碼</span>
-                        <input type="password"
-                               class="input_control"
-                               v-model="form.mPassword"
-                               v-bind:placeholder="language.INPUT_PLACEHOLDER_5"
-                               maxlength="16" />
+                        <input type="password" class="input_control" v-model="form.mPassword"
+                            v-bind:placeholder="language.INPUT_PLACEHOLDER_5" maxlength="16" />
                     </div>
                 </div>
                 <button class="confirm_button" @click="checkData" v-text="language.BUTTON_1">提交信息</button>
-                <van-popup v-model="isShowMoney" position="bottom">
-                    <van-picker v-bind:columns="levelList"
-                                show-toolbar="true"
-                                v-bind:title="language.LEVEL_PICKER_TITLE"
-                                v-bind:confirm-button-text="language.CONFIRM_BUTTON_1"
-                                v-bind:cancel-button-text="language.CONFIRM_BUTTON_2"
-                                @confirm="confirmMoney"
-                                @cancel="isShowMoney = false"></van-picker>
+                <van-popup v-model="isShowMoney" position="bottom" class="select-level-popup">
+                    <van-picker v-bind:columns="levelList" show-toolbar="true"
+                        v-bind:title="language.LEVEL_PICKER_TITLE"
+                        v-bind:confirm-button-text="language.CONFIRM_BUTTON_1"
+                        v-bind:cancel-button-text="language.CONFIRM_BUTTON_2" @confirm="confirmMoney"
+                        @cancel="isShowMoney = false"></van-picker>
                 </van-popup>
             </div>
-        </div>
+        </div> -->
     </div>
     <script src="../../content/js/vue.js?v=28"></script>
     <script src="../../content/js/vant.min.js?v=28"></script>
     <script src="../../content/js/base.js?v=28"></script>
     <script src="../../content/js/pages/center/new.subaccount.js?v=28"></script>
+    <script src="/content/js/vue-component.js?v=28"></script>
 </body>
+
 </html>

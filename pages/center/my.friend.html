@@ -7,8 +7,8 @@
     <title></title>
     <link href="../../content/css/base.css" rel="stylesheet" />
     <link href="../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../content/css/pages/center/my.friend.css" rel="stylesheet" />
-    <link rel="stylesheet" href="/assets//css/my.friend.css">
+    <!-- <link href="../../content/css/pages/center/my.friend.css" rel="stylesheet" /> -->
+    <link href="/assets//css/my.friend.css" rel="stylesheet" >
     <link href="/assets/css/vue-component.css" rel="stylesheet">
 </head>
 
@@ -19,93 +19,101 @@
             <i v-if="teamList.length !== 0" class="iconfont iconiconset0432 right-back_action" @click="gotoBack"></i>
             <div class="app-head-text" v-text="language.TITLE_TEXT">我的好友</div>
         </div> -->
-         <div class="header">
-            <top-back :title="language.TITLE_TEXT" title-color="rgba(51,51,51,1)" />
-        </div>
-        <div id="app-content" v-bind:style="{'paddingTop': (45 + statusbarHeight) + 'px'}">
-            <div></div>
-            <!-- <div class="top_content">
-                <form action="/">
-                    <van-search v-bind:placeholder="language.SEARCH_PLACEHOLDER" v-model="searchKey" @search="doSearchAjax" maxlength="10">
-                        <i slot="left-icon" class="iconfont iconsousuo"></i>
-                    </van-search>
-                </form>
-                <div class="first_row clearfix">
-                    <div class="left">
-                        <img v-lazy="Current.Avatar" class="avatar" />
-                        <span class="number">0</span>
-                    </div>
-                    <div class="right">
-                        <p class="fn">
-                            <span  class="text" v-text="Current.FlowNumber + '    (' + Current.MemberNo + ')    '+ '-' + Current.NickName + '-'"></span>
-                            <i class="iconfont iconxing" v-for="(s, sIndex) in Current.Level"></i>
-                        </p>
-						
-                        <p class="line">
-                            <span>F</span>
-                            <span v-text="Current.F" class="underline"></span>
-                            <b>/</b>
-                            <span>S</span>
-                            <span v-text="Current.S" class="underline"></span>
-                        </p>
-                        <p class="line">
-                            <span>L</span>
-                            <span class="underline" v-text="numberFormat(Current.L, 1)"></span>
-                            <b>/</b>
-                            <span>R</span>
-                            <span class="underline" v-text="numberFormat(Current.R, 1)"></span>
-                        </p>
-                        <p class="time" v-text="Current.CreateTime"></p>
-                    </div>
-                </div>
-            </div> -->
-            <div v-if="isLoading" class="loading-box">
-                <van-loading color="black"></van-loading>
-                <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+        <div class="page-content">
+            <div class="header">
+                <top-back :title="language.TITLE_TEXT" title-color="rgba(51,51,51,1)" />
             </div>
-            <div v-else v-cloak class="list_content" v-bind:style="{'top': '161px'}">
-                <div v-if="pageModel.list.length === 0" class="none-data p50">
-                    <i class="iconfont iconwu"></i>
-                    <p class="none-data-text" v-text="language.NONE_DATA_TEXT">暫無好友信息</p>
-                </div>
-                <div v-else>
-                    <ul>
-                        <li class="clearfix" v-for="(item,index) in pageModel.list" v-bind:key="index" @click="choiceUser(item)">
-                            <div class="left">
-                                <img v-lazy="item.Avatar" class="avatar" />
-                                <span class="number" v-text="index + 1"></span>
-                            </div>
-                            <div class="right">
-                                <p class="fn">
-                                    <!--<span v-if='item.IsMemberNo' class="text" v-text="item.NickName + '(' + item.MemberNo + ')'"></span>!-->
-									<span v-if='!item.IsMemberNo' class="text" v-text="item.NickName + '(' + item.FlowNumber +' - ' + item.MemberNo +')'"></span>
-									 
-                                    <i class="iconfont iconxing" v-for="(s, sIndex) in item.Level"></i>
-                                </p>
-                                <p class="line">
-                                    <span>F</span>
-                                    <span v-text="item.F" class="underline"></span>
-                                    <b>/</b>
-                                    <span>S</span>
-                                    <span v-text="item.S" class="underline"></span>
-                                </p>
-                                <p class="line">
-                                    <span>L</span>
-                                    <span class="underline" v-text="numberFormat(item.L, 1)"></span>
-                                    <b>/</b>
-                                    <span>R</span>
-                                    <span class="underline" v-text="numberFormat(item.R, 1)"></span>
-                                </p>
-                                <p class="time" v-text="item.CreateTime"></p>
-                            </div>
-                        </li>
-                    </ul>
-                    <div v-if="pageModel.isLoadMore" class="load_more clearfix">
-                        <van-loading color="black"></van-loading>
-                        <span class="load_text" v-text="language.LOADING_TEXT">正在加載...</span>
+            <div class="search-warp">
+                <div class="icon"><img src="/assets//images/friend/search-green.svg"></div>
+                <input class="search-input" type="text" placeholder="请输入ID或登录名" v-model="searchKey" @keyup.enter="doSearchAjax" maxlength="10">
+                <div class="search-btn" @click="doSearchAjax">搜索</div>
+            </div>
+            <div class="user-info">
+                <div class="grade"><i class="iconfont iconxing" v-for="(s, sIndex) in Current.Level"></i></div>
+                <div class="user-info-top">
+                    <div class="avatar"><img :src="Current.Avatar"></div>
+                    <div class="info">
+                        <div class="name">{{Current.NickName}}</div>
+                        <div class="label">{{Current.FlowNumber}}-{{Current.MemberNo}}</div>
                     </div>
-                    <div v-if="pageModel.isLoadComplete" class="load_more_complete">
-                        <span class="load_text" v-text="language.LOAD_COMPLETE_TEXT">沒有更多的數據了...</span>
+                </div>
+                <div class="user-info-center">
+                    <div class="item">
+                        <div class="value">{{Current.F}}</div>
+                        <div class="label">F</div>
+                    </div>
+                    <div class="item">
+                        <div class="value">{{Current.S}}</div>
+                        <div class="label">S</div>
+                    </div>
+                    <div class="item">
+                        <div class="value">{{numberFormat(Current.L, 1)}}</div>
+                        <div class="label">L</div>
+                    </div>
+                    <div class="item">
+                        <div class="value">{{numberFormat(Current.R, 1)}}</div>
+                        <div class="label">R</div>
+                    </div>
+                </div>
+                <div class="user-info-bottom">
+                    <!-- <div class="number">{{Current.FlowNumber}}</div> -->
+                    <div class="time">{{Current.CreateTime}}</div>
+                </div>
+            </div>
+            <div class="list-wrap" ref="scrollContainer" @scroll="handleScroll">
+                <div v-if="isLoading" class="loading-box">
+                    <van-loading color="black"></van-loading>
+                    <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+                </div>
+                <div v-else v-cloak class="list_content">
+                    <div v-if="pageModel.list.length === 0" class="none-data">
+                        <i class="iconfont iconwu"></i>
+                        <p class="none-data-text">暫無好友信息</p>
+                    </div>
+                    <div v-else>
+                        <div class="list">
+                            <div class="user-info-item" v-for="(item,index) in pageModel.list"
+                                @click="choiceUser(item)">
+                                <div class="grade"><i class="iconfont iconxing"
+                                        v-for="(s, sIndex) in item.Level"></i></div>
+                                <div class="user-info-top">
+                                    <div class="avatar"><img :src="item.Avatar"></div>
+                                    <div class="info">
+                                        <div class="name">{{item.NickName}}</div>
+                                        <div class="label">{{item.FlowNumber}}-{{item.MemberNo}}</div>
+                                    </div>
+                                </div>
+                                <div class="user-info-center">
+                                    <div class="item">
+                                        <div class="value">{{item.F}}</div>
+                                        <div class="label">F</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="value">{{item.S}}</div>
+                                        <div class="label">S</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="value">{{numberFormat(item.L, 1)}}</div>
+                                        <div class="label">L</div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="value">{{numberFormat(item.R, 1)}}</div>
+                                        <div class="label">R</div>
+                                    </div>
+                                </div>
+                                <div class="user-info-bottom">
+                                    <!-- <div class="number">{{item.FlowNumber}}</div> -->
+                                    <div class="time">{{item.CreateTime}}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="pageModel.isLoadMore" class="load_more clearfix">
+                            <van-loading color="black"></van-loading>
+                            <span class="load_text">正在加載...</span>
+                        </div>
+                        <div v-if="pageModel.isLoadComplete" class="load_more_complete">
+                            <span class="load_text">沒有更多的數據了...</span>
+                        </div>
                     </div>
                 </div>
             </div>

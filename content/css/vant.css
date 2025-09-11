@@ -2155,10 +2155,6 @@ button, input, textarea {
     padding-top: 44px
 } */
 
-    .van-tabs--line .van-tabs__wrap {
-        height: 44px
-    }
-
 .van-tabs--card {
     padding-top: 30px
 }
@@ -3076,7 +3072,7 @@ button, input, textarea {
 
 .van-dialog__confirm, .van-dialog__confirm:active {
     border-radius: 0;
-    color: #068dfe
+    color: #70C160;
 }
 
 .van-dialog-bounce-enter {

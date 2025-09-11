@@ -1,0 +1,180 @@
+.page-content {
+    
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    .search-warp {
+        margin:10px 20px;
+        flex-shrink: 0;
+        border: 2px solid #ddd;
+        // margin-top: 10px;
+        // margin-bottom: 20px;
+        background-color: #fff;
+        border-radius: 30px;
+        display: flex;
+        justify-content: space-between;
+        height: 45px;
+
+        .icon {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            // width: 40px;
+            margin-left: 12px;
+            margin-right: 8px;
+        }
+
+        .search-input {
+            flex: 1;
+            font-size: 14px;
+            color: #999999;
+            border: none;
+            outline: none;
+        }
+
+        .search-btn {
+            min-width: 72px;
+            height: 42px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #999;
+            font-size: 14px;
+        }
+    }
+
+    .user-info {
+        flex-shrink: 0;
+        margin: 0 20px;
+    }
+
+    .user-info,
+    .user-info-item {
+        margin: 0 20px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        // height: 166px;
+        background-color: #fff;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 10px;
+
+
+        .grade {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: #07C160;
+            height: 40px;
+            width: 130px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-bottom-left-radius: 20px;
+
+            .iconfont {
+                color: #FFFABE;
+            }
+        }
+
+        .user-info-top {
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            border-bottom: 1px dashed #F4A865;
+            height: 70px;
+            padding: 0 10px;
+            margin: 0 20px;
+
+            .avatar {
+                width: 45px;
+                height: 45px;
+                border-radius: 50%;
+                overflow: hidden;
+                margin-right: 16px;
+
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+
+            .info {
+                .name {
+                    font-family: PingFang SC;
+                    font-weight: 600;
+                    font-size: 14px;
+                    line-height: 22px;
+
+                }
+
+                .label {
+                    font-family: PingFang SC;
+                    font-weight: 600;
+                    font-size: 11px;
+                    color: #333333;
+                }
+            }
+        }
+
+        .user-info-center {
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+            margin: 0 20px;
+
+            .item {
+                text-align: center;
+
+                .value {
+                    font-family: Oswald;
+                    font-weight: 500;
+                    font-size: 20px;
+                    color: #000000;
+                }
+
+                .label {
+                    font-family: PingFang SC;
+                    font-weight: 600;
+                    font-size: 12px;
+                    color: #666666;
+                }
+            }
+        }
+
+        .user-info-bottom {
+            background-color: #07C160;
+            height: 28px;
+            display: flex;
+            justify-content: space-between;
+
+            .number {
+                width: 32px;
+                line-height: 28px;
+                text-align: center;
+                color: #fff;
+                font-size: 11px;
+                border-right: 1px solid #fff;
+            }
+
+            .time {
+                flex: 1;
+                text-align: right;
+                font-weight: 400;
+                font-style: Regular;
+                font-size: 11px;
+                color: #fff;
+                margin-right: 12px;
+                line-height: 28px;
+            }
+        }
+    }
+
+    .list-wrap {
+        flex: 1;
+        overflow-y: auto;
+    }
+}
