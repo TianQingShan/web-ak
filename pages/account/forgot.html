@@ -27,11 +27,11 @@
         </div>
         <div class="item password-type">
           <div class="password-type-item" @click="form.changeType = 1">
-            <div class="label">修改登录密码</div>
+            <div class="label">{{ language.t1 }}</div>
             <Checkbox :checked="form.changeType === 1"></Checkbox>
           </div>
           <div class="password-type-item" @click="form.changeType = 2">
-            <div class="label">修改交易密码</div>
+            <div class="label">{{ language.t2 }}</div>
             <Checkbox :checked="form.changeType === 2"></Checkbox>
           </div>
         </div>
@@ -58,7 +58,7 @@
           </div>
         </div>
         <div class="item mnemonic">
-          <div class="label">请根据数字填写助记词</div>
+          <div class="label">{{ language.t3 }}</div>
           <input
             type="text"
             class="input"
@@ -68,7 +68,7 @@
           />
         </div>
         <div class="item custom-question">
-          <div class="label">您的自定义问题！（答案可随意）</div>
+          <div class="label">{{ language.t4 }}</div>
           <input
             type="text"
             class="input"
@@ -79,7 +79,7 @@
           />
         </div>
       </div>
-      <custom-button :text="language.BUTTON_1" @click="nextStep"></custom-button>
+      <custom-button :text="language.BUTTON_1":height="53" @click="nextStep"></custom-button>
     </div>
   </div>
 

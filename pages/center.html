@@ -17,7 +17,7 @@
     <div class="Center">
       <div class="top">
         <div class="text1">welcome back</div>
-        <div class="text2">{{ currentUser.NickName }}</div>
+        <div class="text2">{{ currentUser.NickName }} {{ currentUser.MemberNo }}</div>
 
         <div class="user-info">
           <div class="user-info-top" @click="isPassowrdShow = true">
@@ -28,7 +28,7 @@
             <div class="item">
               <div class="icon-items" v-if="currentUser.Credit > 0">
                 <div class="icon-item" v-for="n of Math.min(5, currentUser.Credit)" :key="n"
-                  style="background-image: url('/assets/images/center/image2@1x.png')"></div>
+                  style="background-image: url('/assets/images/center/icon2.svg')"></div>
               </div>
               <div class="none-text" v-else>無</div>
               <div class="text">{{ language.TOP_UL_TEXT_1 }}</div>
@@ -36,7 +36,7 @@
             <div class="item">
               <div class="icon-items" v-if="currentUser.InvestmentLevel.StarNumber > 0">
                 <div class="icon-item" v-for="n of Math.min(5, currentUser.InvestmentLevel.StarNumber)" :key="n"
-                  style="background-image: url('/assets/images/center/image3@1x.png')"></div>
+                  style="background-image: url('/assets/images/center/icon3.svg')"></div>
               </div>
               <div class="none-text" v-else>無</div>
               <div class="text">账户星级</div>
@@ -44,7 +44,7 @@
             <div class="item">
               <div class="icon-items" v-if="currentUser.InvestmentLevel.DonateNumber">
                 <div class="icon-item" v-for="n of currentUser.InvestmentLevel.DonateNumber" :key="n"
-                  style="background-image: url('/assets/images/center/image4@1x.png')"></div>
+                  style="background-image: url('/assets/images/center/icon4.svg')"></div>
               </div>
               <div class="none-text" v-else>暂无贡献</div>
               <div class="text">{{ language.TOP_UL_TEXT_3 }}</div>
@@ -62,10 +62,10 @@
         </div>
         <div class="content2" @click="gotoLightPage('rptp.outPage', 'center/Donate')">
           <div class="left">
-            <img src="/assets/images/center/image14@1x.png" alt="" class="left-img" />
+            <img src="/assets/images/center/icon14.svg" alt="" class="left-img" />
             <div class="left-text">自愿捐赠</div>
           </div>
-          <img src="/assets/images/center/image15@1x.png" alt="" class="right" />
+          <img src="/assets/images/center/icon15.svg" alt="" class="right" />
         </div>
         <div class="content3">
           <div class="item" v-for="({ icon, iconWidth, name,id,page }, index) of getItems2" :key="index"

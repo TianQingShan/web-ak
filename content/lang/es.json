@@ -29,7 +29,8 @@
     "CANCEL_BUTTON": "[SP]取消",
     "RELOGIN_TEXT": "[SP]您的賬號已在其他設備中登錄，若繼續操作請重新登錄賬號，或點擊",
     "RELOGIN_ACTION": "[SP]切換賬號",
-    "CHANGE_LINES": "[SP]切換線路"
+    "CHANGE_LINES": "[SP]切換線路",
+    "t1": "登录"
   },
   "home": {
     "TITLE_TEXT": "[SP]王牌",
@@ -308,7 +309,11 @@
     "ERROR_2": "[SP]請輸入驗證碼",
     "SUBMIT_TEXT": "[SP]正在驗證",
     "ERROR_NOTSET_TEXT": "[SP]該賬戶沒有設置安全問答，請聯繫管理人員在後台進行密碼重置。",
-    "ERROR_NOTSET_TITLE": "[SP]無法找回密碼"
+    "ERROR_NOTSET_TITLE": "[SP]無法找回密碼",
+    "t1": "修改登入密碼",
+    "t2": "修改交易密碼",
+    "t3": "請根據數字填寫助記詞",
+    "t4": "您的自訂問題！（答案可隨意）"
   },
   "settings": {
     "TITLE_TEXT": "[SP]設置",

@@ -29,7 +29,8 @@
         "CANCEL_BUTTON": "取消",
         "RELOGIN_TEXT": "您的賬號已在其他設備中登錄，若繼續操作請重新登錄賬號，或點擊",
         "RELOGIN_ACTION": "切換賬號",
-        "CHANGE_LINES": "切換線路"
+        "CHANGE_LINES": "切換線路",
+        "t1": "登录"
     },
     "home": {
         "TITLE_TEXT": "AK",
@@ -86,7 +87,7 @@
 			"MENU_11": "TP轉出",
 			"MENU_12": "RP+TP",
 			"MENU_13": "自愿捐赠"
-			
+
         },
         "BLOCK_2": {
             "TITLE": "市場管理",
@@ -227,7 +228,7 @@
         "DATETIME_PICKER_BUTTON_2": "取消",
         "SUCCESS_TEXT": "刷新完成"
     },
-	
+
     "ep.list.detail": {
         "TITLE_TEXT": "出售詳情",
         "LOADING_TEXT": "正在加載...",
@@ -304,13 +305,17 @@
         "PASSWORD_2": "确认新密码",
 		"PASSWORD_PLACEHOLDER_1": "请输入新密码",
         "PASSWORD_PLACEHOLDER_2": "请再次输入新密码",
-		"PASSWORD_MNEMONIC": "請按提示的序號輸入助記詞",		
+		"PASSWORD_MNEMONIC": "請按提示的序號輸入助記詞",
         "BUTTON_1": "下一步",
         "ERROR_1": "請輸入玩家登錄名",
         "ERROR_2": "請輸入驗證碼",
         "SUBMIT_TEXT": "正在驗證",
         "ERROR_NOTSET_TEXT": "該賬戶沒有設置安全問答，請聯繫管理人員在後台進行密碼重置。",
-        "ERROR_NOTSET_TITLE": "無法找回密碼"
+        "ERROR_NOTSET_TITLE": "無法找回密碼",
+        "t1": "修改登入密碼",
+        "t2": "修改交易密碼",
+        "t3": "請根據數字填寫助記詞",
+        "t4": "您的自訂問題！（答案可隨意）"
     },
     "settings": {
         "TITLE_TEXT": "設置",
@@ -1147,7 +1152,7 @@
         "TOAST_TEXT": "正在驗證",
         "RESET_TITLE": "重置助記詞",
         "RESET_TEXT": "您的助記詞已重置成功"
-		
+
     },
     "change.success": {
         "BUTTON": "關閉頁面"
@@ -1268,7 +1273,7 @@
         "ERROR_1": "請輸入子賬戶ID",
         "ERROR_2": "ID只能是整數且最少5位"
     },
-	
+
     "sell.success": {
         "TITLE_TEXT": "出售結果",
 		"TITLE_TEXT1": "捐贈結果",
@@ -1711,7 +1716,7 @@
 		"INPUT_TEXT_2": "新的地址",
 	    "INPUT_PLACEHOLDER_1": "請填寫您的錢包地址",
 	    "INPUT_TEXT_5": "交易密碼",
-	    "INPUT_PLACEHOLDER_5": "請輸入您的交易密碼",	    
+	    "INPUT_PLACEHOLDER_5": "請輸入您的交易密碼",
 	    "INPUT_TEXT_16": "谷歌驗證碼",
 	    "INPUT_PLACEHOLDER_16": "請輸入您谷歌驗證碼",
 	    "BUTTON_1": "綁定新地址",

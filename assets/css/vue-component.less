@@ -22,8 +22,8 @@
     left: 0;
     background-size: cover;
     background-repeat: no-repeat;
-    background-position: top left;
-    background-image: url('/assets/images/image1@1x.png');
+    background-position: center;
+    background-image: url('/assets/images/image1@3x.png');
     opacity: .54;
   }
 }
@@ -38,9 +38,9 @@
   .icon {
     width: 40px;
     aspect-ratio: 1;
-    background-image: url('/assets/icon/icon2@1x.png');
+    background-image: url('/assets/svg/icon20.svg');
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: 9px;
     background-position: center;
   }
 
@@ -78,10 +78,10 @@
 
   &::after {
     background-color: #07C160;
-    background-image: url('/assets/icon/icon3@1x.png');
+    background-image: url('/assets/svg/icon21.svg');
     background-repeat: no-repeat;
     background-position: center;
-    background-size: auto;
+    background-size: 19px;
     display: none;
   }
 
@@ -97,7 +97,7 @@
     left: 0;
     width: 100%;
     background-color: rgba(0, 0, 0, .7);
-    height: 82px;
+    height: var(--tabbar-height);
     z-index: 1;
   }
 
@@ -116,7 +116,7 @@
 
   &.panel {
     width: 100%;
-    height: 82px;
+    height: var(--tabbar-height);
   }
 
   &.panel.pos {
@@ -134,8 +134,7 @@
   &.panel .menus li {
     float: left;
     width: 25%;
-    height: 82px;
-    background-color: #fff;
+    height: var(--tabbar-height);
     display: flex;
     justify-content: center;
     align-items: center;

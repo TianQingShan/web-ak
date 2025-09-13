@@ -10,6 +10,10 @@
     box-sizing: border-box;
 }
 
+:root {
+    --tabbar-height: 82px;
+}
+
 html,
 body,
 header,
@@ -193,7 +197,9 @@ th {
 
 #app {
     position: relative;
+    max-width: 750px;
     height: 100%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
 }

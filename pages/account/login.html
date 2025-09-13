@@ -14,7 +14,9 @@
     <div class="Login">
       <div class="top-container">
         <div class="top">
-          <div class="left" @click="APP.GLOBAL.gotoNewWindow('languagesPage', '../subpages/languages', {param:'from=login'})">{{ language.CHANGE_LANGUAGE }}</div>
+          <div class="left" @click="APP.GLOBAL.gotoNewWindow('languagesPage', '../subpages/languages', {param:'from=login'})">
+            {{ language.CHANGE_LANGUAGE }}
+          </div>
           <div class="right" @click="gotoLines">{{ language.CHANGE_LINES }}</div>
         </div>
         <div class="image"></div>
@@ -22,7 +24,7 @@
           <div class="form-items">
             <div class="form-item">
               <div class="icon-box">
-                <img class="icon" style="width: 32px;" src="/assets/images/login/image4@1x.png" />
+                <img class="icon" style="width: 32px;" src="/assets/svg/icon17.svg" />
               </div>
               <input
                 class="input"
@@ -34,7 +36,7 @@
             </div>
             <div class="form-item">
               <div class="icon-box">
-                <img class="icon" style="width: 28px;" src="/assets/images/login/image3@1x.png" />
+                <img class="icon" style="width: 28px;" src="/assets/svg/icon18.svg" />
               </div>
               <input
                 class="input"
@@ -51,7 +53,13 @@
           </div>
         </div>
         <div class="login-button">
-          <custom-button text="登录" :loading="isLogin" @click="checkInput">
+          <template v-if="false">
+            <div>
+              <p>{{ language.RELOGIN_TEXT }}</p>
+              <p @click="window.location = '/index.html'">{{ language.RELOGIN_ACTION }}</p>
+            </div>
+          </template>
+          <custom-button :text="language.t1" :loading="isLogin" @click="checkInput">
           </custom-button>
         </div>
       </div>

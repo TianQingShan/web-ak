@@ -1,3 +1,15 @@
+const ITEM_KEY = {
+    /** 子账户 */
+    Subaccount: Symbol(),
+    /** 附近玩家 */
+    NearbyPlayers: Symbol(),
+    /** 全球玩家(表) */
+    c: Symbol(),
+    /** 全球玩家(图) */
+    d: Symbol()
+}
+
+
 Vue.use(vant.Lazyload, {
     'loading': '../content/img/default_avatar.jpg',
     'error': '../content/img/default_avatar.jpg',
@@ -330,55 +342,55 @@ var _vue = new Vue({
 
             return ([
                 {
-                    icon: '/assets/images/center/image5@1x.png',
+                    icon: '/assets/images/center/icon5.svg',
                     name: language.BLOCK_1.MENU_1,
                     id: 'sell.acePage',
                     page: 'center/sell.ace'
                 },
                 {
-                    icon: '/assets/images/center/image6@1x.png',
+                    icon: '/assets/images/center/icon6.svg',
                     name: '交易EP',
                     id: '',
                     page: ''
                 },
                 {
-                    icon: '/assets/images/center/image7@1x.png',
+                    icon: '/assets/images/center/icon7.svg',
                     name: language.BLOCK_1.MENU_2,
                     id: 'sell.epPage',
                     page: 'center/sell.ep'
                 },
                 {
-                    icon: '/assets/images/center/image8@1x.png',
+                    icon: '/assets/images/center/icon8.svg',
                     name: language.BLOCK_1.MENU_3,
                     id: 'ep.to.rpPage',
                     page: 'center/ep.to.rp'
                 },
                 {
-                    icon: '/assets/images/center/image9@1x.png',
+                    icon: '/assets/images/center/icon9.svg',
                     name: language.BLOCK_1.MENU_4,
                     id: 'ep.to.spPage',
                     page: 'center/ep.to.sp'
                 },
                 {
-                    icon: '/assets/images/center/image10@1x.png',
+                    icon: '/assets/images/center/icon10.svg',
                     name: language.BLOCK_1.MENU_5,
                     id: 'rp.to.spPage',
                     page: 'center/rp.to.sp'
                 },
                 {
-                    icon: '/assets/images/center/image11@1x.png',
+                    icon: '/assets/images/center/icon11.svg',
                     name: language.BLOCK_1.MENU_6,
                     id: 'rp.outPage',
                     page: 'center/rp.out'
                 },
                 {
-                    icon: '/assets/images/center/image12@1x.png',
+                    icon: '/assets/images/center/icon12.svg',
                     name: language.BLOCK_1.MENU_11,
                     id: 'tp.outPage',
                     page: 'center/tp.out'
                 },
                 {
-                    icon: '/assets/images/center/image13@1x.png',
+                    icon: '/assets/images/center/icon13.svg',
                     name: language.BLOCK_1.MENU_12,
                     id: 'rptp.outPage',
                     page: 'center/rptp.out'
@@ -394,28 +406,28 @@ var _vue = new Vue({
                 {
                     id: `sub.account`,
                     page: 'center/sub.account',
-                    icon: '/assets/images/center/image16@1x.png',
+                    icon: '/assets/images/center/icon16.svg',
                     iconWidth: 39,
                     name: language.BLOCK_2.MENU_1
                 },
                 {
                     id: `my.friend`,
                     page: 'center/my.friend',
-                    icon: '/assets/images/center/image17@1x.png',
+                    icon: '/assets/images/center/icon17.svg',
                     iconWidth: 31,
                     name: language.BLOCK_2.MENU_2
                 },
                 {
                     id: `my.fans.list`,
                     page: 'center/my.fans.list',
-                    icon: '/assets/images/center/image18@1x.png',
+                    icon: '/assets/images/center/icon18.svg',
                     iconWidth: 34,
                     name: language.BLOCK_2.MENU_3
                 },
                 {
                     id: `my.fans.tree`,
                     page: 'center/my.fans.tree',
-                    icon: '/assets/images/center/image19@1x.png',
+                    icon: '/assets/images/center/icon19.svg',
                     iconWidth: 43,
                     name: language.BLOCK_2.MENU_4
                 }

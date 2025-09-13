@@ -12,7 +12,7 @@
 <body>
     <div id="app">
       <div class="Index">
-        <top-back :title="language.TITLE_TEXT"></top-back>
+        <top-back :title="language.TITLE_TEXT" :title-font-size="22"></top-back>
         <div class="items">
           <div
             class="item"
@@ -23,7 +23,7 @@
             <checkbox :checked="selectedIndex === index"></checkbox>
           </div>
         </div>
-        <custom-button :text="language.CONFIRM_BUTTON" @click="confirmLine"></custom-button>
+        <custom-button :text="language.CONFIRM_BUTTON" :height="53" @click="confirmLine"></custom-button>
       </div>
     </div>
 

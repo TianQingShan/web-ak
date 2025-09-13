@@ -58,6 +58,8 @@
       'selectLanguage': function (name) {
           LSE.switchLanguage(name);
 
+          console.log(name)
+
           //if (!this.request.from) {
           //    var mainPage = plus.webview.getWebviewById('mainPage');
           //    if (mainPage != null) {
