@@ -152,25 +152,25 @@
                         <div class="bottom kline" v-show="isExpanded"></div>
                     </transition>
                 </div>
-                <!-- 
+                
                 <div class="block highChart">
                     <p class="block_title">
                         <i class="iconfont icontubiao1"></i>
                         <span v-text="language.BLOCK_TITLE_4">PRICE</span>
                     </p>
                     <div class="block_content">
-                        <p class="price">
+                        <!-- <p class="price">
                             <span v-text="numberFormat(pageModel.currentStockPrice, 3)"></span>
                             <sup>＄</sup>
                         </p>
-                        <p class="time" v-text="language.BLOCK_4_TEXT_1 + updateTime"></p>
+                        <p class="time" v-text="language.BLOCK_4_TEXT_1 + updateTime"></p> -->
                         <div v-if="isLoadChart" class="loading-box pd-10">
                             <van-loading color="black"></van-loading>
                             <p class="loading-text" v-text="language.LOADING_TEXT"></p>
                         </div>
                         <div v-else id="container" style="width:100%; height:300px"></div>
                     </div>
-                </div> -->
+                </div>
             </van-pull-refresh>
         </div>
 

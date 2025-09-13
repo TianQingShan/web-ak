@@ -13,10 +13,6 @@
 
 <body>
     <div id="app">
-        <!-- <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
-            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
-            <div class="app-head-text" v-text="language.TITLE_TEXT">业绩图表</div>
-        </div> -->
         <div class="header">
             <top-back :title="language.TITLE_TEXT" title-color="rgba(51,51,51,1)" />
         </div>
@@ -25,9 +21,6 @@
                 <van-loading color="black"></van-loading>
                 <p class="loading-text" v-text="language.LOADING_TEXT">正在載入...</p>
             </div>
-
-
-
             <div v-else v-cloak>
                 <div v-if="pageModel.list.length == 0" class="none-data p50">
                     <i class="iconfont iconkong"></i>
@@ -43,19 +36,12 @@
                     </form>
                     <ul class="list">
                         <li v-for="(item,index) in pageModel.list" v-bind:key="index">
-
-
                             <div class="top clearfix " @click="choiceUser(item.FlowNumber)">
                                 <img v-lazy="item.Avatar" class="avatar" />
                                 <div class="top_right">
-
-
-
-
                                     <p class="fn small" v-text="'ID：' + item.FlowNumber"></p>
                                 </div>
                             </div>
-
                             <div class="middle">
                                 <ul class="info">
                                     <li style='width: 10%; margin-top:10px; font-weight: bold; font-size: 1.4em;'>
@@ -75,8 +61,6 @@
                                     </li>
 
                                 </ul>
-
-
                                 <div class="bottom clearfix">
                                     <div class="left">
                                         <i class="iconfont iconkong"
@@ -88,9 +72,6 @@
                             </div>
                         </li>
                     </ul>
-
-
-
                     <div class="input_group bottom clearfix bottom_ui" style="display:none;">
                         <div class="left">
                             <i class="iconfont iconbangzhu"
@@ -106,9 +87,6 @@
                         <span class="left" style="padding-left:6px;color:#5c6875;padding-top:6px;"
                             v-text="pageModel.bottomTip5"></span>
                     </div>
-
-
-
                     <div v-if="pageModel.isLoadMore" class="load_more clearfix">
                         <van-loading color="black"></van-loading>
                         <span class="load_text" v-text="language.LOADING_TEXT"></span>

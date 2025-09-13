@@ -7,9 +7,23 @@
     stroke-width: 1;
 }
 
-.list {
-    margin: 0 20px;
+.page-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
 
+.header {
+    padding: 20px 20px 0;
+}
+
+.list-wrap {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+}
+
+.list {
     li {
         border-radius: 20px;
         background-color: #fff;
@@ -19,13 +33,14 @@
         justify-content: space-between;
         align-items: center;
         min-height: 75px;
-        margin-top: 10px;
+        margin-bottom: 10px;
 
         .left {
             display: flex;
             justify-content: left;
             align-items: center;
             margin-right: 10px;
+
             .img {
                 margin-right: 18px;
                 display: flex;

@@ -65,6 +65,15 @@
             LSE.install('tp.record', function (lang) {
                 Vue.set(_vue, 'language', lang);
             });
+        },
+        'handleScroll': function () {
+            const container = this.$refs.scrollContainer;
+            if (!container) return;
+            const { scrollTop, scrollHeight, clientHeight } = container;
+            const isBottom = scrollTop + clientHeight >= scrollHeight - 10;
+            if (isBottom) {
+                this.windowScroll()
+            }
         }
     },
     created: function () {
@@ -76,6 +85,6 @@
     },
     mounted: function () {
         this.loadPageData();
-        window.scrollBottom = this.windowScroll;
+        // window.scrollBottom = this.windowScroll;
     }
 });

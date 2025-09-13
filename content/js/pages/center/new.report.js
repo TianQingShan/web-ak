@@ -48,6 +48,7 @@
                 data: this.form,
                 success: function (result) {
                     if (result.Error) {
+                        _vue.isConfirmPopup = false
                         APP.GLOBAL.closeToastLoading();
                         APP.GLOBAL.toastMsg(result.Msg);
                         return;

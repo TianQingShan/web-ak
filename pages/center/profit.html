@@ -15,84 +15,77 @@
 
 <body>
     <div id="app">
-        <!-- <div id="app-head" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
-            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
-            <div class="app-head-text" v-text="language.TITLE_TEXT">收益明細</div>
-        </div> -->
-
-        <div id="app-content">
+        <div class="page-content">
             <div class="header">
-                <top-back title="收益明细" title-color="rgba(51,51,51,1)" />
+                <top-back title="收益明细" title-color="rgba(51,51,51,1)"></top-back>
             </div>
-
-            <div class="select-date" @click="isShowDateTime = true">
-                <div class="label">查询日期</div>
-                <div class="right-date">
-                    <div class="date">{{!dateTimeObj.display ? "请选择日期" : dateTimeObj.display}}</div>
-                    <i class="iconfont iconjiantou arrow"></i>
-                </div>
-            </div>
-
-            <div v-if="isSearchMode" v-cloak>
-                <div v-if="dateTimeObj.isLoading" class="loading-box">
-                    <van-loading color="black"></van-loading>
-                    <p class="loading-text" v-text="language.LOADING_TEXT"></p>
-                </div>
-                <div v-else class="week_list">
-                    <!-- <p class="title">
-                        <span v-text="dateTimeObj.month+ language.RESULT_TITLE"></span>
-                        <b class="red" v-text="numberFormat(result.MonthTotalMoney, 2)"></b>
-                        <span>EP</span>
-                    </p> -->
-                    <div class="title">
-                        <div class="number">{{numberFormat(result.MonthTotalMoney, 2)}} <span>EP</span></div>
-                        <div class="label">{{dateTimeObj.month + language.RESULT_TITLE}}</div>
+            <div class="content">
+                <div class="select-date" @click="isShowDateTime = true">
+                    <div class="label">查询日期</div>
+                    <div class="right-date">
+                        <div class="date">{{!dateTimeObj.display ? "请选择日期" : dateTimeObj.display}}</div>
+                        <i class="iconfont iconjiantou arrow"></i>
                     </div>
-                    <van-cell-group>
-                        <van-cell v-bind:value="numberFormat(result.FirstWeek, 2)" is-link @click="gotoDetail(1)">
-                            <div slot="title">
-                                <span v-text="language.WEEK_1"></span>
-                                <span class="title_style"
-                                    v-text="formatTime(result.FirstBegin)+' - '+formatTime(result.FirstEnd)"> </span>
-                            </div>
-                        </van-cell>
-                        <van-cell v-bind:value="numberFormat(result.SecondWeek, 2)" is-link @click="gotoDetail(2)">
-                            <div slot="title">
-                                <span v-text="language.WEEK_2"></span>
-                                <span class="title_style"
-                                    v-text="formatTime(result.SecondBegin)+' - '+formatTime(result.SecondEnd)"> </span>
-                            </div>
-                        </van-cell>
-                        <van-cell v-bind:value="numberFormat(result.ThirdWeek, 2)" is-link @click="gotoDetail(3)">
-                            <div slot="title">
-                                <span v-text="language.WEEK_3"></span>
-                                <span class="title_style"
-                                    v-text="formatTime(result.ThirdBegin)+' - '+formatTime(result.ThirdEnd)"> </span>
-                            </div>
-                        </van-cell>
-                        <van-cell v-bind:value="numberFormat(result.FourWeek, 2)" is-link @click="gotoDetail(4)">
-                            <div slot="title">
-                                <span v-text="language.WEEK_4"></span>
-                                <span class="title_style"
-                                    v-text="formatTime(result.FourBegin)+' - '+formatTime(result.FourEnd)"> </span>
-                            </div>
-                        </van-cell>
-                        <van-cell v-bind:value="numberFormat(result.FiveWeek, 2)" is-link @click="gotoDetail(5)">
-                            <div slot="title">
-                                <span v-text="language.WEEK_5"></span>
-                                <span class="title_style"
-                                    v-text="formatTime(result.FiveBegin)+' - '+formatTime(result.FiveEnd)"> </span>
-                            </div>
-                        </van-cell>
-                        <van-cell v-if="result.SixBegin && result.SixEnd" v-bind:value="numberFormat(result.SixWeek, 2)"
-                            is-link @click="gotoDetail(6)">
-                            <div slot="title">
-                                <span v-text="language.WEEK_6"></span>
-                                <span class="title_style"
-                                    v-text="formatTime(result.SixBegin)+' - '+formatTime(result.SixEnd)"> </span>
-                            </div>
-                        </van-cell>
-                    </van-cell-group>
+                </div>
+                <div v-if="isSearchMode" v-cloak>
+                    <div v-if="dateTimeObj.isLoading" class="loading-box">
+                        <van-loading color="black"></van-loading>
+                        <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+                    </div>
+                    <div v-else class="week_list">
+                        <div class="title">
+                            <div class="number">{{numberFormat(result.MonthTotalMoney, 2)}} <span>EP</span></div>
+                            <div class="label">{{dateTimeObj.month + language.RESULT_TITLE}}</div>
+                        </div>
+                        <van-cell-group>
+                            <van-cell v-bind:value="numberFormat(result.FirstWeek, 2)" is-link @click="gotoDetail(1)">
+                                <div slot="title">
+                                    <span v-text="language.WEEK_1"></span>
+                                    <span class="title_style"
+                                        v-text="formatTime(result.FirstBegin)+' - '+formatTime(result.FirstEnd)">
+                                    </span>
+                                </div>
+                            </van-cell>
+                            <van-cell v-bind:value="numberFormat(result.SecondWeek, 2)" is-link @click="gotoDetail(2)">
+                                <div slot="title">
+                                    <span v-text="language.WEEK_2"></span>
+                                    <span class="title_style"
+                                        v-text="formatTime(result.SecondBegin)+' - '+formatTime(result.SecondEnd)">
+                                    </span>
+                                </div>
+                            </van-cell>
+                            <van-cell v-bind:value="numberFormat(result.ThirdWeek, 2)" is-link @click="gotoDetail(3)">
+                                <div slot="title">
+                                    <span v-text="language.WEEK_3"></span>
+                                    <span class="title_style"
+                                        v-text="formatTime(result.ThirdBegin)+' - '+formatTime(result.ThirdEnd)">
+                                    </span>
+                                </div>
+                            </van-cell>
+                            <van-cell v-bind:value="numberFormat(result.FourWeek, 2)" is-link @click="gotoDetail(4)">
+                                <div slot="title">
+                                    <span v-text="language.WEEK_4"></span>
+                                    <span class="title_style"
+                                        v-text="formatTime(result.FourBegin)+' - '+formatTime(result.FourEnd)"> </span>
+                                </div>
+                            </van-cell>
+                            <van-cell v-bind:value="numberFormat(result.FiveWeek, 2)" is-link @click="gotoDetail(5)">
+                                <div slot="title">
+                                    <span v-text="language.WEEK_5"></span>
+                                    <span class="title_style"
+                                        v-text="formatTime(result.FiveBegin)+' - '+formatTime(result.FiveEnd)"> </span>
+                                </div>
+                            </van-cell>
+                            <van-cell v-if="result.SixBegin && result.SixEnd"
+                                v-bind:value="numberFormat(result.SixWeek, 2)" is-link @click="gotoDetail(6)">
+                                <div slot="title">
+                                    <span v-text="language.WEEK_6"></span>
+                                    <span class="title_style"
+                                        v-text="formatTime(result.SixBegin)+' - '+formatTime(result.SixEnd)"> </span>
+                                </div>
+                            </van-cell>
+                        </van-cell-group>
+                    </div>
                 </div>
             </div>
         </div>
@@ -104,10 +97,10 @@
         </van-popup>
     </div>
     <script src="../../content/js/vue.js?v=28"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
     <script src="../../content/js/base.js?v=28"></script>
     <script src="../../content/js/pages/center/profit.js?v=28"></script>
     <script src="/content/js/vue-component.js?v=28"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vant@2.2/lib/vant.min.js"></script>
 </body>
 
 </html>

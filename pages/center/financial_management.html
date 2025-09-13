@@ -13,19 +13,22 @@
 
 <body>
     <div id="app">
-        <div class="header">
-            <top-back title="财务管理"  title-color="rgba(51,51,51,1)" />
-        </div>
+
         <div class="page-content">
-            <div class="nav-list">
-                <div class="item" v-for="item in navList" :key="item.label"
-                    @click="APP.GLOBAL.gotoNewWindow(item.id, item.page)">
-                    <div class="left">
-                        <img :src="item.icon" />
-                        <span>{{item.label}}</span>
-                    </div>
-                    <div class="right">
-                        <img src="/assets/images//financial/arraw-right.svg" />
+            <div class="header">
+                <top-back title="财务管理" title-color="rgba(51,51,51,1)" />
+            </div>
+            <div class="list-wrap">
+                <div class="nav-list">
+                    <div class="item" v-for="item in navList" :key="item.label"
+                        @click="APP.GLOBAL.gotoNewWindow(item.id, item.page)">
+                        <div class="left">
+                            <img :src="item.icon" />
+                            <span>{{item.label}}</span>
+                        </div>
+                        <div class="right">
+                            <img src="/assets/images//financial/arraw-right.svg" />
+                        </div>
                     </div>
                 </div>
             </div>

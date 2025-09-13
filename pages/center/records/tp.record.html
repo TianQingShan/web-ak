@@ -7,78 +7,60 @@
     <title></title>
     <link href="../../../content/css/base.css" rel="stylesheet" />
     <link href="../../../content/css/vant.css" rel="stylesheet" />
-    <link href="../../../content/css/pages/center/records/record.base.css" rel="stylesheet" />
     <link rel="stylesheet" href="/assets/css/tp.list.css">
     <link rel="stylesheet" href="/assets/css/vue-component.css">
 </head>
 
 <body>
     <div id="app">
-        <!-- <div id="app-head" class="fixed van-hairline--bottom" v-bind:style="{'paddingTop': statusbarHeight + 'px'}">
-            <i id="app-back-button" class="iconfont iconzuo right-back"></i>
-            <div class="app-head-text" v-text="language.TITLE_TEXT">TITLE_TEXT</div>
-        </div> -->
-        <div class="header">
-            <top-back title="TP記錄" title-color="rgba(51, 51, 51, 1)" ></top-back>
-        </div>
-        <div id="app-content">
-            <div v-if="pageModel.isLoading" class="loading-box p50">
-                <van-loading color="black"></van-loading>
-                <p class="loading-text" v-text="language.LOADING_TEXT"></p>
+        <div class="page-content">
+            <div class="header">
+                <top-back title="TP記錄" title-color="rgba(51, 51, 51, 1)"></top-back>
             </div>
-            <div v-else v-cloak>
-                <div v-if="pageModel.list.length === 0" class="none-data p50">
-                    <i class="iconfont iconkong"></i>
-                    <p class="none-data-text" v-text="language.NONE_DATA_TEXT">NONE_DATA_TEXT</p>
+            <div class="list-wrap"  @scroll="handleScroll" ref="scrollContainer">
+                <div v-if="pageModel.isLoading" class="loading-box p50">
+                    <van-loading color="black"></van-loading>
+                    <p class="loading-text" v-text="language.LOADING_TEXT"></p>
                 </div>
-                <div v-else>
-                    <ul class="list">
-                        <li v-for="(item,index) in pageModel.list" v-bind:key="index">
-                            <div class="top">
-                                <div class="left">
-                                    <div class="img">
-                                        <img src="/assets/images/financial/tp.svg" alt="">
-                                    </div>
-                                    <div>
-                                        <div class="amount" :class="[item.OperationType === 1 ? 'green' : 'red']">
-                                            {{(item.OperationType === 1 ? '+' : '-') + numberFormat(item.Amount, 2)}}
-                                        </div>
-                                        <div class="label">{{item.Des}}</div>
-                                        <div class="user">使用者：{{item.TypeName}}</div>
-                                    </div>
-                                </div>
-                                <div class="right">
-                                    <div class="value">{{numberFormat(item.SurplusTotalAmount, 2)}}</div>
-                                    <div class="time">{{item.Time}}</div>
-                                </div>
-                            </div>
-                            <div class="remark">
-                                备注:{{item.Remark}}
-                            </div>
-                            <!-- <p class="line clearfix">
-                                <span class="text"
-                                      v-text="(item.OperationType === 1 ? '+' : '-') + numberFormat(item.Amount, 2)"
-                                      v-bind:class="[item.OperationType === 1 ? 'green' : 'red']"></span>
-                                <span class="value" v-text="numberFormat(item.SurplusTotalAmount, 2)"></span>
-                            </p>
-                            <p class="line">
-                                <span class="text time" v-text="item.Des"></span>
-                                <span class="value time" v-text="item.TypeName"></span>
-                            </p>
-                            <p class="line">
-                                <span class="value time" v-text="item.Time"></span>
-                            </p>
-                            <p class="line remark" v-if="item.Remark">
-                                <span v-text="language.REMARK + item.Remark"></span>
-                            </p> -->
-                        </li>
-                    </ul>
-                    <div v-if="pageModel.isLoadMore" class="load_more clearfix">
-                        <van-loading color="black"></van-loading>
-                        <span class="load_text" v-text="language.LOADING_TEXT">正在加載...</span>
+                <div v-else v-cloak>
+                    <div v-if="pageModel.list.length === 0" class="none-data p50">
+                        <i class="iconfont iconkong"></i>
+                        <p class="none-data-text" v-text="language.NONE_DATA_TEXT">NONE_DATA_TEXT</p>
                     </div>
-                    <div v-if="pageModel.isLoadComplete" class="load_more_complete">
-                        <span class="load_text" v-text="language.LOAD_COMPLETE_TEXT">沒有更多的數據了...</span>
+                    <div v-else>
+                        <ul class="list">
+                            <li v-for="(item,index) in pageModel.list" v-bind:key="index">
+                                <div class="top">
+                                    <div class="left">
+                                        <div class="img">
+                                            <img src="/assets/images/financial/tp.svg" alt="">
+                                        </div>
+                                        <div>
+                                            <div class="amount" :class="[item.OperationType === 1 ? 'green' : 'red']">
+                                                {{(item.OperationType === 1 ? '+' : '-') + numberFormat(item.Amount,
+                                                2)}}
+                                            </div>
+                                            <div class="label">{{item.Des}}</div>
+                                            <div class="user">使用者：{{item.TypeName}}</div>
+                                        </div>
+                                    </div>
+                                    <div class="right">
+                                        <div class="value">{{numberFormat(item.SurplusTotalAmount, 2)}}</div>
+                                        <div class="time">{{item.Time}}</div>
+                                    </div>
+                                </div>
+                                <div class="remark">
+                                    备注:{{item.Remark}}
+                                </div>
+                            </li>
+                        </ul>
+                        <div v-if="pageModel.isLoadMore" class="load_more clearfix">
+                            <van-loading color="black"></van-loading>
+                            <span class="load_text" v-text="language.LOADING_TEXT">正在加載...</span>
+                        </div>
+                        <div v-if="pageModel.isLoadComplete" class="load_more_complete">
+                            <span class="load_text" v-text="language.LOAD_COMPLETE_TEXT">沒有更多的數據了...</span>
+                        </div>
                     </div>
                 </div>
             </div>
